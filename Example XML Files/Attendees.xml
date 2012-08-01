@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Attendees>
+  <Attendee id="00000000-0000-0000-0000-000000000000">
+    <Name>John McLoughlin</Name>
+  </Attendee>
+  <Attendee id="00000000-0000-0000-0000-000000000000">
+    <Name>Rory Becker</Name>
+  </Attendee>
+</Attendees>
