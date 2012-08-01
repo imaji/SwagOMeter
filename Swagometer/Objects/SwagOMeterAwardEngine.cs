@@ -60,8 +60,13 @@ namespace Swagometer.ViewModels
 
         public SwagOMeterAwardEngine(IAttendeeSource attendeeSource, ISwagSource swagSource)
         {
-            _attendees = attendeeSource.Load(Properties.Settings.Default.FileLocation);
-            _swag = swagSource.Load(Properties.Settings.Default.FileLocation);
+            string FileLocation = Properties.Settings.Default.FileLocation;
+            if (FileLocation == String.Empty)
+            {
+                FileLocation = new System.IO.FileInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).DirectoryName;
+            }
+            _attendees = attendeeSource.Load(FileLocation);
+            _swag = swagSource.Load(FileLocation);
 
             CheckCanSwag();
         }
