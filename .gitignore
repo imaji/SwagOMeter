@@ -6,3 +6,7 @@ output
 Output
 *.user
 *.suo
+packages/repositories.config
+*.ncrunchsolution
+Swagometer.Tests/Swagometer.Tests.ncrunchproject
+*.ncrunchproject
