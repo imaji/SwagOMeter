@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
 using Swagometer.Interfaces;
 
 namespace Swagometer.Dialogs
 {
-    public interface ICreateNewThings<TThing>
+    public interface ICreateNewThings<out TThing>
         where TThing : IThing<TThing>
     {
         TThing NewThing { get; }

@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 
 namespace Swagometer.ViewModels
 {
@@ -11,7 +8,7 @@ namespace Swagometer.ViewModels
 
         protected void FirePropertyChanged(string propertyName)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
+            var handler = PropertyChanged;
 
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));

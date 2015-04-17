@@ -1,4 +1,6 @@
-﻿namespace Swagometer
+﻿using Swagometer.Interfaces;
+
+namespace Swagometer.Objects
 {
     class Winner : IWinner
     {

@@ -1,9 +1,5 @@
-﻿using System.Windows;
-using Swagometer.Data;
+﻿using Swagometer.Interfaces;
 using Swagometer.ViewModels;
-using System;
-using System.Windows.Forms;
-using Swagometer.Interfaces;
 
 namespace Swagometer.Dialogs
 {
@@ -26,7 +22,7 @@ namespace Swagometer.Dialogs
         }
     }
 
-    public partial class BaseEditThingsDialog : Window
+    public partial class BaseEditThingsDialog
     {
         protected BaseEditThingsDialog()
         {

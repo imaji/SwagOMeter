@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Swagometer.Collections;
+using Swagometer.Interfaces;
 using Swagometer.Views;
 
 namespace Swagometer.Data

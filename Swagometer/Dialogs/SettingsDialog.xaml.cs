@@ -1,23 +1,23 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Windows;
-using Swagometer.ViewModels;
 using Swagometer.Data;
+using Swagometer.Interfaces;
+using Swagometer.ViewModels;
 
 namespace Swagometer.Dialogs
 {
-    public partial class SettingsDialog : Window
+    public partial class SettingsDialog
     {
         private readonly SettingsViewModel _viewModel;
         
         internal static SettingsDialog Create(IList<ISwag> swag, IList<IAttendee> attendees, IAttendeeSource attendeeSource, ISwagSource swagSource)
         {
-            var newDialog = new SettingsDialog(swag, attendees, attendeeSource, swagSource);
+            var newDialog = new SettingsDialog(attendeeSource, swagSource);
 
             return newDialog;
         }
 
-        private SettingsDialog(IList<ISwag> swag, IList<IAttendee> attendees, IAttendeeSource attendeeSource, ISwagSource swagSource)
+        private SettingsDialog(IAttendeeSource attendeeSource, ISwagSource swagSource)
         {
             _viewModel = new SettingsViewModel(attendeeSource, swagSource);
 

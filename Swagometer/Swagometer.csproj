@@ -179,7 +179,6 @@
     <Compile Include="Collections\AttendeeCollection.cs" />
     <Compile Include="Collections\SwagCollection.cs" />
     <Compile Include="Collections\WinnersCollection.cs" />
-    <Compile Include="Converters\AttendeeToEnableConverter.cs" />
     <Compile Include="Converters\SwagToEnableConverter.cs" />
     <Compile Include="Dialogs\CreateSwagDialog.xaml.cs">
       <DependentUpon>CreateSwagDialog.xaml</DependentUpon>
@@ -276,14 +275,11 @@ xcopy "$(TargetDir)Swagometer.exe.config" "$(SolutionDir)Output" /i /y</PostBuil
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="" BuildVersion_StartDate="2009/7/5" BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" />
+      <UserProperties BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_StartDate="2009/7/5" BuildVersion_AssemblyInfoFilename="" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>IF NOT EXIST "$(SolutionDir)Output" mkdir "$(SolutionDir)Output"
-
-xcopy "$(TargetPath)" "$(SolutionDir)Output" /i /y
-xcopy "$(TargetDir)Swagometer.exe.config" "$(SolutionDir)Output" /i /y
-xcopy "$(TargetDir)Resources\Music.mp3" "$(SolutionDir)Output" /i /y</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

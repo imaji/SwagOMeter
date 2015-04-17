@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Swagometer.Data;
+using Swagometer.Interfaces;
 
-namespace Swagometer.ViewModels
+namespace Swagometer.Objects
 {
     public class SwagOMeterAwardEngine : ISwagOMeterAwardEngine
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private readonly IList<IAttendee> _attendeesThatLeft = new List<IAttendee>();
         private readonly IList<IWinner> _badSwagCombinations = new List<IWinner>();
         private readonly IList<IWinner> _winners = new List<IWinner>();
         private IList<IAttendee> _attendees;
@@ -119,8 +119,8 @@ namespace Swagometer.ViewModels
 
         private bool IsAttendeeAndSwagComboValid(IAttendee attendeeToCheck, ISwag swagToCheck)
         {
-            var swagCanBeAwarded = _badSwagCombinations.Where(bs => bs.AwardedSwag.Thing == swagToCheck.Thing &&
-                                                                    bs.WinningAttendee.Name == attendeeToCheck.Name).ToList().Count() == 0;
+            var swagCanBeAwarded = !_badSwagCombinations.Any(bs => bs.AwardedSwag.Thing == swagToCheck.Thing &&
+                                                                    bs.WinningAttendee.Name == attendeeToCheck.Name);
 
             if (!swagCanBeAwarded)
             {
@@ -175,7 +175,7 @@ namespace Swagometer.ViewModels
 
         private IWinner GetMatchedWinner()
         {
-            var matchedWinner = _winners.Where(w => w.WinningAttendee == WinningAttendee).FirstOrDefault();
+            var matchedWinner = _winners.FirstOrDefault(w => w.WinningAttendee == WinningAttendee);
             return matchedWinner;
         }
 
@@ -183,8 +183,6 @@ namespace Swagometer.ViewModels
         {
             _swag.Add(AwardedSwag);
             AwardedSwag = null;
-
-            _attendeesThatLeft.Add(WinningAttendee);
 
             var matchedWinner = GetMatchedWinner();
             
@@ -230,7 +228,7 @@ namespace Swagometer.ViewModels
 
             var attendeeNames = _attendees.Select(a => a.Name);
 
-            var existingEntriesWithRemainingAttendees = _badSwagCombinations.Where(bs => attendeeNames.Contains(bs.WinningAttendee.Name)).Count();
+            var existingEntriesWithRemainingAttendees = _badSwagCombinations.Count(bs => attendeeNames.Contains(bs.WinningAttendee.Name));
 
             var combinationsLeft = possibleCombinationsLeft > existingEntriesWithRemainingAttendees;
             

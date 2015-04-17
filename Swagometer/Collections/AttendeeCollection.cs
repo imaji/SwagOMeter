@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using System.Xml;
 using Swagometer.Interfaces;
+using Swagometer.Objects;
 using Swagometer.Properties;
 
 namespace Swagometer.Collections
@@ -28,12 +28,7 @@ namespace Swagometer.Collections
 
         private static bool IsFileEmpty(string attendeelocation)
         {
-            var isEmpty = true;
-
-            if (File.ReadAllLines(attendeelocation).Length > 0)
-                isEmpty = false;
-
-            return isEmpty;
+            return !(File.ReadAllLines(attendeelocation).Length > 0);
         }
 
         private static string GetFileLocation(string attendeesLocation)

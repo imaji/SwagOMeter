@@ -1,9 +1,10 @@
 ﻿using System.Windows;
+using Swagometer.Interfaces;
 using Swagometer.ViewModels;
 
 namespace Swagometer.Dialogs
 {
-    public partial class CreateAttendeeDialog : Window, ICreateNewThings<IAttendee>
+    public partial class CreateAttendeeDialog : ICreateNewThings<IAttendee>
     {
         private readonly CreateAttendeeViewModel _viewModel;
 

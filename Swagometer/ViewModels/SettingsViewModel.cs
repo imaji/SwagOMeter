@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Swagometer.Commands;
-using Swagometer.Dialogs;
 using Swagometer.Data;
+using Swagometer.Dialogs;
+using Swagometer.Interfaces;
+using Swagometer.Properties;
 
 namespace Swagometer.ViewModels
 {
@@ -22,10 +23,10 @@ namespace Swagometer.ViewModels
             _swagSource = swagSource;
             _attendeeSource = attendeeSource;
 
-            EditSwagCommand = new DelegateCommand((_) => ExecuteEditSwag());
-            EditAttendeesCommand = new DelegateCommand((_) => ExecuteEditAttendees());
-            SetFileLocationCommand = new DelegateCommand((_) => ExecuteSetFileLocation());
-            CloseCommand = new DelegateCommand((_) => ExecuteClose());
+            EditSwagCommand = new DelegateCommand(ExecuteEditSwag);
+            EditAttendeesCommand = new DelegateCommand(ExecuteEditAttendees);
+            SetFileLocationCommand = new DelegateCommand(ExecuteSetFileLocation);
+            CloseCommand = new DelegateCommand(ExecuteClose);
         }
 
         public ICommand EditSwagCommand { get; private set; }
@@ -79,7 +80,7 @@ namespace Swagometer.ViewModels
         {
             var dirDialog = new FolderBrowserDialog();
 
-            if (dirDialog.ShowDialog().Equals(System.Windows.Forms.DialogResult.OK))
+            if (dirDialog.ShowDialog().Equals(DialogResult.OK))
             {
                 FileLocation = dirDialog.SelectedPath;
                 _attendeeSource.Load(FileLocation);
@@ -89,9 +90,9 @@ namespace Swagometer.ViewModels
 
         private void ExecuteClose()
         {
-            if (string.Compare(_originalFileLocation, FileLocation, true) != 0)
+            if (string.Compare(_originalFileLocation, FileLocation, StringComparison.OrdinalIgnoreCase) != 0)
             {
-                Properties.Settings.Default[Constants.FileLocationProperty] = FileLocation;
+                Settings.Default[Constants.FileLocationProperty] = FileLocation;
 
                 if (!string.IsNullOrEmpty(_originalFileLocation))
                 {
@@ -100,9 +101,9 @@ namespace Swagometer.ViewModels
                 }
             }
 
-            Properties.Settings.Default[Constants.SaveWinnersOnExitProperty] = SaveWinnersOnExit;
+            Settings.Default[Constants.SaveWinnersOnExitProperty] = SaveWinnersOnExit;
 
-            Properties.Settings.Default.Save();
+            Settings.Default.Save();
 
             if (Close != null)
                 Close(this, EventArgs.Empty);
@@ -118,8 +119,8 @@ namespace Swagometer.ViewModels
 
         public void ViewReady()
         {
-            SaveWinnersOnExit = Properties.Settings.Default.SaveWinnersOnExit;
-            FileLocation = Properties.Settings.Default.FileLocation;
+            SaveWinnersOnExit = Settings.Default.SaveWinnersOnExit;
+            FileLocation = Settings.Default.FileLocation;
             _originalFileLocation = FileLocation;
         }
     }

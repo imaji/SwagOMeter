@@ -2,9 +2,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Swagometer.Data;
-using Swagometer.ViewModels;
+using Swagometer.Interfaces;
+using Swagometer.Objects;
 
-namespace Swagometer.Tests.ViewModels
+namespace Swagometer.Tests.Objects
 {
     [TestClass]
     public class SwagOMeterAwardEngineTests
@@ -35,7 +36,7 @@ namespace Swagometer.Tests.ViewModels
         public void SwagOMeterAwardEngineShouldLoadAttendeesWhenRequestedButShouldNotBeSwagableWhenNoAttendeesArePresent()
         {
             // Arrange
-            var stubAttendees = new List<IAttendee> { };
+            var stubAttendees = new List<IAttendee>();
             var stubSwag = new List<ISwag> { new Mock<ISwag>().Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
@@ -58,7 +59,7 @@ namespace Swagometer.Tests.ViewModels
         {
             // Arrange
             var stubAttendees = new List<IAttendee> { new Mock<IAttendee>().Object };
-            var stubSwag = new List<ISwag> { };
+            var stubSwag = new List<ISwag>();
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);

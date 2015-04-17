@@ -1,7 +1,6 @@
 ﻿using System;
-using Swagometer.Interfaces;
 
-namespace Swagometer
+namespace Swagometer.Interfaces
 {
     public interface IAttendee : IThing<IAttendee>
     {

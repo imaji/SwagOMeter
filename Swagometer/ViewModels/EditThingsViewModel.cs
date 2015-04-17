@@ -24,10 +24,10 @@ namespace Swagometer.ViewModels
             _filePath = filePath;
             _thingSource = thingSource;
 
-            SaveCommand = new DelegateCommand(_ => ExecuteSave());
-            CreateCommand = new DelegateCommand(_ => ExecuteCreate());
-            DeleteCommand = new DelegateCommand(_ => ExecuteDelete());
-            DuplicateCommand = new DelegateCommand(_ => ExecuteDuplicate());
+            SaveCommand = new DelegateCommand(ExecuteSave);
+            CreateCommand = new DelegateCommand(ExecuteCreate);
+            DeleteCommand = new DelegateCommand(ExecuteDelete);
+            DuplicateCommand = new DelegateCommand(ExecuteDuplicate);
         }
 
         public ICommand SaveCommand { get; set; }

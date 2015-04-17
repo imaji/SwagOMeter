@@ -8,13 +8,13 @@ namespace Swagometer.Commands
         public event EventHandler CanExecuteChanged;
 
         private readonly Func<object, bool> _canExecute;
-        private readonly Action<object> _executeAction;
+        private readonly Action _executeAction;
 
-        public DelegateCommand(Action<object> executeAction)
+        public DelegateCommand(Action executeAction)
             : this(executeAction, null)
         { }
 
-        public DelegateCommand(Action<object> executeAction, Func<object, bool> canExecute)
+        public DelegateCommand(Action executeAction, Func<object, bool> canExecute)
         {
             if (executeAction == null)
                 throw new ArgumentNullException("executeAction");
@@ -25,9 +25,9 @@ namespace Swagometer.Commands
 
         public bool CanExecute(object parameter)
         {
-            bool result = true;
+            var result = true;
 
-            Func<object, bool> canExecuteHandler = _canExecute;
+            var canExecuteHandler = _canExecute;
 
             if (canExecuteHandler != null)
                 result = canExecuteHandler(parameter);
@@ -37,7 +37,7 @@ namespace Swagometer.Commands
 
         public void RaiseCanExecuteChanged()
         {
-            EventHandler handler = CanExecuteChanged;
+            var handler = CanExecuteChanged;
 
             if (handler != null)
                 handler(this, new EventArgs());
@@ -45,7 +45,7 @@ namespace Swagometer.Commands
 
         public void Execute(object parameter)
         {
-            _executeAction(parameter);
+            _executeAction();
         }
     }
 }

@@ -1,5 +1,3 @@
-using System;
-
 namespace Swagometer.Dialogs
 {
     public interface ICanClose

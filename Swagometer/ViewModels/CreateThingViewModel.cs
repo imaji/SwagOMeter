@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Input;
 using Swagometer.Commands;
 using Swagometer.Dialogs;
@@ -13,9 +11,9 @@ namespace Swagometer.ViewModels
     {
         public event EventHandler<ThingGoodEventArgs> ThingGood;
 
-        public CreateThingViewModel()
+        protected CreateThingViewModel()
         {
-            CreateCommand = new DelegateCommand(_ => ExecuteCreate());
+            CreateCommand = new DelegateCommand(ExecuteCreate);
         }
 
         public ICommand CreateCommand { get; set; }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Swagometer.Interfaces;
+﻿using Swagometer.Interfaces;
 using Swagometer.ViewModels;
 
 namespace Swagometer.Dialogs

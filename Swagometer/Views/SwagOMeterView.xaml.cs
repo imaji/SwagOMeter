@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Windows;
-using Swagometer.ViewModels;
 using Swagometer.Data;
+using Swagometer.Objects;
+using Swagometer.ViewModels;
 
-namespace Swagometer
+namespace Swagometer.Views
 {
     public partial class SwagOMeterView
     {
-        private readonly SwagOMeterViewModel _viewModel;
-        
         public SwagOMeterView()
         {
             var errorMessage = new DisplayErrorMessages();
@@ -16,13 +15,13 @@ namespace Swagometer
             var attendeeSource = new AttendeeSource(errorMessage);
             var swagSource = new SwagSource(errorMessage);
 
-            _viewModel = new SwagOMeterViewModel(attendeeSource, swagSource, new WinnersSource(), new SwagOMeterAwardEngine(attendeeSource, swagSource));
+            var viewModel = new SwagOMeterViewModel(attendeeSource, swagSource, new WinnersSource(), new SwagOMeterAwardEngine(attendeeSource, swagSource));
 
-            _viewModel.Close += (s, e) => Close();
-            _viewModel.PlayMusic += (s, e) => mediaElement.Play();
-            _viewModel.StopMusic += (s, e) => mediaElement.Pause();
+            viewModel.Close += (s, e) => Close();
+            viewModel.PlayMusic += (s, e) => mediaElement.Play();
+            viewModel.StopMusic += (s, e) => mediaElement.Pause();
 
-            DataContext = _viewModel;
+            DataContext = viewModel;
 
             InitializeComponent();
         }

@@ -3,6 +3,8 @@ using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Swagometer.Data;
+using Swagometer.Interfaces;
+using Swagometer.Objects;
 using Swagometer.ViewModels;
 
 namespace Swagometer.Tests.ViewModels

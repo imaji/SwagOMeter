@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Xml;
+using Swagometer.Interfaces;
 
-namespace Swagometer
+namespace Swagometer.Objects
 {
     class Attendee : IAttendee
     {
@@ -14,9 +15,9 @@ namespace Swagometer
 
         internal static IAttendee Create(XmlNode attendeeElement)
         {
-            XmlAttribute id = attendeeElement.Attributes["id"];
+            var id = attendeeElement.Attributes["id"];
 
-            Guid convertedId = Guid.Empty;
+            var convertedId = Guid.Empty;
 
             if (id != null)
                 convertedId = new Guid(id.Value);
@@ -31,13 +32,7 @@ namespace Swagometer
 
         public bool IsValid()
         {
-            bool isValid = true;
-
-            if ((string.IsNullOrEmpty(Name)) ||
-                (Name.Equals(DEFAULT)))
-                isValid = false;
-
-            return isValid;
+            return !(string.IsNullOrEmpty(Name) || Name.Equals(DEFAULT));
         }
 
         public override string ToString()

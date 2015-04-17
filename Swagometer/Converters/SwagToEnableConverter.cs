@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Data;
+using Swagometer.Interfaces;
 
 namespace Swagometer.Converters
 {
-    internal class SwagToEnableConverter : IValueConverter
+    public class SwagToEnableConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -11,16 +12,7 @@ namespace Swagometer.Converters
             {
                 throw new InvalidOperationException("The target must be a bool");
             }
-
-            var isEnabled = false;
-
-            if (value != null &&
-                value is ISwag)
-            {
-                isEnabled = true;
-            }
-
-            return isEnabled;
+            return value is ISwag;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

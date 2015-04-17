@@ -1,6 +1,4 @@
-﻿using Swagometer.Interfaces;
-
-namespace Swagometer
+﻿namespace Swagometer.Interfaces
 {
     public interface ISwag : IThing<ISwag>
     {

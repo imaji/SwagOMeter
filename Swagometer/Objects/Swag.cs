@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Text;
+using Swagometer.Interfaces;
 
-namespace Swagometer
+namespace Swagometer.Objects
 {
-    internal class Swag : ISwag
+    public class Swag : ISwag
     {
         private const string DEFAULT_COMPANY = "Who?";
         private const string DEFAULT_THING = "What?";
@@ -16,7 +16,7 @@ namespace Swagometer
 
         public static ISwag Create(string company, string thing)
         {
-            var newSwag = new Swag {Company = company, Thing = thing};
+            var newSwag = new Swag { Company = company, Thing = thing };
             return newSwag;
         }
 
@@ -28,16 +28,9 @@ namespace Swagometer
 
         public bool IsValid()
         {
-            bool isValid = true;
+            var isValid = !(string.IsNullOrEmpty(Company) || Company.Equals(DEFAULT_COMPANY));
 
-            if ((string.IsNullOrEmpty(Company)) ||
-                (Company.Equals(DEFAULT_COMPANY)))
-            {
-                isValid = false;
-            }
-
-            if ((string.IsNullOrEmpty(Thing)) ||
-                (Thing.Equals(DEFAULT_THING)))
+            if (string.IsNullOrEmpty(Thing) || Thing.Equals(DEFAULT_THING))
             {
                 isValid = false;
             }
@@ -47,11 +40,7 @@ namespace Swagometer
 
         public override string ToString()
         {
-            var sb = new StringBuilder();
-            sb.Append(Company);
-            sb.AppendFormat(" {0}", Thing);
-
-            return sb.ToString();
+            return string.Format("{0} {1}", Company, Thing);
         }
 
         public ISwag Duplicate()

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Swagometer.Interfaces;
 
 namespace Swagometer.Data
 {

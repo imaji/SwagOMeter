@@ -1,15 +1,16 @@
-﻿using System;
+﻿using Swagometer.Properties;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using System.Xml;
-using Swagometer.Properties;
+using Swagometer.Interfaces;
+using Swagometer.Objects;
 
 namespace Swagometer.Collections
 {
     internal class SwagCollection : ObservableCollection<ISwag>, IThingCollection<ISwag>
     {
-        private SwagCollection() {}
+        private SwagCollection() { }
 
         public static SwagCollection Create()
         {
@@ -27,19 +28,12 @@ namespace Swagometer.Collections
 
         private static bool IsFileEmpty(string swaglocation)
         {
-            var isEmpty = true;
-
-            if (File.ReadAllLines(swaglocation).Length > 0)
-            {
-                isEmpty = false;
-            }
-
-            return isEmpty;
+            return !(File.ReadAllLines(swaglocation).Length > 0);
         }
 
         private static string GetFileLocation(string swagLocation)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append(swagLocation.TrimEnd("\\".ToCharArray()));
             sb.Append(Resources.SwagFile);
 
@@ -50,23 +44,27 @@ namespace Swagometer.Collections
         {
             var swagPath = GetFileLocation(swagLocation);
 
-            if (!string.IsNullOrEmpty(swagPath))
+            if (string.IsNullOrEmpty(swagPath))
             {
-                if (File.Exists(swagPath))
-                {
-                    if (!IsFileEmpty(swagPath))
-                    {
-                        var swagDoc = new XmlDocument();
-                        swagDoc.Load(swagPath);
+                return;
+            }
+            if (!File.Exists(swagPath))
+            {
+                return;
+            }
+            if (IsFileEmpty(swagPath))
+            {
+                return;
+            }
 
-                        foreach (XmlNode swagElement in swagDoc.ChildNodes[1])
-                        {
-                            var companyElement = swagElement.FirstChild as XmlElement;
-                            var thingElement = swagElement.ChildNodes[1] as XmlElement;
-                            Add(Swag.Create(companyElement.InnerText, thingElement.InnerText));
-                        }
-                    }
-                }
+            var swagDoc = new XmlDocument();
+            swagDoc.Load(swagPath);
+
+            foreach (XmlNode swagElement in swagDoc.ChildNodes[1])
+            {
+                var companyElement = swagElement.FirstChild as XmlElement;
+                var thingElement = swagElement.ChildNodes[1] as XmlElement;
+                Add(Swag.Create(companyElement.InnerText, thingElement.InnerText));
             }
         }
 

@@ -1,4 +1,7 @@
-﻿namespace Swagometer.ViewModels
+﻿using Swagometer.Interfaces;
+using Swagometer.Objects;
+
+namespace Swagometer.ViewModels
 {
     public class CreateAttendeeViewModel : CreateThingViewModel<IAttendee>
     {

@@ -11,8 +11,8 @@ namespace Swagometer.Data
     {
         private readonly IDisplayErrorMessages _displayErrorMessage;
         private readonly string _thing;
-        
-        public ThingSource(IDisplayErrorMessages displayErrorMessage, string thing)
+
+        protected ThingSource(IDisplayErrorMessages displayErrorMessage, string thing)
         {
             _thing = thing;
             _displayErrorMessage = displayErrorMessage;
@@ -22,7 +22,7 @@ namespace Swagometer.Data
         {
             IList<TThing> attendees = new List<TThing>();
 
-            string errorMessage = string.Empty;
+            var errorMessage = string.Empty;
 
             if (string.IsNullOrEmpty(thingLocation))
                 errorMessage = _thing + " location not specified";

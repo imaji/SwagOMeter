@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Swagometer.Commands;
 using Swagometer.Data;
 using Swagometer.Dialogs;
+using Swagometer.Interfaces;
+using Swagometer.Objects;
+using Swagometer.Properties;
 
 namespace Swagometer.ViewModels
 {
@@ -33,16 +35,16 @@ namespace Swagometer.ViewModels
             _attendeeSource = attendeeSource;
             _winnersSource = winnersSource;
 
-            AwardSwagCommand = new DelegateCommand((_) => ExecuteAwardSwag());
-            AttendeeNotPresentCommand = new DelegateCommand((_) => ExecuteAttendeeNotPresent());
-            AlreadyGotSwagCommand = new DelegateCommand((_) => ExecuteAttendeeDoesNotWantSwag());
-            CloseCommand = new DelegateCommand((_) => ExecuteClose());
-            SettingsCommand = new DelegateCommand((_) => ExecuteOpenSettings());
-            PlayMusicCommand = new DelegateCommand((_) => ExecutePlayMusic());
+            AwardSwagCommand = new DelegateCommand(ExecuteAwardSwag);
+            AttendeeNotPresentCommand = new DelegateCommand(ExecuteAttendeeNotPresent);
+            AlreadyGotSwagCommand = new DelegateCommand(ExecuteAttendeeDoesNotWantSwag);
+            CloseCommand = new DelegateCommand(ExecuteClose);
+            SettingsCommand = new DelegateCommand(ExecuteOpenSettings);
+            PlayMusicCommand = new DelegateCommand(ExecutePlayMusic);
 
             Music = new Uri("Resources\\Music.mp3", UriKind.Relative);
 
-            SwagText = Properties.Resources.CantSwag;
+            SwagText = Resources.CantSwag;
         }
 
         public ICommand AwardSwagCommand { get; private set; }
@@ -53,11 +55,6 @@ namespace Swagometer.ViewModels
         public ICommand PlayMusicCommand { get; private set; }
 
         public Uri Music { get; private set; }
-
-        private bool CanExecuteAwardSwag()
-        {
-            return CanSwag;
-        }
 
         private bool _canSwag;
         public bool CanSwag
@@ -157,8 +154,8 @@ namespace Swagometer.ViewModels
 
         public void ViewReady()
         {
-            _attendees = _attendeeSource.Load(Properties.Settings.Default.FileLocation);
-            _swag = _swagSource.Load(Properties.Settings.Default.FileLocation);
+            _attendees = _attendeeSource.Load(Settings.Default.FileLocation);
+            _swag = _swagSource.Load(Settings.Default.FileLocation);
 
             CheckCanSwag();
         }
@@ -168,9 +165,9 @@ namespace Swagometer.ViewModels
             CanSwag = _swagOMeterAwardEngine.CheckCanSwag();
 
             if (CanSwag)
-                SwagText = Properties.Resources.SwagEm;
+                SwagText = Resources.SwagEm;
             else if (_winners != null && _winners.Count > 0)
-                SwagText = Properties.Resources.AllSwaggedOut;
+                SwagText = Resources.AllSwaggedOut;
         }
 
         private void ExecuteAwardSwag()

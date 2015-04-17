@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using Swagometer.Data;
+using Swagometer.Interfaces;
 
-namespace Swagometer.ViewModels
+namespace Swagometer.Objects
 {
     public interface ISwagOMeterAwardEngine : INotifyPropertyChanged
     {

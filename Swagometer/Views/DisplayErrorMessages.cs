@@ -1,8 +1,6 @@
-using System;
 using System.Windows.Forms;
-using Swagometer.Views;
 
-namespace Swagometer
+namespace Swagometer.Views
 {
     public sealed class DisplayErrorMessages : IDisplayErrorMessages
     {
@@ -10,7 +8,7 @@ namespace Swagometer
         {
             if (!string.IsNullOrEmpty(errorMessage) ||
                 !string.IsNullOrWhiteSpace(errorMessage))
-                MessageBox.Show(errorMessage, "An Error Occured");
+                MessageBox.Show(errorMessage, @"An Error Occured");
         }
     }
 }

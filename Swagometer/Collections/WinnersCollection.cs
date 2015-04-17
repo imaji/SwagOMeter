@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Text;
 using System.Xml;
+using Swagometer.Interfaces;
 using Swagometer.Properties;
 
 namespace Swagometer.Collections
@@ -20,7 +20,7 @@ namespace Swagometer.Collections
 
         private static string GetFileLocation()
         {
-            string attendeesLocation = Properties.Settings.Default.FileLocation;
+            string attendeesLocation = Settings.Default.FileLocation;
 
             var sb = new StringBuilder();
             sb.Append(attendeesLocation.TrimEnd("\\".ToCharArray()));

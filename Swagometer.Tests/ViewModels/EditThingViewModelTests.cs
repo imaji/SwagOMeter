@@ -5,6 +5,7 @@ using Moq;
 using Swagometer.Data;
 using Swagometer.ViewModels;
 using Swagometer.Dialogs;
+using Swagometer.Interfaces;
 
 namespace Swagometer.Tests.ViewModels
 {

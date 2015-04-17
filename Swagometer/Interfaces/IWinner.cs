@@ -1,4 +1,4 @@
-﻿namespace Swagometer
+﻿namespace Swagometer.Interfaces
 {
     public interface IWinner
     {
