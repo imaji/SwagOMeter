@@ -1,13 +1,47 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SwagStash>
-<Swag><Company>Telerik</Company><Thing>Bundle</Thing></Swag>
-<Swag><Company>Telerik</Company><Thing>Bundle</Thing></Swag>
-<Swag><Company>Resharper</Company><Thing>Licence</Thing></Swag>
-<Swag><Company>Spectrum IT</Company><Thing>£10 Amazon Voucher</Thing></Swag>
-<Swag><Company>Spectrum IT</Company><Thing>£20 Amazon Voucher</Thing></Swag>
-<Swag><Company>Telerik</Company><Thing>Sticker</Thing></Swag>
-<Swag><Company>Telerik</Company><Thing>Sticker</Thing></Swag>
-<Swag><Company>Telerik</Company><Thing>Sticker</Thing></Swag>
-<Swag><Company>Telerik</Company><Thing>Sticker</Thing></Swag>
-<Swag><Company>Telerik</Company><Thing>Sticker</Thing></Swag>
+  <Swag>
+    <Company>Telerik</Company>
+    <Thing>Bundle</Thing>
+  </Swag>
+  <Swag>
+    <Company>Telerik</Company>
+    <Thing>Bundle</Thing>
+  </Swag>
+  <Swag>
+    <Company>Resharper</Company>
+    <Thing>Licence</Thing>
+  </Swag>
+  <Swag>
+    <Company>Spectrum IT</Company>
+    <Thing>£10 Amazon Voucher</Thing>
+  </Swag>
+  <Swag>
+    <Company>Telerik</Company>
+    <Thing>Sticker</Thing>
+  </Swag>
+  <Swag>
+    <Company>Telerik</Company>
+    <Thing>Sticker</Thing>
+  </Swag>
+  <Swag>
+    <Company>Telerik</Company>
+    <Thing>Sticker</Thing>
+  </Swag>
+  <Swag>
+    <Company>Telerik</Company>
+    <Thing>Sticker</Thing>
+  </Swag>
+  <Swag>
+    <Company>Telerik</Company>
+    <Thing>Sticker</Thing>
+  </Swag>
+  <Swag>
+    <Company>Telerik</Company>
+    <Thing>Sticker</Thing>
+  </Swag>
+  <Swag>
+    <Company>Spectrum IT</Company>
+    <Thing>£10 Amazon Voucher</Thing>
+  </Swag>
 </SwagStash>

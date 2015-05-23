@@ -63,9 +63,9 @@ namespace Swagometer.Lib.Collections
             }
         }
 
-        public void Save(string swagLocation, string fileName)
+        public void Save(string fileName)
         {
-            var swagPath = Path.Combine(swagLocation, fileName);
+            var swagPath = fileName;
 
             if ((!string.IsNullOrEmpty(swagPath)))
             {

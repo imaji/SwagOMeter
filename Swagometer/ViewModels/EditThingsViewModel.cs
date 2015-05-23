@@ -67,7 +67,7 @@ namespace Swagometer.ViewModels
         {
             if (_hasChanged)
             {
-                _thingSource.Save(Things, _filePath, "");
+                _thingSource.Save(Things, _filePath);
             }
             _view.Close(_hasChanged);
         }

@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Swagometer.ViewModels;
 using Swagometer.Dialogs;
 using Swagometer.Lib.Interfaces;
+using Swagometer.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Swagometer.Tests.ViewModels
 {
@@ -63,7 +63,7 @@ namespace Swagometer.Tests.ViewModels
 
             // Assert
             Assert.AreEqual(3, viewModel.Things.Count());
-            stubSwagSource.Verify(ss => ss.Save(It.IsAny<IList<ISwag>>(), stubPath, It.IsAny<string>()), Times.Never());
+            stubSwagSource.Verify(ss => ss.Save(It.IsAny<IList<ISwag>>(), It.Is<string>(s => s.StartsWith(stubPath))), Times.Never());
         }
 
         [TestMethod]
@@ -100,7 +100,7 @@ namespace Swagometer.Tests.ViewModels
             viewModel.SaveCommand.Execute(null);
 
             // Assert
-            stubSwagSource.Verify(ss => ss.Save(It.IsAny<IList<ISwag>>(), stubPath, It.IsAny<string>()), Times.Once());
+            stubSwagSource.Verify(ss => ss.Save(It.IsAny<IList<ISwag>>(), It.Is<string>(s => s.StartsWith(stubPath))), Times.Once());
         }
 
         [TestMethod]

@@ -40,7 +40,7 @@ namespace Swagometer.Lib.Data
 
         protected abstract IList<TThing> LoadThings(string thingLocation);
 
-        public void Save(IList<TThing> thingToSave, string thingLocation, string fileName)
+        public void Save(IList<TThing> thingToSave, string fileName)
         {
             if (thingToSave != null)
             {
@@ -49,7 +49,7 @@ namespace Swagometer.Lib.Data
                 foreach (var thing in thingToSave)
                     attendeeOutput.Add(thing);
 
-                attendeeOutput.Save(thingLocation, fileName);
+                attendeeOutput.Save(fileName);
             }
         }
 

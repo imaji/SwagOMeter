@@ -6,6 +6,6 @@ namespace Swagometer.Lib.Collections
     public interface IThingCollection<TThing> : IList<TThing>
             where TThing : IThing<TThing>
     {
-        void Save(string thingLocation, string fileName);
+        void Save(string fileName);
     }
 }

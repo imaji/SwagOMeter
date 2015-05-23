@@ -1,16 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Attendees>
   <Attendee id="00000000-0000-0000-0000-000000000000">
-    <Name>Adam Mark Perkins</Name>
-  </Attendee>
-  <Attendee id="00000000-0000-0000-0000-000000000000">
     <Name>Adam Naylor</Name>
   </Attendee>
   <Attendee id="00000000-0000-0000-0000-000000000000">
     <Name>Alex</Name>
-  </Attendee>
-  <Attendee id="00000000-0000-0000-0000-000000000000">
-    <Name>Anthony Brown</Name>
   </Attendee>
   <Attendee id="00000000-0000-0000-0000-000000000000">
     <Name>Chris Yorke</Name>

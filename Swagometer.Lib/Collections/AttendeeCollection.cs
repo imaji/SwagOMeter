@@ -54,9 +54,9 @@ namespace Swagometer.Lib.Collections
             }
         }
 
-        public void Save(string attendeesLocation, string fileName)
+        public void Save(string fileName)
         {
-            var attendeeLocation = Path.Combine(attendeesLocation, fileName);
+            var attendeeLocation = fileName;
 
             if ((!string.IsNullOrEmpty(attendeeLocation)))
             {
