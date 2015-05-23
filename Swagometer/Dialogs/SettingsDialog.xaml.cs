@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using Swagometer.Data;
-using Swagometer.Interfaces;
+using Swagometer.Lib.Interfaces;
 using Swagometer.ViewModels;
 
 namespace Swagometer.Dialogs

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Swagometer.Lib.Interfaces;
+using Swagometer.Lib.Objects;
+using Swagometer.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
-using Swagometer.Data;
-using Swagometer.Interfaces;
 
 namespace Swagometer.Objects
 {
@@ -60,8 +62,8 @@ namespace Swagometer.Objects
 
         public SwagOMeterAwardEngine(IAttendeeSource attendeeSource, ISwagSource swagSource)
         {
-            _attendees = attendeeSource.Load(Properties.Settings.Default.FileLocation);
-            _swag = swagSource.Load(Properties.Settings.Default.FileLocation);
+            _attendees = attendeeSource.Load(Path.Combine(Settings.Default.FileLocation ?? string.Empty, Resources.AttendeesFile));
+            _swag = swagSource.Load(Path.Combine(Settings.Default.FileLocation ?? string.Empty, Resources.SwagFile));
 
             CheckCanSwag();
         }
@@ -185,7 +187,7 @@ namespace Swagometer.Objects
             AwardedSwag = null;
 
             var matchedWinner = GetMatchedWinner();
-            
+
             WinningAttendee = null;
 
             if (matchedWinner != null)
@@ -231,7 +233,7 @@ namespace Swagometer.Objects
             var existingEntriesWithRemainingAttendees = _badSwagCombinations.Count(bs => attendeeNames.Contains(bs.WinningAttendee.Name));
 
             var combinationsLeft = possibleCombinationsLeft > existingEntriesWithRemainingAttendees;
-            
+
             return combinationsLeft;
         }
 
@@ -244,8 +246,8 @@ namespace Swagometer.Objects
         public void RefreshData(IAttendeeSource attendeeSource, ISwagSource swagSource)
         {
             _winners.Clear();
-            _swag = swagSource.Load(Properties.Settings.Default.FileLocation);
-            _attendees = attendeeSource.Load(Properties.Settings.Default.FileLocation);
+            _swag = swagSource.Load(Path.Combine(Settings.Default.FileLocation, Resources.SwagFile));
+            _attendees = attendeeSource.Load(Path.Combine(Settings.Default.FileLocation, Resources.AttendeesFile));
         }
     }
 }

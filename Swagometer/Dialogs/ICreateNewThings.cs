@@ -1,4 +1,4 @@
-using Swagometer.Interfaces;
+using Swagometer.Lib.Interfaces;
 
 namespace Swagometer.Dialogs
 {

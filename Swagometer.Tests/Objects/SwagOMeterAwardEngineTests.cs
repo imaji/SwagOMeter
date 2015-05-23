@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Swagometer.Data;
-using Swagometer.Interfaces;
+using Swagometer.Lib.Interfaces;
 using Swagometer.Objects;
+using System.Collections.Generic;
 
 namespace Swagometer.Tests.Objects
 {
@@ -25,7 +24,7 @@ namespace Swagometer.Tests.Objects
 
             // Act
             var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
-            
+
             // Assert
             Assert.IsTrue(awardEngine.CanSwag);
             Assert.IsNull(awardEngine.WinningAttendee);

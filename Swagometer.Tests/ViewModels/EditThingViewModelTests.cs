@@ -2,10 +2,9 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Swagometer.Data;
 using Swagometer.ViewModels;
 using Swagometer.Dialogs;
-using Swagometer.Interfaces;
+using Swagometer.Lib.Interfaces;
 
 namespace Swagometer.Tests.ViewModels
 {
@@ -64,7 +63,7 @@ namespace Swagometer.Tests.ViewModels
 
             // Assert
             Assert.AreEqual(3, viewModel.Things.Count());
-            stubSwagSource.Verify(ss => ss.Save(It.IsAny<IList<ISwag>>(), stubPath), Times.Never());
+            stubSwagSource.Verify(ss => ss.Save(It.IsAny<IList<ISwag>>(), stubPath, It.IsAny<string>()), Times.Never());
         }
 
         [TestMethod]
@@ -101,7 +100,7 @@ namespace Swagometer.Tests.ViewModels
             viewModel.SaveCommand.Execute(null);
 
             // Assert
-            stubSwagSource.Verify(ss => ss.Save(It.IsAny<IList<ISwag>>(), stubPath), Times.Once());
+            stubSwagSource.Verify(ss => ss.Save(It.IsAny<IList<ISwag>>(), stubPath, It.IsAny<string>()), Times.Once());
         }
 
         [TestMethod]

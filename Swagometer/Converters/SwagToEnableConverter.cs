@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Data;
-using Swagometer.Interfaces;
+using Swagometer.Lib.Interfaces;
 
 namespace Swagometer.Converters
 {

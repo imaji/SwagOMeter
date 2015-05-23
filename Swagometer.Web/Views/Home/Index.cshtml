@@ -1,0 +1,28 @@
+﻿@model Swagometer.Web.Controllers.HomeViewModel
+@{
+    ViewBag.Title = "Swag";
+}
+
+@foreach(var c in Model.Errors)
+{
+    <p>@c</p>
+}
+<div id="mySlotMachine">
+    <div>IS AWESOME!</div>
+    <div>ROCKS!</div>
+    <div>IS EASY TO USE</div>
+    <div>IS PRODUCT OF BOREDOM</div>
+</div>
+
+<script src="/Scripts/jquery-1.10.2.js"></script>
+<script src="/Scripts/jquery.slotmachine.js"></script>
+<script language="javascript">
+    
+    function onComplete(active) {
+        alert(this.active);
+    }
+
+    var machine = $('#mySlotMachine').slotMachine();
+    machine.shuffle(15, onComplete);
+
+</script>

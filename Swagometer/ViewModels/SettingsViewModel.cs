@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Swagometer.Commands;
+using Swagometer.Dialogs;
+using Swagometer.Lib.Interfaces;
+using Swagometer.Properties;
+using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Input;
-using Swagometer.Commands;
-using Swagometer.Data;
-using Swagometer.Dialogs;
-using Swagometer.Interfaces;
-using Swagometer.Properties;
 
 namespace Swagometer.ViewModels
 {
@@ -64,14 +63,14 @@ namespace Swagometer.ViewModels
 
         private void ExecuteEditSwag()
         {
-            var editSwag = new EditThingsDialog<ISwag>(new EditThingsViewModel<ISwag, ISwagSource>(_swagSource, FileLocation, new SwagDialogFactory()));
+            var editSwag = new EditThingsDialog<ISwag>(new EditThingsViewModel<ISwag, ISwagSource>(_swagSource, FileLocation + "\\Swag.xml", new SwagDialogFactory()));
 
             editSwag.ShowDialog();
         }
 
         private void ExecuteEditAttendees()
         {
-            var editAttendees = new EditThingsDialog<IAttendee>(new EditThingsViewModel<IAttendee, IAttendeeSource>(_attendeeSource, FileLocation, new AttendeeDialogFactory()));
+            var editAttendees = new EditThingsDialog<IAttendee>(new EditThingsViewModel<IAttendee, IAttendeeSource>(_attendeeSource, FileLocation + "\\Attendees.xml", new AttendeeDialogFactory()));
 
             editAttendees.ShowDialog();
         }
@@ -83,8 +82,8 @@ namespace Swagometer.ViewModels
             if (dirDialog.ShowDialog().Equals(DialogResult.OK))
             {
                 FileLocation = dirDialog.SelectedPath;
-                _attendeeSource.Load(FileLocation);
-                _swagSource.Load(FileLocation);
+                _attendeeSource.Load(Path.Combine(FileLocation, Resources.AttendeesFile));
+                _swagSource.Load(Path.Combine(FileLocation, Resources.SwagFile));
             }
         }
 

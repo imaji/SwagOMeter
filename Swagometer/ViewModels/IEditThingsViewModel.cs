@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Swagometer.Dialogs;
-using Swagometer.Interfaces;
+using Swagometer.Lib.Interfaces;
 
 namespace Swagometer.ViewModels
 {

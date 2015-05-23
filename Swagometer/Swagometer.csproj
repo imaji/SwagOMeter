@@ -133,21 +133,12 @@
       <SubType>Code</SubType>
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Collections\IThingCollection.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\SwagToBoolConverter.cs" />
     <Compile Include="Converters\SwagToVisibilityConverter.cs" />
     <Compile Include="Converters\InvertedBoolToVisibilityConverter.cs" />
-    <Compile Include="Data\IAttendeeSource.cs" />
-    <Compile Include="Data\AttendeeSource.cs" />
-    <Compile Include="Data\ISwagSource.cs" />
-    <Compile Include="Data\IThingSource.cs" />
-    <Compile Include="Data\IWinnersSource.cs" />
-    <Compile Include="Data\SwagSource.cs" />
-    <Compile Include="Data\ThingSource.cs" />
-    <Compile Include="Data\WinnersSource.cs" />
     <Compile Include="Dialogs\AttendeeDialogFactory.cs" />
     <Compile Include="Dialogs\EditThingsDialog.xaml.cs">
       <DependentUpon>EditThingsDialog.xaml</DependentUpon>
@@ -157,7 +148,6 @@
     <Compile Include="Dialogs\ICanClose.cs" />
     <Compile Include="Dialogs\ThingGoodEventArgs.cs" />
     <Compile Include="Objects\ISwagOMeterAwardEngine.cs" />
-    <Compile Include="Interfaces\IThing.cs" />
     <Compile Include="Objects\SwagOMeterAwardEngine.cs" />
     <Compile Include="ViewModels\CreateAttendeeViewModel.cs" />
     <Compile Include="ViewModels\CreateThingViewModel.cs" />
@@ -169,16 +159,12 @@
     <Compile Include="ViewModels\SwagOMeterViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\DisplayErrorMessages.cs" />
-    <Compile Include="Views\IDisplayErrorMessages.cs" />
     <Compile Include="Views\SwagOMeterView.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>SwagOMeterView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collections\AttendeeCollection.cs" />
-    <Compile Include="Collections\SwagCollection.cs" />
-    <Compile Include="Collections\WinnersCollection.cs" />
     <Compile Include="Converters\SwagToEnableConverter.cs" />
     <Compile Include="Dialogs\CreateSwagDialog.xaml.cs">
       <DependentUpon>CreateSwagDialog.xaml</DependentUpon>
@@ -189,11 +175,6 @@
     <Compile Include="Dialogs\SettingsDialog.xaml.cs">
       <DependentUpon>SettingsDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Objects\Attendee.cs" />
-    <Compile Include="Interfaces\IAttendee.cs" />
-    <Compile Include="Interfaces\ISwag.cs" />
-    <Compile Include="Objects\Winner.cs" />
-    <Compile Include="Interfaces\IWinner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -207,13 +188,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Objects\Swag.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -258,7 +240,12 @@
   <ItemGroup>
     <Resource Include="Resources\Logo.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Swagometer.Lib\Swagometer.Lib.csproj">
+      <Project>{f7aaac9f-edd9-4306-8611-c017cae61f6a}</Project>
+      <Name>Swagometer.Lib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -275,7 +262,7 @@ xcopy "$(TargetDir)Swagometer.exe.config" "$(SolutionDir)Output" /i /y</PostBuil
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_StartDate="2009/7/5" BuildVersion_AssemblyInfoFilename="" />
+      <UserProperties BuildVersion_AssemblyInfoFilename="" BuildVersion_StartDate="2009/7/5" BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

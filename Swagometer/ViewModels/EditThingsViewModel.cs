@@ -1,9 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Swagometer.Commands;
-using Swagometer.Data;
+﻿using Swagometer.Commands;
 using Swagometer.Dialogs;
-using Swagometer.Interfaces;
+using Swagometer.Lib.Interfaces;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace Swagometer.ViewModels
 {
@@ -67,8 +66,9 @@ namespace Swagometer.ViewModels
         private void ExecuteSave()
         {
             if (_hasChanged)
-                _thingSource.Save(Things, _filePath);
-
+            {
+                _thingSource.Save(Things, _filePath, "");
+            }
             _view.Close(_hasChanged);
         }
 

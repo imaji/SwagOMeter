@@ -112,16 +112,16 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllSwaggedOut" xml:space="preserve">
     <value>All Swagged Out!</value>
   </data>
   <data name="AttendeesFile" xml:space="preserve">
-    <value>\Attendees.xml</value>
+    <value>Attendees.xml</value>
   </data>
   <data name="CantSwag" xml:space="preserve">
     <value>Can't Swag!</value>
@@ -136,9 +136,9 @@
     <value>Swag Em!</value>
   </data>
   <data name="SwagFile" xml:space="preserve">
-    <value>\Swag.xml</value>
+    <value>Swag.xml</value>
   </data>
   <data name="SwagWinnersFile" xml:space="preserve">
-    <value>\Swag-Winners-{0}.xml</value>
+    <value>Swag-Winners-{0}.xml</value>
   </data>
 </root>

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Input;
-using Swagometer.Commands;
-using Swagometer.Data;
+﻿using Swagometer.Commands;
 using Swagometer.Dialogs;
-using Swagometer.Interfaces;
+using Swagometer.Lib.Interfaces;
 using Swagometer.Objects;
 using Swagometer.Properties;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Swagometer.ViewModels
 {
@@ -154,8 +154,10 @@ namespace Swagometer.ViewModels
 
         public void ViewReady()
         {
-            _attendees = _attendeeSource.Load(Settings.Default.FileLocation);
-            _swag = _swagSource.Load(Settings.Default.FileLocation);
+            var fileLocation = Settings.Default.FileLocation ?? string.Empty;
+            var attendeesFile = Resources.AttendeesFile;
+            _attendees = _attendeeSource.Load(Path.Combine(fileLocation, attendeesFile));
+            _swag = _swagSource.Load(Path.Combine(fileLocation, Resources.SwagFile));
 
             CheckCanSwag();
         }
@@ -237,7 +239,7 @@ namespace Swagometer.ViewModels
             if (result.HasValue && result.Value)
             {
                 _swagOMeterAwardEngine.RefreshData(_attendeeSource, _swagSource);
-                
+
                 CheckCanSwag();
             }
         }

@@ -62,6 +62,10 @@
     <Compile Include="ViewModels\SwagOMeterViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Swagometer.Lib\Swagometer.Lib.csproj">
+      <Project>{f7aaac9f-edd9-4306-8611-c017cae61f6a}</Project>
+      <Name>Swagometer.Lib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Swagometer\Swagometer.csproj">
       <Project>{D65EC449-07D9-4C7F-95F6-44F95D1CC22A}</Project>
       <Name>Swagometer</Name>

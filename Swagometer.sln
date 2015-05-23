@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swagometer", "Swagometer\Swagometer.csproj", "{D65EC449-07D9-4C7F-95F6-44F95D1CC22A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swagometer.Tests", "Swagometer.Tests\Swagometer.Tests.csproj", "{1483BF22-1F2B-45EE-A6DD-9857F2354313}"
@@ -12,10 +14,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swagometer.Web", "Swagometer.Web\Swagometer.Web.csproj", "{863CB8F9-618F-42F6-BEB3-6141FB83C93C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swagometer.Web.Tests", "Swagometer.Web.Tests\Swagometer.Web.Tests.csproj", "{BB7B92DF-64AE-4382-BC4C-F69A10C57266}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swagometer.Lib", "Swagometer.Lib\Swagometer.Lib.csproj", "{F7AAAC9F-EDD9-4306-8611-C017CAE61F6A}"
+EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Swagometer.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -25,16 +30,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Release|x86.ActiveCfg = Release|Any CPU
 		{D65EC449-07D9-4C7F-95F6-44F95D1CC22A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D65EC449-07D9-4C7F-95F6-44F95D1CC22A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D65EC449-07D9-4C7F-95F6-44F95D1CC22A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -45,15 +40,58 @@ Global
 		{D65EC449-07D9-4C7F-95F6-44F95D1CC22A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D65EC449-07D9-4C7F-95F6-44F95D1CC22A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D65EC449-07D9-4C7F-95F6-44F95D1CC22A}.Release|x86.ActiveCfg = Release|Any CPU
+		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1483BF22-1F2B-45EE-A6DD-9857F2354313}.Release|x86.ActiveCfg = Release|Any CPU
+		{863CB8F9-618F-42F6-BEB3-6141FB83C93C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{863CB8F9-618F-42F6-BEB3-6141FB83C93C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{863CB8F9-618F-42F6-BEB3-6141FB83C93C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{863CB8F9-618F-42F6-BEB3-6141FB83C93C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{863CB8F9-618F-42F6-BEB3-6141FB83C93C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{863CB8F9-618F-42F6-BEB3-6141FB83C93C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{863CB8F9-618F-42F6-BEB3-6141FB83C93C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{863CB8F9-618F-42F6-BEB3-6141FB83C93C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{863CB8F9-618F-42F6-BEB3-6141FB83C93C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{863CB8F9-618F-42F6-BEB3-6141FB83C93C}.Release|x86.ActiveCfg = Release|Any CPU
+		{BB7B92DF-64AE-4382-BC4C-F69A10C57266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB7B92DF-64AE-4382-BC4C-F69A10C57266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB7B92DF-64AE-4382-BC4C-F69A10C57266}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BB7B92DF-64AE-4382-BC4C-F69A10C57266}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BB7B92DF-64AE-4382-BC4C-F69A10C57266}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BB7B92DF-64AE-4382-BC4C-F69A10C57266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB7B92DF-64AE-4382-BC4C-F69A10C57266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB7B92DF-64AE-4382-BC4C-F69A10C57266}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BB7B92DF-64AE-4382-BC4C-F69A10C57266}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BB7B92DF-64AE-4382-BC4C-F69A10C57266}.Release|x86.ActiveCfg = Release|Any CPU
+		{F7AAAC9F-EDD9-4306-8611-C017CAE61F6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7AAAC9F-EDD9-4306-8611-C017CAE61F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7AAAC9F-EDD9-4306-8611-C017CAE61F6A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F7AAAC9F-EDD9-4306-8611-C017CAE61F6A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F7AAAC9F-EDD9-4306-8611-C017CAE61F6A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F7AAAC9F-EDD9-4306-8611-C017CAE61F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7AAAC9F-EDD9-4306-8611-C017CAE61F6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7AAAC9F-EDD9-4306-8611-C017CAE61F6A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F7AAAC9F-EDD9-4306-8611-C017CAE61F6A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F7AAAC9F-EDD9-4306-8611-C017CAE61F6A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_AssemblyInfoFilename = Swagometer\Properties\AssemblyInfo.cs
-		BuildVersion_BuildVersioningStyle = None.None.Increment.TimeStamp
-		BuildVersion_StartDate = 2009/7/5
-		BuildVersion_UpdateAssemblyVersion = True
 		BuildVersion_UpdateFileVersion = True
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_StartDate = 2009/7/5
+		BuildVersion_BuildVersioningStyle = None.None.Increment.TimeStamp
+		BuildVersion_AssemblyInfoFilename = Swagometer\Properties\AssemblyInfo.cs
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Swagometer.vsmdi
 	EndGlobalSection
 EndGlobal
