@@ -1,7 +1,6 @@
 using System.ComponentModel;
-using Swagometer.Lib.Interfaces;
 
-namespace Swagometer.Objects
+namespace Swagometer.Lib.Interfaces
 {
     public interface ISwagOMeterAwardEngine : INotifyPropertyChanged
     {
@@ -9,11 +8,11 @@ namespace Swagometer.Objects
         IAttendee WinningAttendee { get; set; }
         ISwag AwardedSwag { get; set; }
 
-        void AwardSwag();
+        IWinner AwardSwag();
         void AttendeeNotPresent();
         void AttendeeDoesNotWantSwag();
         bool CheckCanSwag();
         void SaveWinners(IWinnersSource winnersSource);
-        void RefreshData(IAttendeeSource attendeeSource, ISwagSource swagSource);
+        void RefreshData(string attendeesFile, string swagFile, IAttendeeSource attendeeSource, ISwagSource swagSource);
     }
 }

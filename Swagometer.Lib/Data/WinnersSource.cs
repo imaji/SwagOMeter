@@ -14,6 +14,7 @@ namespace Swagometer.Lib.Data
 
         public void Save(IList<IWinner> winners)
         {
+
             if (winners != null)
             {
                 var winnersOutput = WinnersCollection.Create(_fileDetailProvider);

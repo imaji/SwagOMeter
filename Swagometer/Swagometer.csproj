@@ -147,8 +147,6 @@
     <Compile Include="Dialogs\SwagDialogFactory.cs" />
     <Compile Include="Dialogs\ICanClose.cs" />
     <Compile Include="Dialogs\ThingGoodEventArgs.cs" />
-    <Compile Include="Objects\ISwagOMeterAwardEngine.cs" />
-    <Compile Include="Objects\SwagOMeterAwardEngine.cs" />
     <Compile Include="ViewModels\CreateAttendeeViewModel.cs" />
     <Compile Include="ViewModels\CreateThingViewModel.cs" />
     <Compile Include="ViewModels\EditThingsViewModel.cs" />
@@ -262,7 +260,7 @@ xcopy "$(TargetDir)Swagometer.exe.config" "$(SolutionDir)Output" /i /y</PostBuil
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="" BuildVersion_StartDate="2009/7/5" BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" />
+      <UserProperties BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_StartDate="2009/7/5" BuildVersion_AssemblyInfoFilename="" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

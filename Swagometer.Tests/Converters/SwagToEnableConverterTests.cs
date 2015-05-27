@@ -2,7 +2,6 @@
 using Swagometer.Converters;
 using System;
 using Swagometer.Lib.Objects;
-using Swagometer.Objects;
 
 namespace Swagometer.Tests.Converters
 {

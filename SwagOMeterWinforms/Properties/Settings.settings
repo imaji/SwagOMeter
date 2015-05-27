@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SwagOMeterWinforms.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FileLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\M_J_O_N_E_S\Documents\GitHub\SwagOMeter\Example XML Files</Value>
+    </Setting>
+    <Setting Name="SaveWinnersOnExit" Type="System.String" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

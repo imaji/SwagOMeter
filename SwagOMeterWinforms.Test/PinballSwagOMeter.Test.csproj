@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F7AAAC9F-EDD9-4306-8611-C017CAE61F6A}</ProjectGuid>
+    <ProjectGuid>{BD44ADB5-D9DB-4FB0-8D75-DD20A3B422E3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Swagometer.Lib</RootNamespace>
-    <AssemblyName>Swagometer.Lib</AssemblyName>
+    <RootNamespace>PinballSwagOMeter.Test</RootNamespace>
+    <AssemblyName>PinballSwagOMeter.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -29,9 +31,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,30 +54,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collections\AttendeeCollection.cs" />
-    <Compile Include="Collections\IFileDetailProvider.cs" />
-    <Compile Include="Collections\IThingCollection.cs" />
-    <Compile Include="Collections\SwagCollection.cs" />
-    <Compile Include="Collections\WinnersCollection.cs" />
-    <Compile Include="Data\AttendeeSource.cs" />
-    <Compile Include="Data\SwagSource.cs" />
-    <Compile Include="Data\ThingSource.cs" />
-    <Compile Include="Data\WinnersSource.cs" />
-    <Compile Include="Interfaces\IAttendee.cs" />
-    <Compile Include="Interfaces\IAttendeeSource.cs" />
-    <Compile Include="Interfaces\IDisplayErrorMessages.cs" />
-    <Compile Include="Interfaces\ISwag.cs" />
-    <Compile Include="Interfaces\ISwagSource.cs" />
-    <Compile Include="Interfaces\IThing.cs" />
-    <Compile Include="Interfaces\IThingSource.cs" />
-    <Compile Include="Interfaces\IWinner.cs" />
-    <Compile Include="Interfaces\IWinnersSource.cs" />
-    <Compile Include="Objects\Attendee.cs" />
-    <Compile Include="Interfaces\ISwagOMeterAwardEngine.cs" />
-    <Compile Include="Objects\Swag.cs" />
-    <Compile Include="Objects\SwagOMeterAwardEngine.cs" />
-    <Compile Include="Objects\Winner.cs" />
+    <Compile Include="CharacterToBitMapConverterTests.cs" />
+    <Compile Include="FlashNameTransformerTests.cs" />
+    <Compile Include="InvertTransformerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SwagOMeterWinforms\PinballSwagOMeter.csproj">
+      <Project>{cf6f7170-f5cf-4fe7-8b28-ce42d0e7a9bd}</Project>
+      <Name>PinballSwagOMeter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

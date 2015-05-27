@@ -1,6 +1,5 @@
 ﻿using Swagometer.Lib.Interfaces;
 using Swagometer.Lib.Objects;
-using Swagometer.Objects;
 
 namespace Swagometer.ViewModels
 {

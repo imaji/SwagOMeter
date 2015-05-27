@@ -1,13 +1,11 @@
 ﻿using Swagometer.Lib.Interfaces;
-using Swagometer.Lib.Objects;
-using Swagometer.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 
-namespace Swagometer.Objects
+namespace Swagometer.Lib.Objects
 {
     public class SwagOMeterAwardEngine : ISwagOMeterAwardEngine
     {
@@ -60,10 +58,10 @@ namespace Swagometer.Objects
             }
         }
 
-        public SwagOMeterAwardEngine(IAttendeeSource attendeeSource, ISwagSource swagSource)
+        public SwagOMeterAwardEngine(string fileLocation, IAttendeeSource attendeeSource, ISwagSource swagSource, string attendeeFile, string swagFile)
         {
-            _attendees = attendeeSource.Load(Path.Combine(Settings.Default.FileLocation ?? string.Empty, Resources.AttendeesFile));
-            _swag = swagSource.Load(Path.Combine(Settings.Default.FileLocation ?? string.Empty, Resources.SwagFile));
+            _attendees = attendeeSource.Load(Path.Combine(fileLocation ?? string.Empty, attendeeFile));
+            _swag = swagSource.Load(Path.Combine(fileLocation ?? string.Empty, swagFile));
 
             CheckCanSwag();
         }
@@ -87,7 +85,7 @@ namespace Swagometer.Objects
                 handler(sender, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void AwardSwag()
+        public IWinner AwardSwag()
         {
             if (CanSwag)
             {
@@ -95,7 +93,10 @@ namespace Swagometer.Objects
 
                 AwardedSwag = winner.AwardedSwag;
                 WinningAttendee = winner.WinningAttendee;
+                return winner;
             }
+
+            return null;
         }
 
         private IWinner GetWinner()
@@ -227,13 +228,9 @@ namespace Swagometer.Objects
         private bool AttendeeSwagCombinationStillExist()
         {
             var possibleCombinationsLeft = _attendees.Count() * _swag.Count();
-
             var attendeeNames = _attendees.Select(a => a.Name);
-
             var existingEntriesWithRemainingAttendees = _badSwagCombinations.Count(bs => attendeeNames.Contains(bs.WinningAttendee.Name));
-
             var combinationsLeft = possibleCombinationsLeft > existingEntriesWithRemainingAttendees;
-
             return combinationsLeft;
         }
 
@@ -243,11 +240,11 @@ namespace Swagometer.Objects
                 winnersSource.Save(_winners);
         }
 
-        public void RefreshData(IAttendeeSource attendeeSource, ISwagSource swagSource)
+        public void RefreshData(string attendeesFile, string swagFile, IAttendeeSource attendeeSource, ISwagSource swagSource)
         {
             _winners.Clear();
-            _swag = swagSource.Load(Path.Combine(Settings.Default.FileLocation, Resources.SwagFile));
-            _attendees = attendeeSource.Load(Path.Combine(Settings.Default.FileLocation, Resources.AttendeesFile));
+            _swag = swagSource.Load(swagFile);
+            _attendees = attendeeSource.Load(attendeesFile);
         }
     }
 }

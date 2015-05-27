@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows;
 using Swagometer.Lib.Data;
-using Swagometer.Objects;
 using Swagometer.ViewModels;
 using Swagometer.Lib;
 using Swagometer.Properties;
+using Swagometer.Lib.Objects;
 
 namespace Swagometer.Views
 {
@@ -19,7 +19,7 @@ namespace Swagometer.Views
             var attendeeSource = new AttendeeSource(errorMessage);
             var swagSource = new SwagSource(errorMessage);
 
-            var viewModel = new SwagOMeterViewModel(attendeeSource, swagSource, new WinnersSource(fileDetailProvider), new SwagOMeterAwardEngine(attendeeSource, swagSource));
+            var viewModel = new SwagOMeterViewModel(attendeeSource, swagSource, new WinnersSource(fileDetailProvider), new SwagOMeterAwardEngine(Settings.Default.FileLocation, attendeeSource, swagSource, Constants.AttendeesFilename, Constants.SwagFilename), Settings.Default.SaveWinnersOnExit);
 
             viewModel.Close += (s, e) => Close();
             viewModel.PlayMusic += (s, e) => mediaElement.Play();

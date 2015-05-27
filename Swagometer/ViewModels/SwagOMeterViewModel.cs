@@ -1,7 +1,6 @@
 ﻿using Swagometer.Commands;
 using Swagometer.Dialogs;
 using Swagometer.Lib.Interfaces;
-using Swagometer.Objects;
 using Swagometer.Properties;
 using System;
 using System.Collections.Generic;
@@ -22,18 +21,20 @@ namespace Swagometer.ViewModels
         private readonly IWinnersSource _winnersSource;
         private readonly IAttendeeSource _attendeeSource;
         private readonly ISwagSource _swagSource;
+        private readonly bool _saveWinnersOnExit;
 
         private IList<ISwag> _swag;
         private IList<IAttendee> _attendees;
         private IAttendee _winningAttendee;
         private ISwag _awardedSwag;
 
-        public SwagOMeterViewModel(IAttendeeSource attendeeSource, ISwagSource swagSource, IWinnersSource winnersSource, ISwagOMeterAwardEngine swagOMeterAwardEngine)
+        public SwagOMeterViewModel(IAttendeeSource attendeeSource, ISwagSource swagSource, IWinnersSource winnersSource, ISwagOMeterAwardEngine swagOMeterAwardEngine, bool saveWinnersOnExit = true)
         {
             _swagOMeterAwardEngine = swagOMeterAwardEngine;
             _swagSource = swagSource;
             _attendeeSource = attendeeSource;
             _winnersSource = winnersSource;
+            _saveWinnersOnExit = saveWinnersOnExit;
 
             AwardSwagCommand = new DelegateCommand(ExecuteAwardSwag);
             AttendeeNotPresentCommand = new DelegateCommand(ExecuteAttendeeNotPresent);
@@ -167,9 +168,13 @@ namespace Swagometer.ViewModels
             CanSwag = _swagOMeterAwardEngine.CheckCanSwag();
 
             if (CanSwag)
+            {
                 SwagText = Resources.SwagEm;
+            }
             else if (_winners != null && _winners.Count > 0)
+            {
                 SwagText = Resources.AllSwaggedOut;
+            }
         }
 
         private void ExecuteAwardSwag()
@@ -225,10 +230,15 @@ namespace Swagometer.ViewModels
 
         private void ExecuteClose()
         {
-            _swagOMeterAwardEngine.SaveWinners(_winnersSource);
+            if (_saveWinnersOnExit)
+            {
+                _swagOMeterAwardEngine.SaveWinners(_winnersSource);
+            }
 
             if (Close != null)
+            {
                 Close(this, EventArgs.Empty);
+            }
         }
 
         private void ExecuteOpenSettings()
@@ -238,7 +248,7 @@ namespace Swagometer.ViewModels
 
             if (result.HasValue && result.Value)
             {
-                _swagOMeterAwardEngine.RefreshData(_attendeeSource, _swagSource);
+                _swagOMeterAwardEngine.RefreshData(Path.Combine(Settings.Default.FileLocation, Resources.AttendeesFile), Path.Combine(Settings.Default.FileLocation, Resources.SwagFile), _attendeeSource, _swagSource);
 
                 CheckCanSwag();
             }

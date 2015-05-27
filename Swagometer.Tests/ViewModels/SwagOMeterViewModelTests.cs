@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Swagometer.Lib.Interfaces;
-using Swagometer.Objects;
 using Swagometer.ViewModels;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Swagometer.Tests.ViewModels
 {
@@ -27,7 +26,7 @@ namespace Swagometer.Tests.ViewModels
             // Act
             var viewModel = new SwagOMeterViewModel(stubAttendeeSource.Object, stubSwagSource.Object, stubWinnersSource.Object, stubSwagOMeterEngine.Object);
             viewModel.ViewReady();
-            
+
             // Assert
             Assert.IsTrue(viewModel.CanSwag);
             Assert.IsNull(viewModel.WinningAttendee);
@@ -219,9 +218,9 @@ namespace Swagometer.Tests.ViewModels
             var mockSwag = new Mock<ISwag>();
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
-            
+
             var stubSwagSource = new Mock<ISwagSource>();
-            
+
             var stubWinnersSource = new Mock<IWinnersSource>();
 
             var stubSwagOMeterEngine = new Mock<ISwagOMeterAwardEngine>();
@@ -254,9 +253,9 @@ namespace Swagometer.Tests.ViewModels
             mockSwag.SetupGet(s => s.Thing).Returns("Thing");
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
-            
+
             var stubSwagSource = new Mock<ISwagSource>();
-            
+
             var stubWinnersSource = new Mock<IWinnersSource>();
 
             var stubSwagOMeterEngine = new Mock<ISwagOMeterAwardEngine>();
@@ -375,6 +374,42 @@ namespace Swagometer.Tests.ViewModels
 
             // Assert
             mockWinnersSource.Verify(ws => ws.Save(It.IsAny<IList<IWinner>>()), Times.Never());
+        }
+
+        [TestMethod]
+        public void SwagOMeterViewModelShouldNotSaveIfSaveOnExitSettingOff()
+        {
+            // Arrange
+            var mockAttendee = new Mock<IAttendee>();
+            mockAttendee.SetupGet(a => a.Name).Returns("Bob");
+
+            var mockSwagObject = new Mock<ISwag>();
+            mockSwagObject.SetupGet(a => a.Thing).Returns("Pants");
+
+            var stubAttendees = new List<IAttendee> { mockAttendee.Object };
+            var stubSwag = new List<ISwag> { mockSwagObject.Object };
+
+            var stubAttendeeSource = new Mock<IAttendeeSource>();
+            stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
+
+            var stubSwagSource = new Mock<ISwagSource>();
+            stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
+
+            var stubWinnersSource = new Mock<IWinnersSource>();
+            stubWinnersSource.Setup(ws => ws.Save(It.IsAny<IList<IWinner>>())).Verifiable();
+
+            var mockSwagOMeterEngine = new Mock<ISwagOMeterAwardEngine>();
+            mockSwagOMeterEngine.SetupSequence(e => e.CheckCanSwag()).Returns(true);
+            mockSwagOMeterEngine.SetupGet(e => e.CanSwag).Returns(true);
+
+            // Act
+            var viewModel = new SwagOMeterViewModel(stubAttendeeSource.Object, stubSwagSource.Object, stubWinnersSource.Object, mockSwagOMeterEngine.Object, false);
+            viewModel.ViewReady();
+            viewModel.AwardSwagCommand.Execute(null);
+            viewModel.CloseCommand.Execute(null);
+
+            // Assert
+            mockSwagOMeterEngine.Verify(e => e.SaveWinners(It.Is<IWinnersSource>(ws => ws == stubWinnersSource.Object)), Times.Never());
         }
 
         [TestMethod]
