@@ -16,6 +16,12 @@ namespace PinballSwagOMeter
         public int SubsequentDelayMs { get; protected set; }
         public bool KeepTimerRunning { get; protected set; }
 
+        public static MatrixTransformer Create<T>() where T : MatrixTransformer
+        {
+            var transformer = (T)Activator.CreateInstance(typeof(T));
+            return transformer;
+        }
+
         public static MatrixTransformer Create<T>(BigInteger[] bitmaps) where T : MatrixTransformer
         {
             var transformer = (T)Activator.CreateInstance(typeof(T));

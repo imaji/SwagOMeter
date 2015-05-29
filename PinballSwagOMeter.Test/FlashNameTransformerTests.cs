@@ -7,7 +7,7 @@ namespace PinballSwagOMeter.Test
     public class FlashNameTransformerTests
     {
         [Test]
-        public void WhenTransformExpectOscillating8Rows()
+        public void WhenTransformExpectOscillating8RowsAfterFruitMachine()
         {
             var originals = new BigInteger[10];
             for (int i = 0; i < 8; ++i)
@@ -15,7 +15,12 @@ namespace PinballSwagOMeter.Test
                 originals[i] = i + 1;
             }
             originals[9] = new BigInteger(255);
-            var transformer = MatrixTransformer.Create< FlashNameTransformer>(originals);
+            var transformer = MatrixTransformer.Create<WinnerTransformer>(originals);
+
+            for (var i = 0; i <= 8; ++i)
+            {
+                transformer.Transform();
+            }
 
             var transformed = transformer.Transform();
             AssertValuesTransformed(transformed);

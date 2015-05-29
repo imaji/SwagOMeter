@@ -48,7 +48,8 @@ namespace PinballSwagOMeter
             {'9', 0XC30C3EFF3FDE},
             {' ', 0X0},
             {'£', 0xFFF09F7C289C},
-            {'*', 0x115395100}
+            {'*', 0x115395100},
+            {':', 0xC30000C300}
         };
         #endregion
 
@@ -78,7 +79,7 @@ namespace PinballSwagOMeter
             return bitPatterns.ToArray();
         }
 
-        public void BuildBitMapPicture(BigInteger[] bitPatterns, int imageWidth, int imageHeight, IGraphics bitmapGraphics)
+        public void BuildBitMapPicture(BigInteger[] bitPatterns, int imageWidth, int imageHeight, Graphics bitmapGraphics)
         {
             for (int row = 0; row < bitPatterns.Length; ++row)
             {
