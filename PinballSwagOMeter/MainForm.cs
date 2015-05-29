@@ -16,11 +16,11 @@ namespace PinballSwagOMeter
         private BigInteger[] _currentBitPatterns = new BigInteger[35];
 
         private SwagOMeterAwardEngine _swagOMeterAwardEngine;
-        private CharacterToBitMapConverter _characterToBitMapConverter;
+        private readonly CharacterToBitMapConverter _characterToBitMapConverter;
         private IWinnersSource _winnersSource;
         private int _onOffImageWidth;
         private int _onOffImageHeight;
-        private Bitmap _bitmap;
+        private readonly Bitmap _bitmap;
 
         public MainForm()
         {
@@ -29,7 +29,7 @@ namespace PinballSwagOMeter
             BuildSwagOMeterEngine();
             PositionEverything();
 
-            _characterToBitMapConverter = new CharacterToBitMapConverter(Properties.Resources.on as Bitmap, Properties.Resources.off as Bitmap, pictureBox.Width / Constants.Columns, pictureBox.Height / 35);
+            _characterToBitMapConverter = new CharacterToBitMapConverter(Resources.@on, Resources.off);
             _bitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
             pictureBox.Image = _bitmap;
 
@@ -45,7 +45,7 @@ namespace PinballSwagOMeter
             var attendeeSource = new AttendeeSource(errorMessage);
             var swagSource = new SwagSource(errorMessage);
             _winnersSource = new WinnersSource(fileDetailProvider);
-            _swagOMeterAwardEngine = new Swagometer.Lib.Objects.SwagOMeterAwardEngine(Settings.Default.FileLocation, attendeeSource, swagSource, "attendees.xml", "swag.xml");
+            _swagOMeterAwardEngine = new SwagOMeterAwardEngine(Settings.Default.FileLocation, attendeeSource, swagSource, "attendees.xml", "swag.xml");
         }
 
         private void Form_Load(object sender, System.EventArgs e)
@@ -99,9 +99,9 @@ namespace PinballSwagOMeter
             }
         }
 
-        private void StartTransform(int initialDelayMS)
+        private void StartTransform(int initialDelayMs)
         {
-            _timer.Interval = initialDelayMS;
+            _timer.Interval = initialDelayMs;
             _timer.Enabled = true;
         }
 
@@ -129,7 +129,8 @@ namespace PinballSwagOMeter
             _timer.Enabled = false;
             _currentBitPatterns = _matrixTransformer.Transform();
             DisplayCurrentBitPatterns();
-            if (_timer.Enabled = _matrixTransformer.KeepTimerRunning)
+            _timer.Enabled = _matrixTransformer.KeepTimerRunning;
+            if (_timer.Enabled)
             {
                 _timer.Interval = _matrixTransformer.SubsequentDelayMs;
             }

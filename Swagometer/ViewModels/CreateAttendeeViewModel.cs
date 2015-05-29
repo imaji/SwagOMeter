@@ -9,7 +9,7 @@ namespace Swagometer.ViewModels
 
         protected override void ExecuteCreate()
         {
-            var newAttendee = new Attendee() { Name = Name };
+            var newAttendee = new Attendee { Name = Name };
 
             if (newAttendee.IsValid())
                 NewThing = newAttendee;

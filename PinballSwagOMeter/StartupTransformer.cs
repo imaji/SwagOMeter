@@ -5,9 +5,9 @@ namespace PinballSwagOMeter
 {
     public class StartupTransformer : MatrixTransformer
     {
-        static Random _random = new Random();
+        static readonly Random Random = new Random();
 
-        private int _invokeCount = 0;
+        private int _invokeCount;
 
         public StartupTransformer()
         {
@@ -30,7 +30,7 @@ namespace PinballSwagOMeter
 
             if (_invokeCount == 5)
             {
-                return BuildDevSCSplashScreen();
+                return BuildDevScSplashScreen();
             }
 
             if (_invokeCount == 6)
@@ -70,9 +70,9 @@ namespace PinballSwagOMeter
             var cloned = CloneOriginals();
             for (var row = 0; row < cloned.Length; ++row)
             {
-                for (var flickers = _random.Next(30); flickers > 0; --flickers)
+                for (var flickers = Random.Next(30); flickers > 0; --flickers)
                 {
-                    var col = _random.Next(140);
+                    var col = Random.Next(140);
                     var bitPosition = (BigInteger)Math.Pow(2, col);
                     if ((cloned[row] & bitPosition) == 0)
                     {
@@ -139,7 +139,7 @@ namespace PinballSwagOMeter
             return swagometerScreenBits;
         }
 
-        private BigInteger[] BuildDevSCSplashScreen()
+        private static BigInteger[] BuildDevScSplashScreen()
         {
             var splashScreenBits = new BigInteger[35];
             splashScreenBits[0] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 179, 159, 15, 0, 0, 0, 0, 0, 2 });

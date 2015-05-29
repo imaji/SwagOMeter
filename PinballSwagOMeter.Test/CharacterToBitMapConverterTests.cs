@@ -11,7 +11,7 @@ namespace PinballSwagOMeter.Test
         [Test]
         public void TestFourLinesOfHello()
         {
-            var characterToBitMapConverter = new CharacterToBitMapConverter(null, null, 0, 0);
+            var characterToBitMapConverter = new CharacterToBitMapConverter(null, null);
             var lines = characterToBitMapConverter.GetBitPattern("hello", "hello", "hello", "hello").ToList();
 
             Assert.That(lines.Count(), Is.EqualTo(35));
@@ -39,7 +39,7 @@ namespace PinballSwagOMeter.Test
         [Test]
         public void GetBitPatternWithUnrecognisedCharacterIgnoresCharacter()
         {
-            var characterToBitMapConverter = new CharacterToBitMapConverter(null, null, 0, 0);
+            var characterToBitMapConverter = new CharacterToBitMapConverter(null, null);
             var lines = characterToBitMapConverter.GetBitPattern("+hello!", "hello'", ">hello)", "<hello.").ToList();
 
             Assert.That(lines.Count(), Is.EqualTo(35));
@@ -103,27 +103,19 @@ namespace PinballSwagOMeter.Test
             bitPatterns[33] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 0 });
             bitPatterns[34] = new BigInteger(new byte[] { 0 });
 
-            var wordBitPatterns = new CharacterToBitMapConverter(null, null, 0, 0).GetBitPattern("         Credits:   ", "         Graphics by", "        Mark     ", "         Jones      ");
+            var wordBitPatterns = new CharacterToBitMapConverter(null, null).GetBitPattern("         Credits:   ", "         Graphics by", "        Mark     ", "         Jones      ");
             var all = wordBitPatterns.Add(bitPatterns);
 
             for (var row = 0; row < 35; ++row)
             {
-                Debug.WriteLine(string.Format("bitPatterns[{0}] = new BigInteger(new byte[] {{ {1} }});", row, GetByteValues(all[row])));
+                Debug.WriteLine("bitPatterns[{0}] = new BigInteger(new byte[] {{ {1} }});", row, GetByteValues(all[row]));
             }
         }
 
         private static string GetByteValues(BigInteger bigInteger)
         {
-            var s = "";
-            foreach (var b in bigInteger.ToByteArray())
-            {
-                s += b + ",";
-            }
-            return s;
+            return bigInteger.ToByteArray().Aggregate("", (current, b) => current + (b + ","));
         }
-
-        /**/
-
     }
 }
 

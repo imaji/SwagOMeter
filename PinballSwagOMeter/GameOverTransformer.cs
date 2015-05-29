@@ -4,11 +4,11 @@ namespace PinballSwagOMeter
 {
     public class GameOverTransformer : MatrixTransformer
     {
-        private int screenCounts = 0;
+        private int _screenCounts;
 
         public override BigInteger[] Transform()
         {
-            if (screenCounts++ == 0)
+            if (_screenCounts++ == 0)
             {
                 SubsequentDelayMs = 2000;
                 return BuildJohnForCredits();

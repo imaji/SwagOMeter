@@ -9,7 +9,7 @@ namespace PinballSwagOMeter
     public class CharacterToBitMapConverter
     {
         #region charMap
-        private static IDictionary<char, ulong> Map = new Dictionary<char, ulong> {
+        private static readonly IDictionary<char, ulong> Map = new Dictionary<char, ulong> {
             {'A', 0xCF3FFFCF3FDE},
             {'B', 0x17FFCDF7F3FDF},
             {'C', 0x21FBF0C30C3FFE},
@@ -53,17 +53,13 @@ namespace PinballSwagOMeter
         };
         #endregion
 
-        private Bitmap _offBitmap;
-        private Bitmap _onBitmap;
-        private int _height;
-        private int _width;
+        private readonly Bitmap _offBitmap;
+        private readonly Bitmap _onBitmap;
 
-        public CharacterToBitMapConverter(Bitmap onBitmap, Bitmap offBitmap, int width, int height)
+        public CharacterToBitMapConverter(Bitmap onBitmap, Bitmap offBitmap)
         {
             _onBitmap = onBitmap;
             _offBitmap = offBitmap;
-            _width = width;
-            _height = height;
         }
 
         public BigInteger[] GetBitPattern(string line1, string line2, string line3, string line4)
@@ -81,11 +77,11 @@ namespace PinballSwagOMeter
 
         public void BuildBitMapPicture(BigInteger[] bitPatterns, int imageWidth, int imageHeight, Graphics bitmapGraphics)
         {
-            for (int row = 0; row < bitPatterns.Length; ++row)
+            for (var row = 0; row < bitPatterns.Length; ++row)
             {
                 var bitMask = bitPatterns.ElementAt(row);
-                BigInteger bit = new BigInteger(Math.Pow(2, Constants.Columns - 1));
-                for (int col = 0; col < Constants.Columns; ++col)
+                var bit = new BigInteger(Math.Pow(2, Constants.Columns - 1));
+                for (var col = 0; col < Constants.Columns; ++col)
                 {
                     var bitmapForBit = (bitMask & bit) == bit ? _onBitmap : _offBitmap;
                     bitmapGraphics.DrawImage(bitmapForBit, col * imageWidth, row * imageHeight, imageWidth, imageHeight);
@@ -94,7 +90,7 @@ namespace PinballSwagOMeter
             }
         }
 
-        private BigInteger[] CentreAndGetBitPattern(string input)
+        private static IEnumerable<BigInteger> CentreAndGetBitPattern(string input)
         {
             input = new string(input.ToUpper().Where(Map.ContainsKey).ToArray());
             input = input.PadLeft(input.Length + ((20 - input.Length) / 2));
@@ -113,7 +109,7 @@ namespace PinballSwagOMeter
                     for (var col = 0; col < 6; ++col)
                     {
                         outputLine <<= 1;
-                        outputLine += (BigInteger)(bits & 1);
+                        outputLine += bits & 1;
                         bits >>= 1;
                     }
                     outputLine <<= 1;

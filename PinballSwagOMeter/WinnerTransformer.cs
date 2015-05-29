@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace PinballSwagOMeter
 {
     public class WinnerTransformer : MatrixTransformer
     {
-        private int counter = 0;
+        private int _counter;
 
         private enum CurrentDisplay
         {
@@ -17,8 +16,8 @@ namespace PinballSwagOMeter
 
         public override BigInteger[] Transform()
         {
-            counter++;
-            switch (counter)
+            _counter++;
+            switch (_counter)
             {
                 case 1:
                     SubsequentDelayMs = 200;
@@ -63,7 +62,8 @@ namespace PinballSwagOMeter
             base.Initialise(originals);
             _currentDisplay = CurrentDisplay.Blank;
         }
-        private BigInteger[] FruitMachine1()
+
+        private static BigInteger[] FruitMachine1()
         {
             var bitPatterns = new BigInteger[35];
             bitPatterns[1] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
@@ -101,7 +101,8 @@ namespace PinballSwagOMeter
             bitPatterns[33] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
             return bitPatterns;
         }
-        private BigInteger[] FruitMachine2()
+
+        private static BigInteger[] FruitMachine2()
         {
             var bitPatterns = new BigInteger[35];
             bitPatterns[1] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
@@ -139,7 +140,8 @@ namespace PinballSwagOMeter
             bitPatterns[33] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
             return bitPatterns;
         }
-        private BigInteger[] FruitMachine3()
+
+        private static BigInteger[] FruitMachine3()
         {
             var bitPatterns = new BigInteger[35];
             bitPatterns[1] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
@@ -177,7 +179,8 @@ namespace PinballSwagOMeter
             bitPatterns[33] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
             return bitPatterns;
         }
-        private BigInteger[] FruitMachine4()
+
+        private static BigInteger[] FruitMachine4()
         {
             var bitPatterns = new BigInteger[35];
             bitPatterns[1] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
@@ -215,7 +218,8 @@ namespace PinballSwagOMeter
             bitPatterns[33] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
             return bitPatterns;
         }
-        private BigInteger[] FruitMachine5()
+
+        private static BigInteger[] FruitMachine5()
         {
             var bitPatterns = new BigInteger[35];
             bitPatterns[1] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
@@ -253,7 +257,8 @@ namespace PinballSwagOMeter
             bitPatterns[33] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
             return bitPatterns;
         }
-        private BigInteger[] FruitMachine6()
+
+        private static BigInteger[] FruitMachine6()
         {
             var bitPatterns = new BigInteger[35];
             bitPatterns[1] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
@@ -291,7 +296,8 @@ namespace PinballSwagOMeter
             bitPatterns[33] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
             return bitPatterns;
         }
-        private BigInteger[] FruitMachine7()
+
+        private static BigInteger[] FruitMachine7()
         {
             var bitPatterns = new BigInteger[35];
             bitPatterns[1] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
@@ -329,9 +335,9 @@ namespace PinballSwagOMeter
             bitPatterns[33] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
             return bitPatterns;
         }
-        private BigInteger[] FruitMachine8()
+
+        private static BigInteger[] FruitMachine8()
         {
-            var bitarray = new BitArray(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
             var bitPatterns = new BigInteger[35];
             bitPatterns[1] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });
             bitPatterns[2] = new BigInteger(new byte[] { 252, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 31 });

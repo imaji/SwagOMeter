@@ -7,7 +7,7 @@ namespace PinballSwagOMeter
     {
         private BigInteger[] _originals;
 
-        public MatrixTransformer()
+        protected MatrixTransformer()
         {
             KeepTimerRunning = true;
             SubsequentDelayMs = 500;

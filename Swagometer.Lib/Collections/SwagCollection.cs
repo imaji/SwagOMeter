@@ -2,7 +2,6 @@
 using Swagometer.Lib.Objects;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Text;
 using System.Xml;
 
 namespace Swagometer.Lib.Collections

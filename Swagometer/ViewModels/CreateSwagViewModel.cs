@@ -11,7 +11,7 @@ namespace Swagometer.ViewModels
 
         protected override void ExecuteCreate()
         {
-            var newSwag = new Swag() { Company = Company, Thing = Thing };
+            var newSwag = new Swag { Company = Company, Thing = Thing };
 
             if (newSwag.IsValid())
                 NewThing = newSwag;

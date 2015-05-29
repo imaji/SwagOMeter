@@ -6,7 +6,7 @@ namespace Swagometer.Lib.Data
 {
     public class WinnersSource : IWinnersSource
     {
-        private IFileDetailProvider _fileDetailProvider;
+        private readonly IFileDetailProvider _fileDetailProvider;
         public WinnersSource(IFileDetailProvider fileDetailProvider)
         {
             _fileDetailProvider = fileDetailProvider;
