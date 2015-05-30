@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -78,30 +77,13 @@ namespace PinballSwagOMeter
 
         public void BuildBitMapPicture(BitMatrix bitPatterns, int imageWidth, int imageHeight, Graphics bitmapGraphics)
         {
-            var bits = new BitArray[bitPatterns.Length];
             for (var row = 0; row < bitPatterns.Length; ++row)
-            {
-                bitPatterns.GetBitsForRow(bitPatterns, bits, row);
-            }
-
-            for (var row = 0; row < bitPatterns.Length; ++row)
-            {
-                for (var col = 0; col < Constants.Columns; ++col)
+            {                
+                var bits = bitPatterns.GetBitsForRow(row);
+                for (var col = 0; col < bits.Length; ++col)
                 {
-                    bitmapGraphics.DrawImage(bits[row][col] ? _onBitmap : _offBitmap, col * imageWidth, row * imageHeight, imageWidth, imageHeight);
+                    bitmapGraphics.DrawImage(bits[col] ? _onBitmap : _offBitmap, col * imageWidth, row * imageHeight, imageWidth, imageHeight);
                 }
-            }
-        }
-
-        public static void GetBitsForRow(BitMatrix bitPatterns, BitArray[] bits, int row)
-        {
-            bits[row] = new BitArray(Constants.Columns);
-            var bitMask = bitPatterns[row];
-            var bit = new BigInteger(Math.Pow(2, Constants.Columns - 1));
-            for (var col = 0; col < Constants.Columns; ++col)
-            {
-                bits[row][col] = (bitMask & bit) == bit;
-                bit >>= 1;
             }
         }
 
