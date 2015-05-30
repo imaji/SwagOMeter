@@ -4,7 +4,6 @@ using Swagometer.Lib.Data;
 using Swagometer.Lib.Interfaces;
 using Swagometer.Lib.Objects;
 using System.Drawing;
-using System.Numerics;
 using System.Windows.Forms;
 
 namespace PinballSwagOMeter
@@ -13,7 +12,7 @@ namespace PinballSwagOMeter
     {
         private Timer _timer;
         private MatrixTransformer _matrixTransformer;
-        private BitMatrix _currentBitPatterns = new BitMatrix(new BigInteger[Constants.Rows]);
+        private BitMatrix _currentBitPatterns = new BitMatrix();
 
         private SwagOMeterAwardEngine _swagOMeterAwardEngine;
         private readonly CharacterToBitMapConverter _characterToBitMapConverter;
@@ -51,7 +50,7 @@ namespace PinballSwagOMeter
         private void Form_Load(object sender, System.EventArgs e)
         {
             DisplayCurrentBitPatterns();
-            _matrixTransformer = MatrixTransformer.Create<StartupTransformer>(_currentBitPatterns);
+            _matrixTransformer = MatrixTransformer.Create<StartupTransformer>();
             StartTransform(200);
         }
 

@@ -1,62 +1,64 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
-using System.Linq;
 
 namespace PinballSwagOMeter
 {
     public class BitMatrix
     {
-        private BigInteger[] _bigIntegers;
+        private IList<BitArray> _bitArrays;
 
-        public BitMatrix(BigInteger[] bigIntegers)
+        public BitMatrix()
+            : this(BuildEmptyBitArrays())
         {
-            _bigIntegers = bigIntegers;
         }
 
-        public BigInteger this[int i]
+        public BitMatrix(IEnumerable<BitArray> bitArrays)
+        {
+            _bitArrays = new List<BitArray>(bitArrays);
+        }
+
+        public BitArray this[int i]
         {
             get
             {
-                return _bigIntegers[i];
+                return _bitArrays[i];
             }
             set
             {
-                _bigIntegers[i] = value;
+                _bitArrays[i] = value;
             }
         }
 
-        public BitMatrix Add(BitMatrix bigIntegers)
+        public int Count
         {
-            for (var i = 0; i < bigIntegers._bigIntegers.Length; ++i)
+            get
             {
-                _bigIntegers[i] += bigIntegers._bigIntegers[i];
+                return _bitArrays.Count;
             }
-            return this;
-        }
-
-        public int Length
-        {
-            get { return _bigIntegers.Length; }
-        }
-
-        public IList<BitArray> ToList()
-        {
-            return new List<BitArray>(_bigIntegers.Select(i => new BitArray(i.ToByteArray())));
         }
 
         public BitArray GetBitsForRow(int row)
         {
-            var bits = new BitArray(Constants.Columns);
-            var bitMask = this[row];
-            var bit = new BigInteger(Math.Pow(2, Constants.Columns - 1));
-            for (var col = 0; col < Constants.Columns; ++col)
+            var bitArray = new BitArray(140);
+            for (var i = 0; i < 140; ++i)
             {
-                bits[col] = (bitMask & bit) == bit;
-                bit >>= 1;
+                if (i >= _bitArrays[row].Length)
+                {
+                    break;
+                }
+                bitArray[139 - i] = _bitArrays[row][i];
             }
-            return bits;
+            return bitArray;
+        }
+
+        private static BitArray[] BuildEmptyBitArrays()
+        {
+            var bitArrays = new BitArray[35];
+            for (var i = 0; i < 35; ++i)
+            {
+                bitArrays[i] = new BitArray(140);
+            }
+            return bitArrays;
         }
     }
 }

@@ -64,21 +64,21 @@ namespace PinballSwagOMeter
 
         public BitMatrix GetBitPattern(string line1, string line2, string line3, string line4)
         {
-            var bitPatterns = new List<BigInteger>();
+            var bitPatterns = new List<BitArray>();
             bitPatterns.AddRange(CentreAndGetBitPattern(line1));
-            bitPatterns.Add(0);
+            bitPatterns.Add(new BitArray(140));
             bitPatterns.AddRange(CentreAndGetBitPattern(line2));
-            bitPatterns.Add(0);
+            bitPatterns.Add(new BitArray(140));
             bitPatterns.AddRange(CentreAndGetBitPattern(line3));
-            bitPatterns.Add(0);
+            bitPatterns.Add(new BitArray(140));
             bitPatterns.AddRange(CentreAndGetBitPattern(line4));
             return new BitMatrix(bitPatterns.ToArray());
         }
 
         public void BuildBitMapPicture(BitMatrix bitPatterns, int imageWidth, int imageHeight, Graphics bitmapGraphics)
         {
-            for (var row = 0; row < bitPatterns.Length; ++row)
-            {                
+            for (var row = 0; row < bitPatterns.Count; ++row)
+            {
                 var bits = bitPatterns.GetBitsForRow(row);
                 for (var col = 0; col < bits.Length; ++col)
                 {
@@ -87,32 +87,31 @@ namespace PinballSwagOMeter
             }
         }
 
-        private static IEnumerable<BigInteger> CentreAndGetBitPattern(string input)
+        public static IEnumerable<BitArray> CentreAndGetBitPattern(string input)
         {
             input = new string(input.ToUpper().Where(Map.ContainsKey).ToArray());
             input = input.PadLeft(input.Length + ((20 - input.Length) / 2));
 
             var numberOfBitsForInput = input.Length * 7;
 
-            var lines = new BigInteger[8];
+            var lines = new BitArray[8];
 
             for (var line = 0; line < 8; ++line)
             {
-                BigInteger outputLine = 0;
-                foreach (var character in input.ToUpper())
+                BitArray outputLine = new BitArray(140);
+                for (var character = 0; character < input.Length; ++character)
                 {
-                    var bitMask = Map[character];
+                    var bitMask = Map[input[character]];
                     var bits = bitMask >> line * 6;
+
+
                     for (var col = 0; col < 6; ++col)
                     {
-                        outputLine <<= 1;
-                        outputLine += bits & 1;
+                        outputLine[139 - ((character * 7) + col)] = ((bits & 1) == 1);
                         bits >>= 1;
                     }
-                    outputLine <<= 1;
                 }
 
-                outputLine <<= (Constants.Columns - numberOfBitsForInput);
                 lines[line] = outputLine;
             }
             return lines;

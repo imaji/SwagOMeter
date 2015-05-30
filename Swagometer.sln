@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swagometer", "Swagometer\Sw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swagometer.Tests", "Swagometer.Tests\Swagometer.Tests.csproj", "{1483BF22-1F2B-45EE-A6DD-9857F2354313}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ED630005-5317-4AEB-9274-014402597189}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swagometer.Lib", "Swagometer.Lib\Swagometer.Lib.csproj", "{F7AAAC9F-EDD9-4306-8611-C017CAE61F6A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinballSwagOMeter", "PinballSwagOMeter\PinballSwagOMeter.csproj", "{CF6F7170-F5CF-4FE7-8B28-CE42D0E7A9BD}"
@@ -80,11 +78,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_UpdateFileVersion = True
-		BuildVersion_UpdateAssemblyVersion = True
-		BuildVersion_StartDate = 2009/7/5
-		BuildVersion_BuildVersioningStyle = None.None.Increment.TimeStamp
 		BuildVersion_AssemblyInfoFilename = Swagometer\Properties\AssemblyInfo.cs
+		BuildVersion_BuildVersioningStyle = None.None.Increment.TimeStamp
+		BuildVersion_StartDate = 2009/7/5
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_UpdateFileVersion = True
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Swagometer.vsmdi

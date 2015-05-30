@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Numerics;
+using System.Collections;
 
 namespace PinballSwagOMeter
 {
@@ -53,8 +53,8 @@ namespace PinballSwagOMeter
 
         private BitMatrix BuildAllGridOn()
         {
-            var allOn = new BitMatrix(new BigInteger[Constants.Rows]);
-            allOn[0] = new BigInteger(new byte[] { 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 15 });
+            var allOn = new BitMatrix();
+            allOn[0] = new BitArray(new byte[] { 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 15 });
             for (var i = 1; i < Constants.Rows; ++i)
             {
                 allOn[i] = allOn[0];
@@ -65,20 +65,16 @@ namespace PinballSwagOMeter
 
         private BitMatrix BuildRandomFlicker()
         {
-            var cloned = CloneOriginals();
-            for (var row = 0; row < cloned.Length; ++row)
+            var bitMatrix = new BitMatrix();
+            for (var row = 0; row < bitMatrix.Count; ++row)
             {
                 for (var flickers = Random.Next(30); flickers > 0; --flickers)
                 {
                     var col = Random.Next(140);
-                    var bitPosition = (BigInteger)Math.Pow(2, col);
-                    if ((cloned[row] & bitPosition) == 0)
-                    {
-                        cloned[row] += (BigInteger)Math.Pow(2, col);
-                    }
+                    bitMatrix[row][col] = true;
                 }
             }
-            return cloned;
+            return bitMatrix;
         }
 
         private BitMatrix BuildInverseSwagometerScreen()
@@ -87,18 +83,18 @@ namespace PinballSwagOMeter
             return orig;
         }
 
-        private BitMatrix InvertAll(BitMatrix bigIntegers)
+        private BitMatrix InvertAll(BitMatrix bitMatrix)
         {
-            for (var i = 0; i < bigIntegers.Length; ++i)
+            for (var i = 0; i < bitMatrix.Count; ++i)
             {
-                bigIntegers[i] = ~bigIntegers[i];
+                bitMatrix[i] = bitMatrix[i].Not();
             }
-            return bigIntegers;
+            return bitMatrix;
         }
 
         private BitMatrix BuildSwagometerScreen()
         {
-            return BitMatrixFactory.Create(
+            return BitMatrixFactory.Create2(
                 new byte[] { 0 },
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0 },
                 new byte[] { 192, 225, 240, 199, 1, 198, 1, 60, 192, 1, 7, 1, 194, 0, 56, 8, 224, 3 },
@@ -139,7 +135,7 @@ namespace PinballSwagOMeter
 
         private static BitMatrix BuildDevScSplashScreen()
         {
-            return BitMatrixFactory.Create(
+            return BitMatrixFactory.Create2(
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 179, 159, 15, 0, 0, 0, 0, 0, 2 },
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 179, 223, 15, 0, 0, 0, 0, 192, 3 },
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 51, 216, 12, 0, 0, 0, 0, 240, 3 },

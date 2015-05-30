@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,7 +51,6 @@
     <Compile Include="CharacterToBitMapConverter.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DisplayErrorMessage.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="Transformers\GameOverTransformer.cs" />
     <Compile Include="Transformers\StartupTransformer.cs" />
     <Compile Include="MainForm.cs">
