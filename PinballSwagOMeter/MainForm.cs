@@ -13,7 +13,7 @@ namespace PinballSwagOMeter
     {
         private Timer _timer;
         private MatrixTransformer _matrixTransformer;
-        private BigInteger[] _currentBitPatterns = new BigInteger[35];
+        private BitMatrix _currentBitPatterns = new BitMatrix(new BigInteger[Constants.Rows]);
 
         private SwagOMeterAwardEngine _swagOMeterAwardEngine;
         private readonly CharacterToBitMapConverter _characterToBitMapConverter;
@@ -73,10 +73,10 @@ namespace PinballSwagOMeter
             pictureBox.Height = (screenArea.Width / Constants.Columns) * 20;
 
             _onOffImageWidth = pictureBox.Width / Constants.Columns;
-            _onOffImageHeight = pictureBox.Height / 35;
+            _onOffImageHeight = pictureBox.Height / Constants.Rows;
 
             pictureBox.Width = _onOffImageWidth * Constants.Columns;
-            pictureBox.Height = _onOffImageHeight * 35;
+            pictureBox.Height = _onOffImageHeight * Constants.Rows;
             pictureBox.BackColor = Color.Black;
 
             pictureBox.Left = (screenArea.Width - pictureBox.Width) / 2;
@@ -127,7 +127,7 @@ namespace PinballSwagOMeter
         void _timer_Tick(object sender, System.EventArgs e)
         {
             _timer.Enabled = false;
-            _currentBitPatterns = _matrixTransformer.Transform();
+            _currentBitPatterns = _matrixTransformer.GetNextScreen();
             DisplayCurrentBitPatterns();
             _timer.Enabled = _matrixTransformer.KeepTimerRunning;
             if (_timer.Enabled)

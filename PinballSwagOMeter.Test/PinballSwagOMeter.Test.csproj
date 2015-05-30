@@ -57,7 +57,6 @@
     <Compile Include="CharacterToBitMapConverterTests.cs" />
     <Compile Include="FlashNameTransformerTests.cs" />
     <Compile Include="GameOverTransformerTests.cs" />
-    <Compile Include="InvertTransformerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

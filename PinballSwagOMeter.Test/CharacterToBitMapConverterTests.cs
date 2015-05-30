@@ -14,7 +14,7 @@ namespace PinballSwagOMeter.Test
             var characterToBitMapConverter = new CharacterToBitMapConverter(null, null);
             var lines = characterToBitMapConverter.GetBitPattern("hello", "hello", "hello", "hello").ToList();
 
-            Assert.That(lines.Count(), Is.EqualTo(35));
+            Assert.That(lines.Count(), Is.EqualTo(Constants.Rows));
 
             var expected = new byte[9][];
             expected[0] = new byte[] { 0, 0, 0, 0, 0, 0, 0, 60, 48, 216, 111, 6 };
@@ -42,7 +42,7 @@ namespace PinballSwagOMeter.Test
             var characterToBitMapConverter = new CharacterToBitMapConverter(null, null);
             var lines = characterToBitMapConverter.GetBitPattern("+hello!", "hello'", ">hello)", "<hello.").ToList();
 
-            Assert.That(lines.Count(), Is.EqualTo(35));
+            Assert.That(lines.Count(), Is.EqualTo(Constants.Rows));
             var expected = new byte[9][];
             expected[0] = new byte[] { 0, 0, 0, 0, 0, 0, 0, 60, 48, 216, 111, 6 };
             expected[1] = new byte[] { 0, 0, 0, 0, 0, 0, 0, 126, 48, 216, 111, 6 };
@@ -66,47 +66,48 @@ namespace PinballSwagOMeter.Test
         [Test]
         public void xxxxx()
         {
-            var bitPatterns = new BigInteger[35];
-            bitPatterns[0] = new BigInteger(new byte[] { 0 });
-            bitPatterns[1] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 255, 0 });
-            bitPatterns[2] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 192, 3 });
-            bitPatterns[3] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 14 });
-            bitPatterns[4] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 28 });
-            bitPatterns[5] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 3, 0, 48 });
-            bitPatterns[6] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 1, 0, 48 });
-            bitPatterns[7] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0, 0, 48 });
-            bitPatterns[8] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 224, 224, 48 });
-            bitPatterns[9] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 243, 241, 49 });
-            bitPatterns[10] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 251, 224, 59 });
-            bitPatterns[11] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 247, 228, 25 });
-            bitPatterns[12] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 14, 12 });
-            bitPatterns[13] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 15, 12 });
-            bitPatterns[14] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 8, 6 });
-            bitPatterns[15] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 3 });
-            bitPatterns[16] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 127, 1 });
-            bitPatterns[17] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 1 });
-            bitPatterns[18] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 12, 1 });
-            bitPatterns[19] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 143, 193, 0 });
-            bitPatterns[20] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 240, 193, 255, 224, 1 });
-            bitPatterns[21] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 7, 0, 248, 0 });
-            bitPatterns[22] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 63, 0, 255, 1 });
-            bitPatterns[23] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 240, 255, 225, 255, 3 });
-            bitPatterns[24] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 240, 255, 251, 239, 3 });
-            bitPatterns[25] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 96, 224, 255, 1 });
-            bitPatterns[26] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 0 });
-            bitPatterns[27] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 248, 251, 119 });
-            bitPatterns[28] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 255, 225, 255, 1 });
-            bitPatterns[29] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 127, 192, 255, 3 });
-            bitPatterns[30] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 31, 128, 255, 3 });
-            bitPatterns[31] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 96, 15, 0, 252, 0 });
-            bitPatterns[32] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 104 });
-            bitPatterns[33] = new BigInteger(new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 0 });
-            bitPatterns[34] = new BigInteger(new byte[] { 0 });
+            var bitPatterns = BigIntegerArrayFactory.Create(
+                new byte[] { 0 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 248, 1 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 255, 31 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 255, 255, 0 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 240, 255, 255, 1 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 252, 255, 255, 7 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 15 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 31 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 255, 255, 255, 31 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 255, 255, 255, 63 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 255, 255, 255, 63 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 255, 255, 255, 127 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 255, 192, 255, 127 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 31, 192, 231, 127 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 15, 192, 143, 127 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 15, 192, 63, 126 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 15, 131, 63, 126 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 7, 14, 15, 126 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 7, 28, 6, 124 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 7, 28, 7, 124 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 3, 12, 6, 124 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 3, 0, 0, 120 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 3, 0, 0, 56 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 3, 0, 8, 56 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 1, 0, 14, 48 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 1, 254, 5, 16 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 1, 4, 4, 16 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 12, 6, 16 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 240, 1 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 14 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 252, 3, 248, 31 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 255, 0, 192, 127 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 252, 0, 192, 7 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 254, 0, 240, 15 },
+                new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 255, 3, 252, 63 }
+            );
 
-            var wordBitPatterns = new CharacterToBitMapConverter(null, null).GetBitPattern("         Credits:   ", "         Graphics by", "        Mark     ", "         Jones      ");
+            var wordBitPatterns = new CharacterToBitMapConverter(null, null).GetBitPattern("         Credits:   ", "         Logic by   ", "         John       ", "         Mcgloughlin");
             var all = wordBitPatterns.Add(bitPatterns);
 
-            for (var row = 0; row < 35; ++row)
+            for (var row = 0; row < Constants.Rows; ++row)
             {
                 Debug.WriteLine("bitPatterns[{0}] = new BigInteger(new byte[] {{ {1} }});", row, GetByteValues(all[row]));
             }
@@ -118,4 +119,3 @@ namespace PinballSwagOMeter.Test
         }
     }
 }
-

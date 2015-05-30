@@ -9,7 +9,7 @@ namespace PinballSwagOMeter.Test
         [Test]
         public void WhenTransformExpectOscillating8RowsAfterFruitMachine()
         {
-            var originals = new BigInteger[10];
+            var originals = new BitMatrix(new BigInteger[10]);
             for (int i = 0; i < 8; ++i)
             {
                 originals[i] = i + 1;
@@ -19,20 +19,20 @@ namespace PinballSwagOMeter.Test
 
             for (var i = 0; i <= 8; ++i)
             {
-                transformer.Transform();
+                transformer.GetNextScreen();
             }
 
-            var transformed = transformer.Transform();
+            var transformed = transformer.GetNextScreen();
             AssertValuesTransformed(transformed);
 
-            transformed = transformer.Transform();
+            transformed = transformer.GetNextScreen();
             AssertValuesBackToOriginal(transformed);
 
-            transformed = transformer.Transform();
+            transformed = transformer.GetNextScreen();
             AssertValuesTransformed(transformed);
         }
 
-        private static void AssertValuesBackToOriginal(BigInteger[] transformed)
+        private static void AssertValuesBackToOriginal(BitMatrix transformed)
         {
             for (var i = 0; i < 8; ++i)
             {
@@ -41,7 +41,7 @@ namespace PinballSwagOMeter.Test
             Assert.That(transformed[9].IsZero, Is.False);
         }
 
-        private static void AssertValuesTransformed(BigInteger[] transformed)
+        private static void AssertValuesTransformed(BitMatrix transformed)
         {
             for (var i = 0; i < 8; ++i)
             {

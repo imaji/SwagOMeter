@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -62,7 +63,7 @@ namespace PinballSwagOMeter
             _offBitmap = offBitmap;
         }
 
-        public BigInteger[] GetBitPattern(string line1, string line2, string line3, string line4)
+        public BitMatrix GetBitPattern(string line1, string line2, string line3, string line4)
         {
             var bitPatterns = new List<BigInteger>();
             bitPatterns.AddRange(CentreAndGetBitPattern(line1));
@@ -72,21 +73,35 @@ namespace PinballSwagOMeter
             bitPatterns.AddRange(CentreAndGetBitPattern(line3));
             bitPatterns.Add(0);
             bitPatterns.AddRange(CentreAndGetBitPattern(line4));
-            return bitPatterns.ToArray();
+            return new BitMatrix(bitPatterns.ToArray());
         }
 
-        public void BuildBitMapPicture(BigInteger[] bitPatterns, int imageWidth, int imageHeight, Graphics bitmapGraphics)
+        public void BuildBitMapPicture(BitMatrix bitPatterns, int imageWidth, int imageHeight, Graphics bitmapGraphics)
         {
+            var bits = new BitArray[bitPatterns.Length];
             for (var row = 0; row < bitPatterns.Length; ++row)
             {
-                var bitMask = bitPatterns.ElementAt(row);
-                var bit = new BigInteger(Math.Pow(2, Constants.Columns - 1));
+                bitPatterns.GetBitsForRow(bitPatterns, bits, row);
+            }
+
+            for (var row = 0; row < bitPatterns.Length; ++row)
+            {
                 for (var col = 0; col < Constants.Columns; ++col)
                 {
-                    var bitmapForBit = (bitMask & bit) == bit ? _onBitmap : _offBitmap;
-                    bitmapGraphics.DrawImage(bitmapForBit, col * imageWidth, row * imageHeight, imageWidth, imageHeight);
-                    bit >>= 1;
+                    bitmapGraphics.DrawImage(bits[row][col] ? _onBitmap : _offBitmap, col * imageWidth, row * imageHeight, imageWidth, imageHeight);
                 }
+            }
+        }
+
+        public static void GetBitsForRow(BitMatrix bitPatterns, BitArray[] bits, int row)
+        {
+            bits[row] = new BitArray(Constants.Columns);
+            var bitMask = bitPatterns[row];
+            var bit = new BigInteger(Math.Pow(2, Constants.Columns - 1));
+            for (var col = 0; col < Constants.Columns; ++col)
+            {
+                bits[row][col] = (bitMask & bit) == bit;
+                bit >>= 1;
             }
         }
 

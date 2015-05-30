@@ -6,13 +6,14 @@ namespace PinballSwagOMeter.Test
     public class GameOverTransformerTests
     {
         [Test]
-        public void TwoScreens()
+        public void ThreeScreens()
         {
             var transformer = new GameOverTransformer();
-            transformer.Transform();
+            transformer.GetNextScreen();
             Assert.That(transformer.KeepTimerRunning, Is.True);
             Assert.That(transformer.SubsequentDelayMs, Is.EqualTo(2000));
-            transformer.Transform();
+            transformer.GetNextScreen();
+            transformer.GetNextScreen();
             Assert.That(transformer.KeepTimerRunning, Is.False);
         }
     }

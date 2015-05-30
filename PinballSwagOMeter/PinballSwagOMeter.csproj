@@ -45,21 +45,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BigIntegerArrayFactory.cs" />
+    <Compile Include="BitMatrix.cs" />
     <Compile Include="CharacterToBitMapConverter.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DisplayErrorMessage.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="GameOverTransformer.cs" />
-    <Compile Include="StartupTransformer.cs" />
+    <Compile Include="Transformers\GameOverTransformer.cs" />
+    <Compile Include="Transformers\StartupTransformer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MatrixTransformer.cs" />
-    <Compile Include="WinnerTransformer.cs" />
-    <Compile Include="InvertTransformer.cs" />
+    <Compile Include="Transformers\MatrixTransformer.cs" />
+    <Compile Include="Transformers\WinnerTransformer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
