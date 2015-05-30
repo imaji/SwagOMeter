@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BigIntegerArrayFactory.cs" />
+    <Compile Include="BitMatrixFactory.cs" />
     <Compile Include="BitMatrix.cs" />
     <Compile Include="CharacterToBitMapConverter.cs" />
     <Compile Include="Constants.cs" />

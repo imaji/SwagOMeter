@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace PinballSwagOMeter
 {
-    public static class BigIntegerArrayFactory
+    public static class BitMatrixFactory
     {
         public static BitMatrix Create(params byte[][] byteLumps)
         {

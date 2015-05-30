@@ -98,7 +98,7 @@ namespace PinballSwagOMeter
 
         private BitMatrix BuildSwagometerScreen()
         {
-            return BigIntegerArrayFactory.Create(
+            return BitMatrixFactory.Create(
                 new byte[] { 0 },
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0 },
                 new byte[] { 192, 225, 240, 199, 1, 198, 1, 60, 192, 1, 7, 1, 194, 0, 56, 8, 224, 3 },
@@ -139,7 +139,7 @@ namespace PinballSwagOMeter
 
         private static BitMatrix BuildDevScSplashScreen()
         {
-            return BigIntegerArrayFactory.Create(
+            return BitMatrixFactory.Create(
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 179, 159, 15, 0, 0, 0, 0, 0, 2 },
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 179, 223, 15, 0, 0, 0, 0, 192, 3 },
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 51, 216, 12, 0, 0, 0, 0, 240, 3 },

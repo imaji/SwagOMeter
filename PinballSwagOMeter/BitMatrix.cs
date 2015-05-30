@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Linq;
 
 namespace PinballSwagOMeter
 {
@@ -40,9 +41,9 @@ namespace PinballSwagOMeter
             get { return _bigIntegers.Length; }
         }
 
-        public IList<BigInteger> ToList()
+        public IList<BitArray> ToList()
         {
-            return new List<BigInteger>(_bigIntegers);
+            return new List<BitArray>(_bigIntegers.Select(i => new BitArray(i.ToByteArray())));
         }
 
         public BitArray GetBitsForRow(int row)
