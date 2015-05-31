@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace PinballSwagOMeter
+namespace PinballSwagOMeter.Transformers
 {
     public class WinnerTransformer : MatrixTransformer
     {

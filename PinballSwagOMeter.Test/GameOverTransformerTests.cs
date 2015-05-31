@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using PinballSwagOMeter.Transformers;
 
 namespace PinballSwagOMeter.Test
 {

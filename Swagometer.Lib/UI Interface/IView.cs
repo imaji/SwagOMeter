@@ -1,7 +1,7 @@
-﻿using Swagometer.Lib.Interfaces;
-using System;
+﻿using System;
+using Swagometer.Lib.Interfaces;
 
-namespace Swagometer.Lib.UI_Interface
+namespace Swagometer.Lib
 {
     public interface IView
     {

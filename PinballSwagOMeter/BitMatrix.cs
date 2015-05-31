@@ -5,7 +5,7 @@ namespace PinballSwagOMeter
 {
     public class BitMatrix
     {
-        private IList<BitArray> _bitArrays;
+        private readonly IList<BitArray> _bitArrays;
 
         public BitMatrix()
             : this(BuildEmptyBitArrays())
@@ -51,7 +51,7 @@ namespace PinballSwagOMeter
             return bitArray;
         }
 
-        private static BitArray[] BuildEmptyBitArrays()
+        private static IEnumerable<BitArray> BuildEmptyBitArrays()
         {
             var bitArrays = new BitArray[35];
             for (var i = 0; i < 35; ++i)

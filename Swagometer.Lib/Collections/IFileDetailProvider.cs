@@ -1,5 +1,5 @@
 ﻿
-namespace Swagometer.Lib
+namespace Swagometer.Lib.Collections
 {
     public interface IFileDetailProvider
     {

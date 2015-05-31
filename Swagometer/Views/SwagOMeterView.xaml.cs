@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
+using Swagometer.Lib.Collections;
 using Swagometer.Lib.Data;
 using Swagometer.ViewModels;
-using Swagometer.Lib;
 using Swagometer.Properties;
 using Swagometer.Lib.Objects;
 

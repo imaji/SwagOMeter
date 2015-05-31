@@ -1,7 +1,8 @@
 ﻿using PinballSwagOMeter.Properties;
+using PinballSwagOMeter.Transformers;
 using Swagometer.Lib;
+using Swagometer.Lib.Collections;
 using Swagometer.Lib.Interfaces;
-using Swagometer.Lib.UI_Interface;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -10,7 +11,7 @@ namespace PinballSwagOMeter
 {
     public partial class MainForm : Form, IView
     {
-        public Presenter Presenter { private get; set; }
+        public Presenter Presenter { get; set; }
         public event EventHandler NewWinnerRequested;
         public event EventHandler AttendeeLeft;
         public event EventHandler AttendeeRefused;
@@ -54,7 +55,7 @@ namespace PinballSwagOMeter
             Presenter = new Presenter(this, fileDetailProvider, errorMessage);
         }
 
-        private void Form_Load(object sender, System.EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             DisplayCurrentBitPatterns(new BitMatrix());
             _matrixTransformer = MatrixTransformer.Create<StartupTransformer>();
@@ -132,7 +133,7 @@ namespace PinballSwagOMeter
             OnWinnersReportRequired();
         }
 
-        void _timer_Tick(object sender, System.EventArgs e)
+        void _timer_Tick(object sender, EventArgs e)
         {
             _timer.Enabled = false;
             DisplayCurrentBitPatterns(_matrixTransformer.GetNextScreen());

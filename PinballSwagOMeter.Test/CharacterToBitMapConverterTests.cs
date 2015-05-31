@@ -28,7 +28,7 @@ namespace PinballSwagOMeter.Test
         [Test]
         public void CentreAndGetBitPattern()
         {
-            var x = CharacterToBitMapConverter.CentreAndGetBitPattern("Hello");
+            var x = CharacterToBitMapConverter.CentreAndGetBitPattern("Hello").ToArray();
             Assert.That(x.Count(), Is.EqualTo(8));
 
             Assert.That(ToBitMask(x.ElementAt(0)), Is.EqualTo("                                                          ****      **     ** ****** **  **                                                 "));

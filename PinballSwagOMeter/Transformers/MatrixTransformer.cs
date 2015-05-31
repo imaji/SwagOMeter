@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace PinballSwagOMeter
+namespace PinballSwagOMeter.Transformers
 {
     public abstract class MatrixTransformer
     {

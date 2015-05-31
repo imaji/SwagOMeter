@@ -1,16 +1,16 @@
-﻿using Swagometer.Lib.Data;
+﻿using System;
+using Swagometer.Lib.Data;
 using Swagometer.Lib.Interfaces;
 using Swagometer.Lib.Objects;
-using System;
 
-namespace Swagometer.Lib.UI_Interface
+namespace Swagometer.Lib
 {
     internal class Model
     {
-        private SwagOMeterAwardEngine _swagOMeterAwardEngine;
+        private readonly SwagOMeterAwardEngine _swagOMeterAwardEngine;
+        private readonly IWinnersSource _winnersSource;
 
         public event EventHandler<WinnerAvailableEventArgs> WinnerAvailable;
-        private IWinnersSource _winnersSource;
 
         public Model(AttendeeSource attendeeSource, SwagSource swagSource, IWinnersSource winnersSource)
         {

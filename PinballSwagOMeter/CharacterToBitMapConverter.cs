@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Numerics;
 
 namespace PinballSwagOMeter
 {
@@ -92,13 +91,11 @@ namespace PinballSwagOMeter
             input = new string(input.ToUpper().Where(Map.ContainsKey).ToArray());
             input = input.PadLeft(input.Length + ((20 - input.Length) / 2));
 
-            var numberOfBitsForInput = input.Length * 7;
-
             var lines = new BitArray[8];
 
             for (var line = 0; line < 8; ++line)
             {
-                BitArray outputLine = new BitArray(140);
+                var outputLine = new BitArray(140);
                 for (var character = 0; character < input.Length; ++character)
                 {
                     var bitMask = Map[input[character]];
