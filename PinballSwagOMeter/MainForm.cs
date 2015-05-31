@@ -1,55 +1,62 @@
 ﻿using PinballSwagOMeter.Properties;
 using Swagometer.Lib;
-using Swagometer.Lib.Data;
 using Swagometer.Lib.Interfaces;
-using Swagometer.Lib.Objects;
+using Swagometer.Lib.UI_Interface;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace PinballSwagOMeter
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IView
     {
+        public Presenter Presenter { private get; set; }
+        public event EventHandler NewWinnerRequested;
+        public event EventHandler AttendeeLeft;
+        public event EventHandler AttendeeRefused;
+        public event EventHandler WinnersReportRequired;
+
         private Timer _timer;
         private MatrixTransformer _matrixTransformer;
-        private BitMatrix _currentBitPatterns = new BitMatrix();
 
-        private SwagOMeterAwardEngine _swagOMeterAwardEngine;
-        private readonly CharacterToBitMapConverter _characterToBitMapConverter;
-        private IWinnersSource _winnersSource;
+        private readonly CharacterToBitMapConverter _characterToBitMapConverter = new CharacterToBitMapConverter(Resources.@on, Resources.off);
         private int _onOffImageWidth;
         private int _onOffImageHeight;
-        private readonly Bitmap _matrixBitmap;
+        private Bitmap _matrixBitmap;
 
         public MainForm()
         {
             InitializeComponent();
-
-            BuildSwagOMeterEngine();
             PositionEverything();
-
-            _characterToBitMapConverter = new CharacterToBitMapConverter(Resources.@on, Resources.off);
-            _matrixBitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
-            pictureBox.Image = _matrixBitmap;
-
             InitialiseTimer();
-
-            Cursor.Hide();
+            BuildPresenter();
         }
 
-        private void BuildSwagOMeterEngine()
+        public void DisplayWinner(IWinner winner)
+        {
+            if (winner != null)
+            {
+                var currentBitPatterns = _characterToBitMapConverter.GetBitPattern(winner.WinningAttendee.Name, "*** wins ***", winner.AwardedSwag.Company, winner.AwardedSwag.Thing);
+                _matrixTransformer = MatrixTransformer.Create<WinnerTransformer>(currentBitPatterns);
+                StartTransform(100);
+            }
+            else
+            {
+                _matrixTransformer = MatrixTransformer.Create<GameOverTransformer>();
+                StartTransform(1000);
+            }
+        }
+
+        private void BuildPresenter()
         {
             var fileDetailProvider = FileDetailProvider.Create(Settings.Default.FileLocation, "Swag-Winners-{0}.xml");
             var errorMessage = new DisplayErrorMessages();
-            var attendeeSource = new AttendeeSource(errorMessage);
-            var swagSource = new SwagSource(errorMessage);
-            _winnersSource = new WinnersSource(fileDetailProvider);
-            _swagOMeterAwardEngine = new SwagOMeterAwardEngine(Settings.Default.FileLocation, attendeeSource, swagSource, "attendees.xml", "swag.xml");
+            Presenter = new Presenter(this, fileDetailProvider, errorMessage);
         }
 
         private void Form_Load(object sender, System.EventArgs e)
         {
-            DisplayCurrentBitPatterns();
+            DisplayCurrentBitPatterns(new BitMatrix());
             _matrixTransformer = MatrixTransformer.Create<StartupTransformer>();
             StartTransform(200);
         }
@@ -80,22 +87,11 @@ namespace PinballSwagOMeter
 
             pictureBox.Left = (screenArea.Width - pictureBox.Width) / 2;
             pictureBox.Top = (screenArea.Height - pictureBox.Height) / 2;
-        }
 
-        private void PickWinnerAndDisplay()
-        {
-            var winner = _swagOMeterAwardEngine.AwardSwag();
-            if (winner != null)
-            {
-                _currentBitPatterns = _characterToBitMapConverter.GetBitPattern(winner.WinningAttendee.Name, "*** wins ***", winner.AwardedSwag.Company, winner.AwardedSwag.Thing);
-                _matrixTransformer = MatrixTransformer.Create<WinnerTransformer>(_currentBitPatterns);
-                StartTransform(100);
-            }
-            else
-            {
-                _matrixTransformer = MatrixTransformer.Create<GameOverTransformer>();
-                StartTransform(1000);
-            }
+            _matrixBitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
+            pictureBox.Image = _matrixBitmap;
+
+            Cursor.Hide();
         }
 
         private void StartTransform(int initialDelayMs)
@@ -104,11 +100,11 @@ namespace PinballSwagOMeter
             _timer.Enabled = true;
         }
 
-        private void DisplayCurrentBitPatterns()
+        private void DisplayCurrentBitPatterns(BitMatrix currentBitPatterns)
         {
             using (var bitmapGraphics = Graphics.FromImage(_matrixBitmap))
             {
-                _characterToBitMapConverter.BuildBitMapPicture(_currentBitPatterns, _onOffImageWidth, _onOffImageHeight, bitmapGraphics);
+                _characterToBitMapConverter.BuildBitMapPicture(currentBitPatterns, _onOffImageWidth, _onOffImageHeight, bitmapGraphics);
             }
             pictureBox.Invalidate();
         }
@@ -117,34 +113,65 @@ namespace PinballSwagOMeter
         {
             if (e.KeyCode == Keys.Space)
             {
-                PickWinnerAndDisplay();
+                OnNewWinnerRequested();
             }
             else if (e.KeyCode == Keys.R)
             {
-                _swagOMeterAwardEngine.AttendeeDoesNotWantSwag();
-                PickWinnerAndDisplay();
+                OnAttendeeRefusedSwag();
+                OnNewWinnerRequested();
             }
             else if (e.KeyCode == Keys.N)
             {
-                _swagOMeterAwardEngine.AttendeeNotPresent();
-                PickWinnerAndDisplay();
+                OnAttendeeNotPresent();
+                OnNewWinnerRequested();
             }
         }
 
         private void Form_Closing(object sender, FormClosingEventArgs e)
         {
-            _swagOMeterAwardEngine.SaveWinners(_winnersSource);
+            OnWinnersReportRequired();
         }
 
         void _timer_Tick(object sender, System.EventArgs e)
         {
             _timer.Enabled = false;
-            _currentBitPatterns = _matrixTransformer.GetNextScreen();
-            DisplayCurrentBitPatterns();
+            DisplayCurrentBitPatterns(_matrixTransformer.GetNextScreen());
             _timer.Enabled = _matrixTransformer.KeepTimerRunning;
             if (_timer.Enabled)
             {
                 _timer.Interval = _matrixTransformer.SubsequentDelayMs;
+            }
+        }
+
+        private void OnNewWinnerRequested()
+        {
+            if (NewWinnerRequested != null)
+            {
+                NewWinnerRequested(this, EventArgs.Empty);
+            }
+        }
+
+        private void OnAttendeeRefusedSwag()
+        {
+            if (AttendeeRefused != null)
+            {
+                AttendeeRefused(this, EventArgs.Empty);
+            }
+        }
+
+        private void OnAttendeeNotPresent()
+        {
+            if (AttendeeLeft != null)
+            {
+                AttendeeLeft(this, EventArgs.Empty);
+            }
+        }
+
+        private void OnWinnersReportRequired()
+        {
+            if (WinnersReportRequired != null)
+            {
+                WinnersReportRequired(this, EventArgs.Empty);
             }
         }
     }

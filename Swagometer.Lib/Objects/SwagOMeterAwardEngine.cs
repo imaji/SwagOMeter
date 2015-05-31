@@ -237,7 +237,9 @@ namespace Swagometer.Lib.Objects
         public void SaveWinners(IWinnersSource winnersSource)
         {
             if (_winners.Count > 0)
+            {
                 winnersSource.Save(_winners);
+            }
         }
 
         public void RefreshData(string attendeesFile, string swagFile, IAttendeeSource attendeeSource, ISwagSource swagSource)

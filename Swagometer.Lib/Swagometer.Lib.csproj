@@ -64,6 +64,10 @@
     <Compile Include="Objects\SwagOMeterAwardEngine.cs" />
     <Compile Include="Objects\Winner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI Interface\IView.cs" />
+    <Compile Include="UI Interface\Model.cs" />
+    <Compile Include="UI Interface\Presenter.cs" />
+    <Compile Include="UI Interface\WinnerAvailableEventArgs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
