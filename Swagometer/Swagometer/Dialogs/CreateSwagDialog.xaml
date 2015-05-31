@@ -1,0 +1,17 @@
+﻿<Window x:Class="Swagometer.Dialogs.CreateSwagDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Create Swag" Height="208" Width="343" WindowStyle="ToolWindow" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True">
+    <DockPanel Name="dockPanelMain">
+        <StackPanel Name="stackPanelButtons" Orientation="Horizontal" FlowDirection="RightToLeft" DockPanel.Dock="Bottom">
+            <Button Name="buttonCancel" Margin="5" Height="23" Width="75" IsCancel="True">Cancel</Button>
+            <Button Name="buttonCreate" Margin="5" Height="23" Width="75" IsDefault="True" Command="{Binding CreateCommand}">Create</Button>
+        </StackPanel>
+        <StackPanel>
+            <Label Name="labelCompany" Margin="5">Enter the name of the Company supplying the swag</Label>
+            <TextBox Name="textBoxCompany" Margin="5" Text="{Binding Path=Company}"></TextBox>
+            <Label Name="labelThing" Margin="5">Enter the Thing that is to be swagged</Label>
+            <TextBox Name="textBoxThing" Margin="5" Text="{Binding Path=Thing}"></TextBox>
+        </StackPanel>
+    </DockPanel>
+</Window>

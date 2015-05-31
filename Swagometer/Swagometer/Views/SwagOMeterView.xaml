@@ -1,0 +1,184 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Converters="clr-namespace:Swagometer.Converters"
+    x:Class="Swagometer.Views.SwagOMeterView"
+    Title="Swag-O-Meter V2" Height="679" Width="1288" WindowStyle="None" WindowStartupLocation="CenterScreen" WindowState="Maximized" x:Name="formMain" Loaded="formMain_Loaded">
+    <Window.Resources>
+        <Storyboard x:Key="Logo1Animation">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imageLogo1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="360"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imageLogo1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="2"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="imageLogo2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="-360"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="labelSwagging" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="6"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="labelSwagging" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.5000000" Value="4"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01" Value="2"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="labelCongratulations" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                <DiscreteObjectKeyFrame KeyTime="00:00:02" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="textBoxWinner" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                <DiscreteObjectKeyFrame KeyTime="00:00:02" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="labelHasWon" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                <DiscreteObjectKeyFrame KeyTime="00:00:02" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="textBoxSwag" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                <DiscreteObjectKeyFrame KeyTime="00:00:02" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="labelSwagging" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="00:00:00.5000000" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="00:00:01.5000000" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="00:00:02" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="labelSwagging" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                <SplineDoubleKeyFrame KeyTime="00:00:01.5000000" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02" Value="360"/>
+                <SplineDoubleKeyFrame KeyTime="00:00:02.5000000" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="HighlightQuit">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="buttonQuit" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="UnhighlightQuit">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="buttonQuit" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.7000000" Value="0.2"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="HighlightSettings">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="buttonSettings" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="UnhighlightSettings">
+            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="buttonSettings" Storyboard.TargetProperty="(UIElement.Opacity)">
+                <SplineDoubleKeyFrame KeyTime="00:00:00.7000000" Value="0.2"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <Converters:InvertedBoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter"/>
+        <Converters:SwagToBoolConverter x:Key="SwagToBoolConverter"/>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="buttonSwagEm">
+            <BeginStoryboard Storyboard="{StaticResource Logo1Animation}" x:Name="Logo1Animation_BeginStoryboard"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource HighlightQuit}" x:Name="HighlightQuit_BeginStoryboard"/>
+            <BeginStoryboard Storyboard="{StaticResource UnhighlightQuit}" x:Name="UnhighlightQuit_BeginStoryboard"/>
+            <BeginStoryboard Storyboard="{StaticResource HighlightSettings}" x:Name="HighlightSettings_BeginStoryboard"/>
+            <BeginStoryboard Storyboard="{StaticResource UnhighlightSettings}" x:Name="UnhighlightSettings_BeginStoryboard"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="buttonQuit">
+            <BeginStoryboard Storyboard="{StaticResource HighlightQuit}" x:Name="HighlightQuit_BeginStoryboard1"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="buttonQuit">
+            <BeginStoryboard Storyboard="{StaticResource UnhighlightQuit}" x:Name="UnhighlightQuit_BeginStoryboard1"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="buttonSettings">
+            <BeginStoryboard Storyboard="{StaticResource HighlightSettings}" x:Name="HighlightSettings_BeginStoryboard1"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="buttonSettings">
+            <BeginStoryboard Storyboard="{StaticResource UnhighlightSettings}" x:Name="UnhighlightSettings_BeginStoryboard1"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF000000" Offset="0"/>
+            <GradientStop Color="#FFFFFFFF" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <DockPanel x:Name="dockPanelHost">
+        <DockPanel DockPanel.Dock="Top">
+            <Image DockPanel.Dock="left" Height="150" Name="imageLogo1" Stretch="None" Source="..\Resources\Logo.png" RenderTransformOrigin="0.5,0.5" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        <SkewTransform AngleX="0" AngleY="0"/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform X="0" Y="0"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image DockPanel.Dock="Right" Height="150" Name="imageLogo2" Stretch="None" Source="..\Resources\Logo.png" RenderTransformOrigin="0.5,0.5" >
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        <SkewTransform AngleX="0" AngleY="0"/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform X="0" Y="0"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Label x:Name="labelTitle" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10" FontSize="72" FontWeight="Bold" Foreground="#FFFFCB00" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="./../Fonts/#Bauhaus 93" Content="Swag-O-Meter"/>
+        </DockPanel>
+        <Label Foreground="#FFFFBF00" x:Name="labelCongratulations" Width="Auto" Height="Auto" Content="Congratulations!" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Visibility="Collapsed" />
+        <TextBox x:Name="textBoxWinner" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="48" Foreground="#FFFF0202" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top" Visibility="Collapsed" Text="{Binding WinningAttendee, Mode=OneWay}" />
+        <Label Foreground="#FFFFBF00" x:Name="labelHasWon" Width="Auto" Height="Auto" Content="has won" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Visibility="Collapsed" />
+        <TextBox x:Name="textBoxSwag" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="48" Foreground="#FFFF0202" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top" Visibility="Collapsed" Text="{Binding WonSwag, Mode=OneWay}"/>
+        <Grid DockPanel.Dock="Bottom" x:Name="dockPanelButtons">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <MediaElement Grid.Column="0" Name="mediaElement" LoadedBehavior="Manual" MediaEnded="mediaElement_MediaEnded" Visibility="Visible" Volume="1" Source="{Binding Music}"/>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="buttonPlay" Height="20" Width="20" DockPanel.Dock="Right" Opacity="0.2" FontFamily="./../Fonts/#Bauhaus 93" Margin="5" Command="{Binding PlayMusicCommand}" >
+                    <Grid>
+                        <Path Name="playPath" Fill="#FF000000" Stretch="Fill" Stroke="#FF000000" Data="M207,109 L207.5,351.5 343.5,226.5 z" Visibility="{Binding MusicPlaying, Mode=OneWay, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+                        <Path Name="pausePath" Fill="#FF000000" Stretch="Fill" Stroke="#FF000000" Data="M87,0.5 L144.5,0.5 144.5,144.5 87,144.5 z M0.5,0.5 L58,0.5 58,144.5 0.5,144.5 z" Visibility="{Binding MusicPlaying, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    </Grid>
+                </Button>
+                <Button x:Name="buttonSettings" Height="20" Width="20" DockPanel.Dock="Right" Opacity="0.2" FontFamily="./../Fonts/#Bauhaus 93" Margin="5" Command="{Binding SettingsCommand}">?</Button>
+                <Button x:Name="buttonQuit" Height="20" Width="20" DockPanel.Dock="Right" Opacity="0.2" FontFamily="./../Fonts/#Bauhaus 93" Margin="5" Command="{Binding CloseCommand}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">X</Button>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="buttonNotCollected" Padding="3" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.5" FontFamily="./../Fonts/#Bauhaus 93" Margin="5" Command="{Binding AlreadyGotSwagCommand}" IsEnabled="{Binding NotCollectedEnabled}" Content="Not Collected"/>
+                <Button x:Name="buttonNotHere" Padding="3" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.5" FontFamily="./../Fonts/#Bauhaus 93" Margin="5" IsEnabled="{Binding NotHereAnymoreEnabled}" Content="Not here anymore" Command="{Binding AttendeeNotPresentCommand}" />
+            </StackPanel>
+        </Grid>
+        <Button x:Name="buttonSwagEm" DockPanel.Dock="Bottom" Padding="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding AwardSwagCommand}" FontFamily="./../Fonts/#Bauhaus 93" FontSize="36" FontWeight="Bold" Margin="10,10,10,10" Content="{Binding SwagText}" Width="702" Height="146.2" IsEnabled="{Binding SwagText, Converter={StaticResource SwagToBoolConverter}}">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                    <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                    <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                    <GradientStop Color="#FFFFBF00" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Label Width="Auto" Height="Auto" Content="Swagging..." x:Name="labelSwagging" Foreground="#FFFB1B02" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" FontFamily="./../Fonts/#Bauhaus 93">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <SkewTransform AngleX="0" AngleY="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform X="0" Y="0"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+    </DockPanel>
+</Window>
