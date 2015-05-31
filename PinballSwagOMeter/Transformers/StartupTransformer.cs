@@ -53,14 +53,16 @@ namespace PinballSwagOMeter
 
         private BitMatrix BuildAllGridOn()
         {
-            var allOn = new BitMatrix();
-            allOn[0] = new BitArray(new byte[] { 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 15 });
-            for (var i = 1; i < Constants.Rows; ++i)
+            var allOnRow = new BitArray(140);
+            allOnRow.SetAll(true);
+
+            var allOnMatrix = new BitMatrix();
+            for (var i = 0; i < Constants.Rows; ++i)
             {
-                allOn[i] = allOn[0];
+                allOnMatrix[i] = allOnRow;
             }
             SubsequentDelayMs = 1500;
-            return allOn;
+            return allOnMatrix;
         }
 
         private BitMatrix BuildRandomFlicker()
@@ -94,8 +96,8 @@ namespace PinballSwagOMeter
 
         private BitMatrix BuildSwagometerScreen()
         {
-            return BitMatrixFactory.Create2(
-                new byte[] { 0 },
+            return BitMatrixFactory.Create(
+                new byte[140],
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 0 },
                 new byte[] { 192, 225, 240, 199, 1, 198, 1, 60, 192, 1, 7, 1, 194, 0, 56, 8, 224, 3 },
                 new byte[] { 240, 243, 241, 239, 3, 239, 3, 126, 224, 131, 143, 3, 231, 1, 124, 24, 243, 7 },
@@ -127,15 +129,15 @@ namespace PinballSwagOMeter
                 new byte[] { 156, 251, 195, 225, 199, 57, 14, 255, 224, 231, 56, 199, 243, 7, 254, 156, 199, 1 },
                 new byte[] { 156, 251, 195, 225, 199, 57, 14, 255, 224, 231, 56, 135, 225, 7, 254, 28, 195, 1 },
                 new byte[] { 12, 243, 129, 225, 195, 48, 12, 126, 192, 195, 48, 134, 193, 7, 124, 24, 131, 1 },
-                new byte[] { 8, 224, 0, 192, 1, 0, 0, 60, 128, 1, 0, 0, 128, 3, 56 },
-                new byte[] { 0 },
-                new byte[] { 0 }
+                new byte[] { 8, 224, 0, 192, 1, 0, 0, 60, 128, 1, 0, 0, 128, 3, 56, 0, 0, 0 },
+                new byte[140],
+                new byte[140]
                 );
         }
 
         private static BitMatrix BuildDevScSplashScreen()
         {
-            return BitMatrixFactory.Create2(
+            return BitMatrixFactory.Create(
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 179, 159, 15, 0, 0, 0, 0, 0, 2 },
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 179, 223, 15, 0, 0, 0, 0, 192, 3 },
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 51, 216, 12, 0, 0, 0, 0, 240, 3 },

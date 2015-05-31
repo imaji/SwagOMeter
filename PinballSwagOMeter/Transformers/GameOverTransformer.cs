@@ -33,8 +33,8 @@ namespace PinballSwagOMeter
 
         private BitMatrix BuildGameOverScreen()
         {
-            return BitMatrixFactory.Create2(
-                new byte[] { 0 },
+            return BitMatrixFactory.Create(
+                new byte[140],
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 0 },
                 new byte[] { 0, 0, 0, 14, 14, 4, 8, 120, 0, 240, 1, 227, 0, 7, 56 },
                 new byte[] { 0, 0, 128, 31, 31, 14, 28, 252, 0, 240, 131, 247, 129, 15, 124 },
@@ -67,13 +67,14 @@ namespace PinballSwagOMeter
                 new byte[] { 0, 0, 224, 156, 63, 192, 1, 254, 1, 240, 225, 28, 231, 56, 252, 0 },
                 new byte[] { 0, 0, 96, 24, 31, 192, 1, 252, 0, 224, 96, 24, 198, 48, 120 },
                 new byte[] { 0, 0, 64, 0, 14, 192, 1, 120, 0, 0, 0, 0, 0, 0, 48 },
-                new byte[] { 0 },
-                new byte[] { 0 });
+                new byte[140],
+                new byte[140]
+                );
         }
 
         public BitMatrix BuildJohnForCredits()
         {
-            return BitMatrixFactory.Create2(
+            return BitMatrixFactory.Create(
                 new byte[] { 0, 0, 0, 224, 243, 99, 248, 126, 190, 15, },
                 new byte[] { 0, 0, 0, 227, 247, 99, 252, 126, 191, 31, 0, 0, 0, 248, 1, },
                 new byte[] { 0, 0, 0, 3, 198, 96, 204, 96, 51, 24, 0, 0, 128, 255, 31, },
@@ -114,7 +115,7 @@ namespace PinballSwagOMeter
 
         public BitMatrix BuildMarkForCredits()
         {
-            return BitMatrixFactory.Create2(
+            return BitMatrixFactory.Create(
                 new byte[] { 0, 0, 0, 224, 243, 99, 248, 126, 190, 15, },
                 new byte[] { 0, 0, 0, 227, 247, 99, 252, 126, 191, 31, 0, 0, 0, 224, 255, 0, },
                 new byte[] { 0, 0, 0, 3, 198, 96, 204, 96, 51, 24, 0, 0, 0, 56, 192, 3, },
@@ -149,7 +150,7 @@ namespace PinballSwagOMeter
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 96, 15, 0, 252, 0, },
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 104, },
                 new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 0, },
-                new byte[] { 0, }
+                new byte[140]
                 );
         }
     }

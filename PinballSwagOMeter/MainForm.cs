@@ -19,7 +19,7 @@ namespace PinballSwagOMeter
         private IWinnersSource _winnersSource;
         private int _onOffImageWidth;
         private int _onOffImageHeight;
-        private readonly Bitmap _bitmap;
+        private readonly Bitmap _matrixBitmap;
 
         public MainForm()
         {
@@ -29,8 +29,8 @@ namespace PinballSwagOMeter
             PositionEverything();
 
             _characterToBitMapConverter = new CharacterToBitMapConverter(Resources.@on, Resources.off);
-            _bitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
-            pictureBox.Image = _bitmap;
+            _matrixBitmap = new Bitmap(pictureBox.Width, pictureBox.Height);
+            pictureBox.Image = _matrixBitmap;
 
             InitialiseTimer();
 
@@ -79,7 +79,7 @@ namespace PinballSwagOMeter
             pictureBox.BackColor = Color.Black;
 
             pictureBox.Left = (screenArea.Width - pictureBox.Width) / 2;
-            pictureBox.Top = (screenArea.Height - pictureBox.Height);
+            pictureBox.Top = (screenArea.Height - pictureBox.Height) / 2;
         }
 
         private void PickWinnerAndDisplay()
@@ -106,7 +106,7 @@ namespace PinballSwagOMeter
 
         private void DisplayCurrentBitPatterns()
         {
-            using (var bitmapGraphics = Graphics.FromImage(_bitmap))
+            using (var bitmapGraphics = Graphics.FromImage(_matrixBitmap))
             {
                 _characterToBitMapConverter.BuildBitMapPicture(_currentBitPatterns, _onOffImageWidth, _onOffImageHeight, bitmapGraphics);
             }
@@ -115,7 +115,20 @@ namespace PinballSwagOMeter
 
         private void Form_KeyUp(object sender, KeyEventArgs e)
         {
-            PickWinnerAndDisplay();
+            if (e.KeyCode == Keys.Space)
+            {
+                PickWinnerAndDisplay();
+            }
+            else if (e.KeyCode == Keys.R)
+            {
+                _swagOMeterAwardEngine.AttendeeDoesNotWantSwag();
+                PickWinnerAndDisplay();
+            }
+            else if (e.KeyCode == Keys.N)
+            {
+                _swagOMeterAwardEngine.AttendeeNotPresent();
+                PickWinnerAndDisplay();
+            }
         }
 
         private void Form_Closing(object sender, FormClosingEventArgs e)

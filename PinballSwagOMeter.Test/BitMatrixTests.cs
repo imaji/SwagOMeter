@@ -8,7 +8,7 @@ namespace PinballSwagOMeter.Test
         [Test]
         public void GetTheRightBitMaskBack()
         {
-            var matrix2 = BitMatrixFactory.Create2(new byte[] { 1 }, new byte[] { 0, 255, 15 }, new byte[] { 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 15 });
+            var matrix2 = BitMatrixFactory.Create(new byte[] { 1 }, new byte[] { 0, 255, 15 }, new byte[] { 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 15 });
             var _02 = matrix2.GetBitsForRow(0);
             var _12 = matrix2.GetBitsForRow(1);
             var _22 = matrix2.GetBitsForRow(2);
