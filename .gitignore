@@ -10,3 +10,4 @@ packages/repositories.config
 *.ncrunchsolution
 Swagometer.Tests/Swagometer.Tests.ncrunchproject
 *.ncrunchproject
+/_NCrunch_Swagometer
