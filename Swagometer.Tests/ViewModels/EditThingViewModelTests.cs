@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Swagometer.Data;
-using Swagometer.ViewModels;
 using Swagometer.Dialogs;
+using Swagometer.Lib.Interfaces;
+using Swagometer.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Swagometer.Tests.ViewModels
 {
@@ -24,7 +24,7 @@ namespace Swagometer.Tests.ViewModels
             var stubSwagSource = new Mock<ISwagSource>();
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
-            var stubPath = "A Path";
+            const string stubPath = "A Path";
 
             var stubDiaglogFactory = new Mock<IDialogFactory<ISwag>>();
 
@@ -49,7 +49,7 @@ namespace Swagometer.Tests.ViewModels
             var stubSwagSource = new Mock<ISwagSource>();
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
-            var stubPath = "A Path";
+            const string stubPath = "A Path";
 
             var stubDiaglogFactory = new Mock<IDialogFactory<ISwag>>();
 
@@ -63,7 +63,7 @@ namespace Swagometer.Tests.ViewModels
 
             // Assert
             Assert.AreEqual(3, viewModel.Things.Count());
-            stubSwagSource.Verify(ss => ss.Save(It.IsAny<IList<ISwag>>(), stubPath), Times.Never());
+            stubSwagSource.Verify(ss => ss.Save(It.IsAny<IList<ISwag>>(), It.Is<string>(s => s.StartsWith(stubPath))), Times.Never());
         }
 
         [TestMethod]
@@ -81,7 +81,7 @@ namespace Swagometer.Tests.ViewModels
             var stubSwagSource = new Mock<ISwagSource>();
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
-            var stubPath = "A Path";
+            const string stubPath = "A Path";
 
             var stubCreateSwag = new Mock<ICreateNewThings<ISwag>>();
             stubCreateSwag.Setup(cs => cs.ShowDialog());
@@ -100,7 +100,7 @@ namespace Swagometer.Tests.ViewModels
             viewModel.SaveCommand.Execute(null);
 
             // Assert
-            stubSwagSource.Verify(ss => ss.Save(It.IsAny<IList<ISwag>>(), stubPath), Times.Once());
+            stubSwagSource.Verify(ss => ss.Save(It.IsAny<IList<ISwag>>(), It.Is<string>(s => s.StartsWith(stubPath))), Times.Once());
         }
 
         [TestMethod]
@@ -118,7 +118,7 @@ namespace Swagometer.Tests.ViewModels
             var stubSwagSource = new Mock<ISwagSource>();
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
-            var stubPath = "A Path";
+            const string stubPath = "A Path";
 
             var stubCreateSwag = new Mock<ICreateNewThings<ISwag>>();
             stubCreateSwag.Setup(cs => cs.ShowDialog());
@@ -149,18 +149,16 @@ namespace Swagometer.Tests.ViewModels
             var stubSwag2 = new Mock<ISwag>();
             var stubSwag3 = new Mock<ISwag>();
 
-            ISwag stubNullNewSwag = null;
-
             var stubSwag = new List<ISwag> { stubSwag1.Object, stubSwag2.Object, stubSwag3.Object };
 
             var stubSwagSource = new Mock<ISwagSource>();
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
-            var stubPath = "A Path";
+            const string stubPath = "A Path";
 
             var stubCreateSwag = new Mock<ICreateNewThings<ISwag>>();
             stubCreateSwag.Setup(cs => cs.ShowDialog());
-            stubCreateSwag.SetupGet(cs => cs.NewThing).Returns(stubNullNewSwag);
+            stubCreateSwag.SetupGet(cs => cs.NewThing).Returns((ISwag)null);
 
             var stubDiaglogFactory = new Mock<IDialogFactory<ISwag>>();
             stubDiaglogFactory.Setup(f => f.CreateDialog()).Returns(stubCreateSwag.Object);
@@ -191,7 +189,7 @@ namespace Swagometer.Tests.ViewModels
             var stubSwagSource = new Mock<ISwagSource>();
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
-            var stubPath = "A Path";
+            const string stubPath = "A Path";
 
             var stubDiaglogFactory = new Mock<IDialogFactory<ISwag>>();
 
@@ -217,7 +215,7 @@ namespace Swagometer.Tests.ViewModels
             var stubSwagSource = new Mock<ISwagSource>();
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
-            var stubPath = "A Path";
+            const string stubPath = "A Path";
 
             var stubDiaglogFactory = new Mock<IDialogFactory<ISwag>>();
 
@@ -248,7 +246,7 @@ namespace Swagometer.Tests.ViewModels
             var stubSwagSource = new Mock<ISwagSource>();
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
-            var stubPath = "A Path";
+            const string stubPath = "A Path";
 
             var stubDiaglogFactory = new Mock<IDialogFactory<ISwag>>();
 
@@ -276,7 +274,7 @@ namespace Swagometer.Tests.ViewModels
             var stubSwagSource = new Mock<ISwagSource>();
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
-            var stubPath = "A Path";
+            const string stubPath = "A Path";
 
             var stubDiaglogFactory = new Mock<IDialogFactory<ISwag>>();
 

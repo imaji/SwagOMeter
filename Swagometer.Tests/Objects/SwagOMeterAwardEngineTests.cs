@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Swagometer.Data;
-using Swagometer.ViewModels;
+using Swagometer.Lib.Interfaces;
+using Swagometer.Lib.Objects;
+using System.Collections.Generic;
 
-namespace Swagometer.Tests.ViewModels
+namespace Swagometer.Tests.Objects
 {
     [TestClass]
     public class SwagOMeterAwardEngineTests
@@ -23,19 +23,25 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
-            
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+
             // Assert
             Assert.IsTrue(awardEngine.CanSwag);
             Assert.IsNull(awardEngine.WinningAttendee);
             Assert.IsNull(awardEngine.AwardedSwag);
         }
 
+        private static SwagOMeterAwardEngine BuildAwardEngine(IAttendeeSource x, ISwagSource y)
+        {
+            var awardEngine = new SwagOMeterAwardEngine("", x, y, "", "");
+            return awardEngine;
+        }
+
         [TestMethod]
         public void SwagOMeterAwardEngineShouldLoadAttendeesWhenRequestedButShouldNotBeSwagableWhenNoAttendeesArePresent()
         {
             // Arrange
-            var stubAttendees = new List<IAttendee> { };
+            var stubAttendees = new List<IAttendee>();
             var stubSwag = new List<ISwag> { new Mock<ISwag>().Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
@@ -45,7 +51,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
 
             // Assert
             Assert.IsFalse(awardEngine.CanSwag);
@@ -58,7 +64,7 @@ namespace Swagometer.Tests.ViewModels
         {
             // Arrange
             var stubAttendees = new List<IAttendee> { new Mock<IAttendee>().Object };
-            var stubSwag = new List<ISwag> { };
+            var stubSwag = new List<ISwag>();
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -67,7 +73,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
 
             // Assert
             Assert.IsFalse(awardEngine.CanSwag);
@@ -92,7 +98,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
             awardEngine.AwardSwag();
 
             // Assert
@@ -121,7 +127,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
             awardEngine.AwardSwag();
 
             // Assert
@@ -149,7 +155,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
             awardEngine.AwardSwag();
 
             // Assert
@@ -178,7 +184,7 @@ namespace Swagometer.Tests.ViewModels
             var mockWinnersSource = new Mock<IWinnersSource>();
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
             awardEngine.AwardSwag();
             awardEngine.AttendeeNotPresent();
             awardEngine.SaveWinners(mockWinnersSource.Object);
@@ -207,7 +213,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
             awardEngine.AwardSwag();
             awardEngine.AttendeeNotPresent();
 
@@ -235,7 +241,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
             awardEngine.AwardSwag();
             awardEngine.AttendeeNotPresent();
             awardEngine.AwardSwag();
@@ -264,7 +270,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
             awardEngine.AwardSwag();
             awardEngine.AttendeeDoesNotWantSwag();
 
@@ -291,7 +297,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
             awardEngine.AwardSwag();
             awardEngine.AttendeeDoesNotWantSwag();
 
@@ -324,7 +330,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
             awardEngine.AwardSwag();
             awardEngine.AttendeeDoesNotWantSwag();
             awardEngine.AwardSwag();
@@ -358,7 +364,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
             awardEngine.AwardSwag();
             awardEngine.AttendeeDoesNotWantSwag();
             awardEngine.AwardSwag();
@@ -392,7 +398,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
             awardEngine.AwardSwag();
             awardEngine.AttendeeDoesNotWantSwag();
 
@@ -423,7 +429,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
             awardEngine.AwardSwag();
             awardEngine.AttendeeDoesNotWantSwag();
 
@@ -454,7 +460,7 @@ namespace Swagometer.Tests.ViewModels
             stubSwagSource.Setup(ss => ss.Load(It.IsAny<string>())).Returns(stubSwag);
 
             // Act
-            var awardEngine = new SwagOMeterAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
+            var awardEngine = BuildAwardEngine(stubAttendeeSource.Object, stubSwagSource.Object);
             awardEngine.AwardSwag();
             awardEngine.AttendeeDoesNotWantSwag();
 

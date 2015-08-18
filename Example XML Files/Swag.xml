@@ -1,11 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <SwagStash>
   <Swag>
-    <Company>Microsoft</Company>
-    <Thing>Socks</Thing>
+    <Company>Telerik</Company>
+    <Thing>Bundle</Thing>
   </Swag>
-    <Swag>
-    <Company>Microsoft</Company>
-    <Thing>Umbrella</Thing>
+  <Swag>
+    <Company>Resharper</Company>
+    <Thing>Licence</Thing>
+  </Swag>
+  <Swag>
+    <Company>Spectrum IT</Company>
+    <Thing>£10 Amazon Voucher</Thing>
   </Swag>
 </SwagStash>

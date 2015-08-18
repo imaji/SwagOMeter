@@ -1,0 +1,21 @@
+﻿<Window x:Class="Swagometer.Dialogs.BaseEditThingsDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Converters="clr-namespace:Swagometer.Converters"
+    Title="Edit Swag" Height="300" Width="300" WindowStartupLocation="CenterScreen" Topmost="True">
+    <Window.Resources>
+        <Converters:SwagToEnableConverter x:Key="swagConverter"/>
+    </Window.Resources>
+    <DockPanel Name="dockPanel">
+        <StackPanel Name="stackPanelButtons" DockPanel.Dock="Bottom" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button Height="23" Name="buttonCancel" Width="75" Margin="5" IsCancel="True">Cancel</Button>
+            <Button Height="23" Name="buttonSave" Width="75" Margin="5" IsDefault="True" Command="{Binding SaveCommand}">Save</Button>
+        </StackPanel>
+        <StackPanel Name="stackPanelSwagControl" DockPanel.Dock="Right">
+            <Button Margin="5" Name="buttonAddSwag" Command="{Binding CreateCommand}">Create</Button>
+            <Button Margin="5" Name="buttonDeleteSwag" IsEnabled="{Binding ElementName=listBoxAttendees, Path=SelectedItem, Converter={StaticResource swagConverter}}" Command="{Binding DeleteCommand}">Delete</Button>
+            <Button Margin="5" Name="buttonDuplicateSwag" IsEnabled="{Binding ElementName=listBoxAttendees, Path=SelectedItem, Converter={StaticResource swagConverter}}" Command="{Binding DuplicateCommand}">Duplicate</Button>
+        </StackPanel>
+        <ListBox Name="listBoxSwag" ItemsSource="{Binding Things}" SelectedItem="{Binding SelectedThing}"/>
+    </DockPanel>
+</Window>

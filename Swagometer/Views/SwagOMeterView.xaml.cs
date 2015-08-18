@@ -1,28 +1,31 @@
 ﻿using System;
 using System.Windows;
+using Swagometer.Lib.Collections;
+using Swagometer.Lib.Data;
 using Swagometer.ViewModels;
-using Swagometer.Data;
+using Swagometer.Properties;
+using Swagometer.Lib.Objects;
 
-namespace Swagometer
+namespace Swagometer.Views
 {
     public partial class SwagOMeterView
     {
-        private readonly SwagOMeterViewModel _viewModel;
-        
         public SwagOMeterView()
         {
+            var fileDetailProvider = FileDetailProvider.Create(Settings.Default.FileLocation, (string)Resources["SwagWinnersFile"]);
+
             var errorMessage = new DisplayErrorMessages();
 
             var attendeeSource = new AttendeeSource(errorMessage);
             var swagSource = new SwagSource(errorMessage);
 
-            _viewModel = new SwagOMeterViewModel(attendeeSource, swagSource, new WinnersSource(), new SwagOMeterAwardEngine(attendeeSource, swagSource));
+            var viewModel = new SwagOMeterViewModel(attendeeSource, swagSource, new WinnersSource(fileDetailProvider), new SwagOMeterAwardEngine(Settings.Default.FileLocation, attendeeSource, swagSource, Constants.AttendeesFilename, Constants.SwagFilename), Settings.Default.SaveWinnersOnExit);
 
-            _viewModel.Close += (s, e) => Close();
-            _viewModel.PlayMusic += (s, e) => mediaElement.Play();
-            _viewModel.StopMusic += (s, e) => mediaElement.Pause();
+            viewModel.Close += (s, e) => Close();
+            viewModel.PlayMusic += (s, e) => mediaElement.Play();
+            viewModel.StopMusic += (s, e) => mediaElement.Pause();
 
-            DataContext = _viewModel;
+            DataContext = viewModel;
 
             InitializeComponent();
         }

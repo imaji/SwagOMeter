@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PinballSwagOMeter.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FileLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\mark.jones\Documents\GitHub\SwagOMeter\Example XML Files</Value>
+    </Setting>
+    <Setting Name="SaveWinnersOnExit" Type="System.String" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="FileLocation" GenerateDefaultValueInCode="false" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">C:\Users\mark.jones\Documents\GitHub\SwagOMeter\Example XML Files</Value>
     </Setting>
     <Setting Name="SaveWinnersOnExit" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

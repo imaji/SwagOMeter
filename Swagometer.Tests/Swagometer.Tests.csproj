@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,6 +43,7 @@
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -53,6 +55,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\SwagToEnableConverterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Objects\SwagOMeterAwardEngineTests.cs" />
     <Compile Include="ViewModels\CreateSwagViewModelTests.cs" />
@@ -60,6 +63,10 @@
     <Compile Include="ViewModels\SwagOMeterViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Swagometer.Lib\Swagometer.Lib.csproj">
+      <Project>{f7aaac9f-edd9-4306-8611-c017cae61f6a}</Project>
+      <Name>Swagometer.Lib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Swagometer\Swagometer.csproj">
       <Project>{D65EC449-07D9-4C7F-95F6-44F95D1CC22A}</Project>
       <Name>Swagometer</Name>
