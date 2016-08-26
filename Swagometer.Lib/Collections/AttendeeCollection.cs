@@ -3,10 +3,12 @@ using Swagometer.Lib.Objects;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace Swagometer.Lib.Collections
 {
-    internal class AttendeeCollection : ObservableCollection<IAttendee>, IThingCollection<IAttendee>
+    [XmlRoot(ElementName = "Attendees")]
+    public class AttendeeCollection : ObservableCollection<AttendeeBase>, IThingCollection<AttendeeBase>
     {
         private AttendeeCollection() { }
 

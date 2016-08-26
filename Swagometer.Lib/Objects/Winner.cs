@@ -6,15 +6,15 @@ namespace Swagometer.Lib.Objects
     {
         private Winner() {}
 
-        public static IWinner Create (ISwag swag, IAttendee attendee)
+        public static IWinner Create (SwagBase swag, AttendeeBase attendee)
         {
             var winner = new Winner {AwardedSwag = swag, WinningAttendee = attendee};
 
             return winner;
         }
 
-        public ISwag AwardedSwag { get; private set; }
+        public SwagBase AwardedSwag { get; private set; }
 
-        public IAttendee WinningAttendee { get; private set; }
+        public AttendeeBase WinningAttendee { get; private set; }
     }
 }

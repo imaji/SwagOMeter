@@ -1,15 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<SwagStash>
-  <Swag>
-    <Company>Telerik</Company>
-    <Thing>Bundle</Thing>
-  </Swag>
-  <Swag>
-    <Company>Resharper</Company>
-    <Thing>Licence</Thing>
-  </Swag>
-  <Swag>
-    <Company>Spectrum IT</Company>
-    <Thing>£10 Amazon Voucher</Thing>
-  </Swag>
+<?xml version="1.0"?>
+<SwagStash xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ISwag xsi:type="Swag">
+    <Company>Scope</Company>
+    <Thing>beer glass</Thing>
+  </ISwag>
+  <ISwag xsi:type="Swag">
+    <Company>Monster</Company>
+    <Thing>Zinc</Thing>
+  </ISwag>
 </SwagStash>

@@ -12,7 +12,7 @@ namespace Swagometer.Converters
             {
                 throw new InvalidOperationException("The target must be a bool");
             }
-            return value is ISwag;
+            return value is SwagBase;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

@@ -3,7 +3,7 @@ using Swagometer.Lib.Objects;
 
 namespace Swagometer.ViewModels
 {
-    public class CreateSwagViewModel : CreateThingViewModel<ISwag>
+    public class CreateSwagViewModel : CreateThingViewModel<SwagBase>
     {
         public string Thing { get; set; }
 

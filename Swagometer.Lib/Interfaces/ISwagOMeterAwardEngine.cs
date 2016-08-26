@@ -5,8 +5,8 @@ namespace Swagometer.Lib.Interfaces
     public interface ISwagOMeterAwardEngine : INotifyPropertyChanged
     {
         bool CanSwag { get; set; }
-        IAttendee WinningAttendee { get; set; }
-        ISwag AwardedSwag { get; set; }
+        AttendeeBase WinningAttendee { get; set; }
+        SwagBase AwardedSwag { get; set; }
 
         IWinner AwardSwag();
         void AttendeeNotPresent();

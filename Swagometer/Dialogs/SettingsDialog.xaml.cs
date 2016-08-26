@@ -9,7 +9,7 @@ namespace Swagometer.Dialogs
     {
         private readonly SettingsViewModel _viewModel;
         
-        internal static SettingsDialog Create(IList<ISwag> swag, IList<IAttendee> attendees, IAttendeeSource attendeeSource, ISwagSource swagSource)
+        internal static SettingsDialog Create(IList<SwagBase> swag, IList<AttendeeBase> attendees, IAttendeeSource attendeeSource, ISwagSource swagSource)
         {
             var newDialog = new SettingsDialog(attendeeSource, swagSource);
 

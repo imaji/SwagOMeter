@@ -63,14 +63,14 @@ namespace Swagometer.ViewModels
 
         private void ExecuteEditSwag()
         {
-            var editSwag = new EditThingsDialog<ISwag>(new EditThingsViewModel<ISwag, ISwagSource>(_swagSource, Path.Combine(FileLocation, Constants.SwagFilename), new SwagDialogFactory()));
+            var editSwag = new EditThingsDialog<SwagBase>(new EditThingsViewModel<SwagBase, ISwagSource>(_swagSource, Path.Combine(FileLocation, Constants.SwagFilename), new SwagDialogFactory()));
 
             editSwag.ShowDialog();
         }
 
         private void ExecuteEditAttendees()
         {
-            var editAttendees = new EditThingsDialog<IAttendee>(new EditThingsViewModel<IAttendee, IAttendeeSource>(_attendeeSource, Path.Combine(FileLocation, Constants.AttendeesFilename), new AttendeeDialogFactory()));
+            var editAttendees = new EditThingsDialog<AttendeeBase>(new EditThingsViewModel<AttendeeBase, IAttendeeSource>(_attendeeSource, Path.Combine(FileLocation, Constants.AttendeesFilename), new AttendeeDialogFactory()));
 
             editAttendees.ShowDialog();
         }

@@ -2,7 +2,7 @@
 {
     public interface IWinner
     {
-        ISwag AwardedSwag { get; }
-        IAttendee WinningAttendee { get; }
+        SwagBase AwardedSwag { get; }
+        AttendeeBase WinningAttendee { get; }
     }
 }

@@ -23,10 +23,10 @@ namespace Swagometer.ViewModels
         private readonly ISwagSource _swagSource;
         private readonly bool _saveWinnersOnExit;
 
-        private IList<ISwag> _swag;
-        private IList<IAttendee> _attendees;
-        private IAttendee _winningAttendee;
-        private ISwag _awardedSwag;
+        private IList<SwagBase> _swag;
+        private IList<AttendeeBase> _attendees;
+        private AttendeeBase _winningAttendee;
+        private SwagBase _awardedSwag;
 
         public SwagOMeterViewModel(IAttendeeSource attendeeSource, ISwagSource swagSource, IWinnersSource winnersSource, ISwagOMeterAwardEngine swagOMeterAwardEngine, bool saveWinnersOnExit = true)
         {

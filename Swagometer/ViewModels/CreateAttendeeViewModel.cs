@@ -3,7 +3,7 @@ using Swagometer.Lib.Objects;
 
 namespace Swagometer.ViewModels
 {
-    public class CreateAttendeeViewModel : CreateThingViewModel<IAttendee>
+    public class CreateAttendeeViewModel : CreateThingViewModel<AttendeeBase>
     {
         public string Name { get; set; }
 
