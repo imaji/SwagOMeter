@@ -16,7 +16,7 @@ namespace Swagometer.Lib
             var swagSource = new SwagSource(errorMessage);
             var winnersSource = new WinnersSource(fileDetailProvider);
 
-            _model = new Model(attendeeSource, swagSource, winnersSource);
+            _model = new Model(attendeeSource, swagSource, winnersSource, fileDetailProvider.FileLocation);
             _model.WinnerAvailable += _model_WinnerAvailable;
 
             _view = view;

@@ -12,10 +12,10 @@ namespace Swagometer.Lib
 
         public event EventHandler<WinnerAvailableEventArgs> WinnerAvailable;
 
-        public Model(AttendeeSource attendeeSource, SwagSource swagSource, IWinnersSource winnersSource)
+        public Model(IAttendeeSource attendeeSource, ISwagSource swagSource, IWinnersSource winnersSource, string fileLocation)
         {
             _winnersSource = winnersSource;
-            _swagOMeterAwardEngine = new SwagOMeterAwardEngine(@"C:\Users\M_J_O_N_E_S\Documents\GitHub\SwagOMeter\Example XML Files", attendeeSource, swagSource, "attendees.xml", "swag.xml");
+            _swagOMeterAwardEngine = new SwagOMeterAwardEngine(fileLocation, attendeeSource, swagSource, "attendees.xml", "swag.xml");
         }
 
         public void ReturnSwag()
