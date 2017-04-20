@@ -41,6 +41,25 @@ namespace PinballSwagOMeter.Test
             Assert.That(ToBitMask(x.ElementAt(7)), Is.EqualTo("                                                          ****  ****** ****** ****** **  **                                                 "));
         }
 
+        [Test]
+        public void LongStringGetsTruncated()
+        {
+            var x = CharacterToBitMapConverter.CentreAndGetBitPattern("ABCDEFGHIJKLMNOPQRSTUVWXYZ").ToArray();
+            Assert.That(x.Count(), Is.EqualTo(8));
+            for (var i = 0; i < 8; ++i)
+            {
+                System.Console.WriteLine($"{ToBitMask(x.ElementAt(i))}");
+            }
+            Assert.That(ToBitMask(x.ElementAt(0)), Is.EqualTo(" ****** *****   *****  ****   *****  ****  **  ** *    *     ** **  ** **       **   **  **  ****  ****** ******  ***** *****   *****  **** "));
+            Assert.That(ToBitMask(x.ElementAt(1)), Is.EqualTo(" ****** ****** ****** ****** ****** ****** **  ** **  **     ** **  ** **       **   **  ** ****** ****** ****** ****** ****** ****** ******"));
+            Assert.That(ToBitMask(x.ElementAt(2)), Is.EqualTo("   **       ** **  ** **  ** **  ** **  ** ** *** ******     ** **  ** **       **   **  ** **  **     **     ** **  **     ** **  ** **  **"));
+            Assert.That(ToBitMask(x.ElementAt(3)), Is.EqualTo("   **    ***** ****** **  ** ****** **  ** ****** ******     **  ***** **       **   ******     ** ****** ****** **  **     **  ***** **  **"));
+            Assert.That(ToBitMask(x.ElementAt(4)), Is.EqualTo("   **   *****   ***** **  **  ***** **  ** *** ** **  **     **  ***** **       **   ****** *** ** ****** ****** **  **     **  ***** ******"));
+            Assert.That(ToBitMask(x.ElementAt(5)), Is.EqualTo("   **   **     **  ** *** **     ** **  ** **  ** **  **     ** **  ** **  **   **   **  ** **  **     **     ** **  **     ** **  ** ******"));
+            Assert.That(ToBitMask(x.ElementAt(6)), Is.EqualTo("   **   ****** **  ** ******     ** ****** **  ** **  ** ****** **  ** ******   **   **  ** ******     ** ****** ****** ****** ****** **  **"));
+            Assert.That(ToBitMask(x.ElementAt(7)), Is.EqualTo("   **    ***** **  ** *****      **  ****  **  ** **  ** ****** **  **  ****    **   **  **  ****      ** ******  ***** *****   ***** **  **"));
+        }
+
         private string ToBitMask(BitArray x)
         {
             var bitMask = new StringBuilder(140);

@@ -4,7 +4,7 @@ using Swagometer.ViewModels;
 
 namespace Swagometer.Dialogs
 {
-    public partial class CreateAttendeeDialog : ICreateNewThings<IAttendee>
+    public partial class CreateAttendeeDialog : ICreateNewThings<AttendeeBase>
     {
         private readonly CreateAttendeeViewModel _viewModel;
 
@@ -18,7 +18,7 @@ namespace Swagometer.Dialogs
             InitializeComponent();
         }
 
-        public IAttendee NewThing
+        public AttendeeBase NewThing
         {
             get
             {

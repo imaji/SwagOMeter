@@ -13,8 +13,8 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldLoadAttendeesWhenRequestedButHaveNoWinnerOrSwagAssigned()
         {
             // Arrange
-            var stubAttendees = new List<IAttendee> { new Mock<IAttendee>().Object };
-            var stubSwag = new List<ISwag> { new Mock<ISwag>().Object };
+            var stubAttendees = new List<AttendeeBase> { new Mock<AttendeeBase>().Object };
+            var stubSwag = new List<SwagBase> { new Mock<SwagBase>().Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -41,8 +41,8 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldLoadAttendeesWhenRequestedButShouldNotBeSwagableWhenNoAttendeesArePresent()
         {
             // Arrange
-            var stubAttendees = new List<IAttendee>();
-            var stubSwag = new List<ISwag> { new Mock<ISwag>().Object };
+            var stubAttendees = new List<AttendeeBase>();
+            var stubSwag = new List<SwagBase> { new Mock<SwagBase>().Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -63,8 +63,8 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldLoadAttendeesWhenRequestedButShouldNotBeSwagableWhenNoSwagIsPresent()
         {
             // Arrange
-            var stubAttendees = new List<IAttendee> { new Mock<IAttendee>().Object };
-            var stubSwag = new List<ISwag>();
+            var stubAttendees = new List<AttendeeBase> { new Mock<AttendeeBase>().Object };
+            var stubSwag = new List<SwagBase>();
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -85,11 +85,11 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldAwardSwagAndCanSwagSetToFalseWhenSwagAndAttendeesAreAllUsedUpAfterAward()
         {
             // Arrange
-            var mockAttendee = new Mock<IAttendee>();
-            var mockSwag = new Mock<ISwag>();
+            var mockAttendee = new Mock<AttendeeBase>();
+            var mockSwag = new Mock<SwagBase>();
 
-            var stubAttendees = new List<IAttendee> { mockAttendee.Object };
-            var stubSwag = new List<ISwag> { mockSwag.Object };
+            var stubAttendees = new List<AttendeeBase> { mockAttendee.Object };
+            var stubSwag = new List<SwagBase> { mockSwag.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -111,14 +111,14 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldAwardSwagAndCanSwagSetToTrueWhenAfterWinningMoreSwagAndAttendeesAreAvailable()
         {
             // Arrange
-            var mockAttendee1 = new Mock<IAttendee>();
-            var mockAttendee2 = new Mock<IAttendee>();
+            var mockAttendee1 = new Mock<AttendeeBase>();
+            var mockAttendee2 = new Mock<AttendeeBase>();
 
-            var mockSwag1 = new Mock<ISwag>();
-            var mockSwag2 = new Mock<ISwag>();
+            var mockSwag1 = new Mock<SwagBase>();
+            var mockSwag2 = new Mock<SwagBase>();
 
-            var stubAttendees = new List<IAttendee> { mockAttendee1.Object, mockAttendee2.Object };
-            var stubSwag = new List<ISwag> { mockSwag1.Object, mockSwag2.Object };
+            var stubAttendees = new List<AttendeeBase> { mockAttendee1.Object, mockAttendee2.Object };
+            var stubSwag = new List<SwagBase> { mockSwag1.Object, mockSwag2.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -140,13 +140,13 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldAwardSwagAndCanSwagSetToFalseWhenAfterAwardAllSwagIsGoneButMoreAttendeesAreAvailable()
         {
             // Arrange
-            var mockAttendee1 = new Mock<IAttendee>();
-            var mockAttendee2 = new Mock<IAttendee>();
+            var mockAttendee1 = new Mock<AttendeeBase>();
+            var mockAttendee2 = new Mock<AttendeeBase>();
 
-            var mockSwag = new Mock<ISwag>();
+            var mockSwag = new Mock<SwagBase>();
 
-            var stubAttendees = new List<IAttendee> { mockAttendee1.Object, mockAttendee2.Object };
-            var stubSwag = new List<ISwag> { mockSwag.Object };
+            var stubAttendees = new List<AttendeeBase> { mockAttendee1.Object, mockAttendee2.Object };
+            var stubSwag = new List<SwagBase> { mockSwag.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -168,12 +168,12 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldHaveCanSwagSetToTrueWhenAWinnerIsNotPresentAndTheSwagIsReAssigned()
         {
             // Arrange
-            var mockAttendee1 = new Mock<IAttendee>();
-            var mockAttendee2 = new Mock<IAttendee>();
-            var mockSwag = new Mock<ISwag>();
+            var mockAttendee1 = new Mock<AttendeeBase>();
+            var mockAttendee2 = new Mock<AttendeeBase>();
+            var mockSwag = new Mock<SwagBase>();
 
-            var stubAttendees = new List<IAttendee> { mockAttendee1.Object, mockAttendee2.Object };
-            var stubSwag = new List<ISwag> { mockSwag.Object };
+            var stubAttendees = new List<AttendeeBase> { mockAttendee1.Object, mockAttendee2.Object };
+            var stubSwag = new List<SwagBase> { mockSwag.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -200,11 +200,11 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldHaveCanSwagSetToFalseWhenAWinnerIsNotPresentAndTheSwagIsReAssignedButOnlyOneAttendeeAndSwagIsLeft()
         {
             // Arrange
-            var stubAttendee = new Mock<IAttendee>();
-            var stubSwagObject = new Mock<ISwag>();
+            var stubAttendee = new Mock<AttendeeBase>();
+            var stubSwagObject = new Mock<SwagBase>();
 
-            var stubAttendees = new List<IAttendee> { stubAttendee.Object };
-            var stubSwag = new List<ISwag> { stubSwagObject.Object };
+            var stubAttendees = new List<AttendeeBase> { stubAttendee.Object };
+            var stubSwag = new List<SwagBase> { stubSwagObject.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -227,12 +227,12 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldHaveCanSwagSetToFalseWhenAWinnerIsNotPresentAndTheSwagIsReAssignedAndReAwarded()
         {
             // Arrange
-            var mockAttendee1 = new Mock<IAttendee>();
-            var mockAttendee2 = new Mock<IAttendee>();
-            var mockSwag = new Mock<ISwag>();
+            var mockAttendee1 = new Mock<AttendeeBase>();
+            var mockAttendee2 = new Mock<AttendeeBase>();
+            var mockSwag = new Mock<SwagBase>();
 
-            var stubAttendees = new List<IAttendee> { mockAttendee1.Object, mockAttendee2.Object };
-            var stubSwag = new List<ISwag> { mockSwag.Object };
+            var stubAttendees = new List<AttendeeBase> { mockAttendee1.Object, mockAttendee2.Object };
+            var stubSwag = new List<SwagBase> { mockSwag.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -256,12 +256,12 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldBeAbleToSwagWhenAnAttendeeDoesntWantTheSwagButAnotherAttendeeIsAvailableToWinIt()
         {
             // Arrange
-            var mockAttendee1 = new Mock<IAttendee>();
-            var mockAttendee2 = new Mock<IAttendee>();
-            var mockSwag = new Mock<ISwag>();
+            var mockAttendee1 = new Mock<AttendeeBase>();
+            var mockAttendee2 = new Mock<AttendeeBase>();
+            var mockSwag = new Mock<SwagBase>();
 
-            var stubAttendees = new List<IAttendee> { mockAttendee1.Object, mockAttendee2.Object };
-            var stubSwag = new List<ISwag> { mockSwag.Object };
+            var stubAttendees = new List<AttendeeBase> { mockAttendee1.Object, mockAttendee2.Object };
+            var stubSwag = new List<SwagBase> { mockSwag.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -284,11 +284,11 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldNotBeAbleToSwagWhenAnAttendeeDoesntWantTheSwagButNoOtherAttendeeOrSwagIsLeft()
         {
             // Arrange
-            var stubAttendee = new Mock<IAttendee>();
-            var stubSwagObject = new Mock<ISwag>();
+            var stubAttendee = new Mock<AttendeeBase>();
+            var stubSwagObject = new Mock<SwagBase>();
 
-            var stubAttendees = new List<IAttendee> { stubAttendee.Object };
-            var stubSwag = new List<ISwag> { stubSwagObject.Object };
+            var stubAttendees = new List<AttendeeBase> { stubAttendee.Object };
+            var stubSwag = new List<SwagBase> { stubSwagObject.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -311,17 +311,17 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldNotBeAbleToSwagWhenAnAttendeeDoesntWantTheSwagThenTheLastAttendeeWinsIt()
         {
             // Arrange
-            var stubAttendee1 = new Mock<IAttendee>();
+            var stubAttendee1 = new Mock<AttendeeBase>();
             stubAttendee1.SetupGet(a => a.Name).Returns("Bob");
 
-            var stubAttendee2 = new Mock<IAttendee>();
+            var stubAttendee2 = new Mock<AttendeeBase>();
             stubAttendee2.SetupGet(a => a.Name).Returns("Fred");
 
-            var mockSwag = new Mock<ISwag>();
+            var mockSwag = new Mock<SwagBase>();
             mockSwag.SetupGet(a => a.Thing).Returns("Pants");
 
-            var stubAttendees = new List<IAttendee> { stubAttendee1.Object, stubAttendee2.Object };
-            var stubSwag = new List<ISwag> { mockSwag.Object };
+            var stubAttendees = new List<AttendeeBase> { stubAttendee1.Object, stubAttendee2.Object };
+            var stubSwag = new List<SwagBase> { mockSwag.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -345,17 +345,17 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldNotBeAbleToSwagWhenAnAttendeeDoesntWantTheSwagAndTheOtherAttendeeHasLeft()
         {
             // Arrange
-            var stubAttendee1 = new Mock<IAttendee>();
+            var stubAttendee1 = new Mock<AttendeeBase>();
             stubAttendee1.SetupGet(a => a.Name).Returns("Bob");
 
-            var stubAttendee2 = new Mock<IAttendee>();
+            var stubAttendee2 = new Mock<AttendeeBase>();
             stubAttendee2.SetupGet(a => a.Name).Returns("Fred");
 
-            var stubSwagObject = new Mock<ISwag>();
+            var stubSwagObject = new Mock<SwagBase>();
             stubSwagObject.SetupGet(a => a.Thing).Returns("Pants");
 
-            var stubAttendees = new List<IAttendee> { stubAttendee1.Object, stubAttendee2.Object };
-            var stubSwag = new List<ISwag> { stubSwagObject.Object };
+            var stubAttendees = new List<AttendeeBase> { stubAttendee1.Object, stubAttendee2.Object };
+            var stubSwag = new List<SwagBase> { stubSwagObject.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -380,16 +380,16 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldNotBeAbleToSwagWhenTheLastAttendeeDoesntWantTheSwagAndTheOnlySwagLeftIsAnotherItemOfTheSame()
         {
             // Arrange
-            var mockAttendee1 = new Mock<IAttendee>();
-            var stubOriginalSwag = new Mock<ISwag>();
+            var mockAttendee1 = new Mock<AttendeeBase>();
+            var stubOriginalSwag = new Mock<SwagBase>();
             stubOriginalSwag.SetupGet(s => s.Thing).Returns("SOCKS");
             stubOriginalSwag.SetupGet(s => s.Company).Returns("Company");
-            var stubDuplicateSwag = new Mock<ISwag>();
+            var stubDuplicateSwag = new Mock<SwagBase>();
             stubDuplicateSwag.SetupGet(s => s.Thing).Returns("SoCks");
             stubDuplicateSwag.SetupGet(s => s.Company).Returns("Company");
 
-            var stubAttendees = new List<IAttendee> { mockAttendee1.Object };
-            var stubSwag = new List<ISwag> { stubOriginalSwag.Object, stubDuplicateSwag.Object };
+            var stubAttendees = new List<AttendeeBase> { mockAttendee1.Object };
+            var stubSwag = new List<SwagBase> { stubOriginalSwag.Object, stubDuplicateSwag.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -410,17 +410,17 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldBeAbleToSwagWhenTheSecondToLastAttendeeDoesntWantTheSwagAndTheOnlySwagLeftIsAnotherItemOfTheSameButTheLastAttendeeDoesWantIt()
         {
             // Arrange
-            var mockAttendee1 = new Mock<IAttendee>();
-            var mockAttendee2 = new Mock<IAttendee>();
-            var stubOriginalSwag = new Mock<ISwag>();
+            var mockAttendee1 = new Mock<AttendeeBase>();
+            var mockAttendee2 = new Mock<AttendeeBase>();
+            var stubOriginalSwag = new Mock<SwagBase>();
             stubOriginalSwag.SetupGet(s => s.Thing).Returns("SOCKS");
             stubOriginalSwag.SetupGet(s => s.Company).Returns("Company");
-            var stubDuplicateSwag = new Mock<ISwag>();
+            var stubDuplicateSwag = new Mock<SwagBase>();
             stubDuplicateSwag.SetupGet(s => s.Thing).Returns("SoCks");
             stubDuplicateSwag.SetupGet(s => s.Company).Returns("Company");
 
-            var stubAttendees = new List<IAttendee> { mockAttendee1.Object, mockAttendee2.Object };
-            var stubSwag = new List<ISwag> { stubOriginalSwag.Object, stubDuplicateSwag.Object };
+            var stubAttendees = new List<AttendeeBase> { mockAttendee1.Object, mockAttendee2.Object };
+            var stubSwag = new List<SwagBase> { stubOriginalSwag.Object, stubDuplicateSwag.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -441,17 +441,17 @@ namespace Swagometer.Tests.Objects
         public void SwagOMeterAwardEngineShouldNotIncludeMultipleEntriesInTheWinners()
         {
             // Arrange
-            var mockAttendee1 = new Mock<IAttendee>();
-            var mockAttendee2 = new Mock<IAttendee>();
-            var stubOriginalSwag = new Mock<ISwag>();
+            var mockAttendee1 = new Mock<AttendeeBase>();
+            var mockAttendee2 = new Mock<AttendeeBase>();
+            var stubOriginalSwag = new Mock<SwagBase>();
             stubOriginalSwag.SetupGet(s => s.Thing).Returns("SOCKS");
             stubOriginalSwag.SetupGet(s => s.Company).Returns("Company");
-            var stubDuplicateSwag = new Mock<ISwag>();
+            var stubDuplicateSwag = new Mock<SwagBase>();
             stubDuplicateSwag.SetupGet(s => s.Thing).Returns("SoCks");
             stubDuplicateSwag.SetupGet(s => s.Company).Returns("Company");
 
-            var stubAttendees = new List<IAttendee> { mockAttendee1.Object, mockAttendee2.Object };
-            var stubSwag = new List<ISwag> { stubOriginalSwag.Object, stubDuplicateSwag.Object };
+            var stubAttendees = new List<AttendeeBase> { mockAttendee1.Object, mockAttendee2.Object };
+            var stubSwag = new List<SwagBase> { stubOriginalSwag.Object, stubDuplicateSwag.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);

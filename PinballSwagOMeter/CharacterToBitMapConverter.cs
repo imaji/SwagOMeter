@@ -88,6 +88,11 @@ namespace PinballSwagOMeter
 
         public static IEnumerable<BitArray> CentreAndGetBitPattern(string input)
         {
+            if (input.Length > 20)
+            {
+                input = input.Substring(0, 20);
+            }
+
             input = new string(input.ToUpper().Where(Map.ContainsKey).ToArray());
             input = input.PadLeft(input.Length + ((20 - input.Length) / 2));
 

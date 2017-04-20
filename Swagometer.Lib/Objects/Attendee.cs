@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Xml;
 using Swagometer.Lib.Interfaces;
+using System.Xml.Serialization;
 
 namespace Swagometer.Lib.Objects
 {
-    public class Attendee : IAttendee
+    [XmlRoot("Attendee")]
+    public class Attendee : AttendeeBase
     {
         private const string DEFAULT = "Set me";
 
@@ -13,7 +15,7 @@ namespace Swagometer.Lib.Objects
             Name = DEFAULT;
         }
 
-        public static IAttendee Create(XmlNode attendeeElement)
+        public static AttendeeBase Create(XmlNode attendeeElement)
         {
             var id = attendeeElement.Attributes["id"];
 
@@ -26,11 +28,12 @@ namespace Swagometer.Lib.Objects
             return newAttendee;
         }
 
-        public Guid Id { get; set; }
+        [XmlIgnore]
+        public override Guid Id { get; set; }
 
-        public string Name { get; set; }
+        public override string Name { get; set; }
 
-        public bool IsValid()
+        public override bool IsValid()
         {
             return !(string.IsNullOrEmpty(Name) || Name.Equals(DEFAULT));
         }
@@ -40,7 +43,7 @@ namespace Swagometer.Lib.Objects
             return Name;
         }
 
-        public IAttendee Duplicate()
+        public override AttendeeBase Duplicate()
         {
             return new Attendee { Id = Id, Name = Name };
         }

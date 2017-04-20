@@ -13,8 +13,8 @@ namespace Swagometer.Lib.Objects
 
         private readonly IList<IWinner> _badSwagCombinations = new List<IWinner>();
         private readonly IList<IWinner> _winners = new List<IWinner>();
-        private IList<IAttendee> _attendees;
-        private IList<ISwag> _swag;
+        private IList<AttendeeBase> _attendees;
+        private IList<SwagBase> _swag;
 
         private bool _canSwag;
         public bool CanSwag
@@ -30,8 +30,8 @@ namespace Swagometer.Lib.Objects
             }
         }
 
-        private IAttendee _winningAttendee;
-        public IAttendee WinningAttendee
+        private AttendeeBase _winningAttendee;
+        public AttendeeBase WinningAttendee
         {
             get
             {
@@ -44,8 +44,8 @@ namespace Swagometer.Lib.Objects
             }
         }
 
-        private ISwag _awardedSwag;
-        public ISwag AwardedSwag
+        private SwagBase _awardedSwag;
+        public SwagBase AwardedSwag
         {
             get
             {
@@ -101,8 +101,8 @@ namespace Swagometer.Lib.Objects
 
         private IWinner GetWinner()
         {
-            IAttendee winningAttendee = null;
-            ISwag swag = null;
+            AttendeeBase winningAttendee = null;
+            SwagBase swag = null;
 
             var swagAwarded = false;
 
@@ -120,7 +120,7 @@ namespace Swagometer.Lib.Objects
             return winner;
         }
 
-        private bool IsAttendeeAndSwagComboValid(IAttendee attendeeToCheck, ISwag swagToCheck)
+        private bool IsAttendeeAndSwagComboValid(AttendeeBase attendeeToCheck, SwagBase swagToCheck)
         {
             var swagCanBeAwarded = !_badSwagCombinations.Any(bs => bs.AwardedSwag.Thing == swagToCheck.Thing &&
                                                                     bs.WinningAttendee.Name == attendeeToCheck.Name);
@@ -134,10 +134,10 @@ namespace Swagometer.Lib.Objects
             return swagCanBeAwarded;
         }
 
-        private IAttendee GetAttendee()
+        private AttendeeBase GetAttendee()
         {
             var randomNumberGenerator = new Random();
-            IAttendee winningAttendee = null;
+            AttendeeBase winningAttendee = null;
             var attendeeNotSelected = true;
 
             while (attendeeNotSelected)
@@ -155,10 +155,10 @@ namespace Swagometer.Lib.Objects
             return winningAttendee;
         }
 
-        private ISwag GetSwag()
+        private SwagBase GetSwag()
         {
             var randomNumber = new Random();
-            ISwag awardedSwag = null;
+            SwagBase awardedSwag = null;
             var swagNotAwarded = true;
 
             while (swagNotAwarded)

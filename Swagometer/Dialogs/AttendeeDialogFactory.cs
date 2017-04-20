@@ -3,9 +3,9 @@ using Swagometer.ViewModels;
 
 namespace Swagometer.Dialogs
 {
-    public class AttendeeDialogFactory : IDialogFactory<IAttendee>
+    public class AttendeeDialogFactory : IDialogFactory<AttendeeBase>
     {
-        public ICreateNewThings<IAttendee> CreateDialog()
+        public ICreateNewThings<AttendeeBase> CreateDialog()
         {
             var viewModel = new CreateAttendeeViewModel();
 

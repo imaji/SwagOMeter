@@ -1,5 +1,5 @@
 ﻿namespace Swagometer.Lib.Interfaces
 {
-    public interface ISwagSource : IThingSource<ISwag>
+    public interface ISwagSource : IThingSource<SwagBase>
     {}
 }

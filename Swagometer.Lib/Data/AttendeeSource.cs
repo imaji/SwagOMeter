@@ -4,16 +4,16 @@ using Swagometer.Lib.Interfaces;
 
 namespace Swagometer.Lib.Data
 {
-    public class AttendeeSource : ThingSource<IAttendee>, IAttendeeSource
+    public class AttendeeSource : ThingSource<AttendeeBase>, IAttendeeSource
     {
         public AttendeeSource(IDisplayErrorMessages displayErrorMessage) : base(displayErrorMessage, "Attendee") {}
 
-        protected override IList<IAttendee> LoadThings(string thingLocation)
+        protected override IList<AttendeeBase> LoadThings(string thingLocation)
         {
             return AttendeeCollection.Load(thingLocation);
         }
 
-        protected override IThingCollection<IAttendee> GetCollection()
+        protected override IThingCollection<AttendeeBase> GetCollection()
         {
             return AttendeeCollection.Create();
         }

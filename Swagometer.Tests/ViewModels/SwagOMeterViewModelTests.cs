@@ -81,10 +81,10 @@ namespace Swagometer.Tests.ViewModels
         public void SwagOMeterViewModelShouldAwardSwagAndCanSwagSetToFalseWhenSwagAndAttendeesAreAllUsedUpAfterAward()
         {
             // Arrange
-            var mockAttendee = new Mock<IAttendee>();
+            var mockAttendee = new Mock<AttendeeBase>();
             mockAttendee.SetupGet(a => a.Name).Returns("Bob");
 
-            var mockSwag = new Mock<ISwag>();
+            var mockSwag = new Mock<SwagBase>();
             mockSwag.SetupGet(s => s.Company).Returns("Company");
             mockSwag.SetupGet(s => s.Thing).Returns("Thing");
 
@@ -115,10 +115,10 @@ namespace Swagometer.Tests.ViewModels
         public void SwagOMeterViewModelShouldAwardSwagAndCanSwagSetToTrueWhenAfterWinningMoreSwagAndAttendeesAreAvailable()
         {
             // Arrange
-            var mockAttendee1 = new Mock<IAttendee>();
+            var mockAttendee1 = new Mock<AttendeeBase>();
             mockAttendee1.SetupGet(a => a.Name).Returns("1");
 
-            var mockSwag1 = new Mock<ISwag>();
+            var mockSwag1 = new Mock<SwagBase>();
             mockSwag1.SetupGet(s => s.Company).Returns("Company");
             mockSwag1.SetupGet(s => s.Thing).Returns("Thing");
 
@@ -149,10 +149,10 @@ namespace Swagometer.Tests.ViewModels
         public void SwagOMeterViewModelShouldAwardSwagAndCanSwagSetToFalseWhenAfterAwardAllSwagIsGoneButMoreAttendeesAreAvailable()
         {
             // Arrange
-            var mockAttendee1 = new Mock<IAttendee>();
+            var mockAttendee1 = new Mock<AttendeeBase>();
             mockAttendee1.SetupGet(a => a.Name).Returns("1");
 
-            var mockSwag = new Mock<ISwag>();
+            var mockSwag = new Mock<SwagBase>();
             mockSwag.SetupGet(s => s.Company).Returns("Company");
             mockSwag.SetupGet(s => s.Thing).Returns("Thing");
 
@@ -183,8 +183,8 @@ namespace Swagometer.Tests.ViewModels
         public void SwagOMeterViewModelShouldHaveCanSwagSetToTrueWhenAWinnerIsNotPresentAndTheSwagIsReAssigned()
         {
             // Arrange
-            var mockAttendee = new Mock<IAttendee>();
-            var mockSwag = new Mock<ISwag>();
+            var mockAttendee = new Mock<AttendeeBase>();
+            var mockSwag = new Mock<SwagBase>();
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
 
@@ -214,8 +214,8 @@ namespace Swagometer.Tests.ViewModels
         public void SwagOMeterViewModelShouldHaveCanSwagSetToFalseWhenAWinnerIsNotPresentAndTheSwagIsReAssignedButOnlyOneAttendeeAndSwagIsLeft()
         {
             // Arrange
-            var mockAttendee = new Mock<IAttendee>();
-            var mockSwag = new Mock<ISwag>();
+            var mockAttendee = new Mock<AttendeeBase>();
+            var mockSwag = new Mock<SwagBase>();
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
 
@@ -245,10 +245,10 @@ namespace Swagometer.Tests.ViewModels
         public void SwagOMeterViewModelShouldHaveCanSwagSetToFalseWhenAWinnerIsNotPresentAndTheSwagIsReAssignedAndReAwarded()
         {
             // Arrange
-            var mockAttendee = new Mock<IAttendee>();
+            var mockAttendee = new Mock<AttendeeBase>();
             mockAttendee.SetupGet(a => a.Name).Returns("1");
 
-            var mockSwag = new Mock<ISwag>();
+            var mockSwag = new Mock<SwagBase>();
             mockSwag.SetupGet(s => s.Company).Returns("Company");
             mockSwag.SetupGet(s => s.Thing).Returns("Thing");
 
@@ -281,8 +281,8 @@ namespace Swagometer.Tests.ViewModels
         public void SwagOMeterViewModelShouldBeAbleToSwagWhenAnAttendeeDoesntWantTheSwagButAnotherAttendeeIsAvailableToWinIt()
         {
             // Arrange
-            var stubAttendee = new Mock<IAttendee>();
-            var stubSwag = new Mock<ISwag>();
+            var stubAttendee = new Mock<AttendeeBase>();
+            var stubSwag = new Mock<SwagBase>();
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
 
@@ -312,8 +312,8 @@ namespace Swagometer.Tests.ViewModels
         public void SwagOMeterViewModelShouldNotBeAbleToSwagWhenAnAttendeeDoesntWantTheSwagButNoOtherAttendeeOrSwagIsLeft()
         {
             // Arrange
-            var stubAttendee = new Mock<IAttendee>();
-            var stubSwag = new Mock<ISwag>();
+            var stubAttendee = new Mock<AttendeeBase>();
+            var stubSwag = new Mock<SwagBase>();
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
 
@@ -343,17 +343,17 @@ namespace Swagometer.Tests.ViewModels
         public void SwagOMeterViewModelShouldNotSaveAnyWinnerWhenNoWinnersHaveBeenAssigned()
         {
             // Arrange
-            var stubAttendee1 = new Mock<IAttendee>();
+            var stubAttendee1 = new Mock<AttendeeBase>();
             stubAttendee1.SetupGet(a => a.Name).Returns("Bob");
 
-            var stubAttendee2 = new Mock<IAttendee>();
+            var stubAttendee2 = new Mock<AttendeeBase>();
             stubAttendee2.SetupGet(a => a.Name).Returns("Fred");
 
-            var stubSwagObject = new Mock<ISwag>();
+            var stubSwagObject = new Mock<SwagBase>();
             stubSwagObject.SetupGet(a => a.Thing).Returns("Pants");
 
-            var stubAttendees = new List<IAttendee> { stubAttendee1.Object, stubAttendee2.Object };
-            var stubSwag = new List<ISwag> { stubSwagObject.Object };
+            var stubAttendees = new List<AttendeeBase> { stubAttendee1.Object, stubAttendee2.Object };
+            var stubSwag = new List<SwagBase> { stubSwagObject.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -380,14 +380,14 @@ namespace Swagometer.Tests.ViewModels
         public void SwagOMeterViewModelShouldNotSaveIfSaveOnExitSettingOff()
         {
             // Arrange
-            var mockAttendee = new Mock<IAttendee>();
+            var mockAttendee = new Mock<AttendeeBase>();
             mockAttendee.SetupGet(a => a.Name).Returns("Bob");
 
-            var mockSwagObject = new Mock<ISwag>();
+            var mockSwagObject = new Mock<SwagBase>();
             mockSwagObject.SetupGet(a => a.Thing).Returns("Pants");
 
-            var stubAttendees = new List<IAttendee> { mockAttendee.Object };
-            var stubSwag = new List<ISwag> { mockSwagObject.Object };
+            var stubAttendees = new List<AttendeeBase> { mockAttendee.Object };
+            var stubSwag = new List<SwagBase> { mockSwagObject.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);
@@ -416,14 +416,14 @@ namespace Swagometer.Tests.ViewModels
         public void SwagOMeterViewModelShouldSaveAnyWinnerWhenWinnersHaveBeenAssigned()
         {
             // Arrange
-            var mockAttendee = new Mock<IAttendee>();
+            var mockAttendee = new Mock<AttendeeBase>();
             mockAttendee.SetupGet(a => a.Name).Returns("Bob");
 
-            var mockSwagObject = new Mock<ISwag>();
+            var mockSwagObject = new Mock<SwagBase>();
             mockSwagObject.SetupGet(a => a.Thing).Returns("Pants");
 
-            var stubAttendees = new List<IAttendee> { mockAttendee.Object };
-            var stubSwag = new List<ISwag> { mockSwagObject.Object };
+            var stubAttendees = new List<AttendeeBase> { mockAttendee.Object };
+            var stubSwag = new List<SwagBase> { mockSwagObject.Object };
 
             var stubAttendeeSource = new Mock<IAttendeeSource>();
             stubAttendeeSource.Setup(sa => sa.Load(It.IsAny<string>())).Returns(stubAttendees);

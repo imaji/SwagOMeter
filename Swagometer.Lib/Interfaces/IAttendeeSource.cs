@@ -1,5 +1,5 @@
 ﻿namespace Swagometer.Lib.Interfaces
 {
-    public interface IAttendeeSource : IThingSource<IAttendee>
+    public interface IAttendeeSource : IThingSource<AttendeeBase>
     { }
 }

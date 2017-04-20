@@ -3,10 +3,12 @@ using Swagometer.Lib.Objects;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace Swagometer.Lib.Collections
 {
-    internal class SwagCollection : ObservableCollection<ISwag>, IThingCollection<ISwag>
+    [XmlRoot("SwagStash")]
+    public class SwagCollection : ObservableCollection<SwagBase>, IThingCollection<SwagBase>
     {
         private SwagCollection() { }
 
